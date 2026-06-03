@@ -74,6 +74,8 @@ def parse_cache_summary() -> dict[str, Any]:
     try:
         d = json.loads(out)
         d['available'] = True
+        # Public dashboard must not expose recording filenames/transcript paths.
+        d.pop('items', None)
         return d
     except Exception:
         return {'available': False, 'raw': out[:500]}
@@ -96,24 +98,56 @@ def short_text(s: Any, limit: int = 96) -> str:
     return text if len(text) <= limit else text[: limit - 1] + '…'
 
 
-def normalize_tasks(items: Any, source: str, limit: int = 8) -> list[dict[str, str]]:
+def summarize_tasks(items: Any, source: str) -> dict[str, Any]:
+    """Return only non-content task metadata for the public dashboard.
+
+    Do not expose meeting/call transcript snippets, titles, source note names,
+    evidence, or IDs on GitHub Pages.
+    """
     if not isinstance(items, list):
-        return []
-    out: list[dict[str, str]] = []
-    for item in items[:limit]:
+        items = []
+    status_counts: dict[str, int] = {}
+    due_hint_counts: dict[str, int] = {}
+    newest = ''
+    for item in items:
         if not isinstance(item, dict):
             continue
-        note = item.get('source_note') or ''
-        out.append({
-            'source': source,
-            'id': short_text(item.get('id'), 36),
-            'title': short_text(item.get('title'), 110),
-            'due_hint': short_text(item.get('due_hint') or '기한 없음', 24),
-            'status': short_text(item.get('status') or 'pending', 32),
-            'note': short_text(Path(note).name if note else '', 48),
-            'created_at': short_text(item.get('created_at'), 24),
-        })
-    return out
+        status = short_text(item.get('status') or 'pending', 32)
+        due_hint = short_text(item.get('due_hint') or '기한 없음', 24)
+        status_counts[status] = status_counts.get(status, 0) + 1
+        due_hint_counts[due_hint] = due_hint_counts.get(due_hint, 0) + 1
+        created = str(item.get('created_at') or '')
+        if created > newest:
+            newest = created
+    return {
+        'source': source,
+        'count': len(items),
+        'status_counts': status_counts,
+        'due_hint_counts': due_hint_counts,
+        'newest_created_at': newest or 'unknown',
+    }
+
+
+def public_state(state: Any) -> dict[str, Any]:
+    if not isinstance(state, dict):
+        return {'last_run_at': 'unknown', 'seen_count': 0, 'failed_count': 0}
+    return {
+        'last_run_at': state.get('last_run_at') or 'unknown',
+        'seen_count': len(state.get('seen_keys') or state.get('seen_names') or []),
+        'failed_count': len(state.get('failed_keys') or []),
+        'transient_failure_count': len(state.get('transient_failures') or {}),
+    }
+
+
+def public_job(job: dict[str, Any]) -> dict[str, Any]:
+    return {
+        'name': job.get('name'),
+        'job_id': job.get('job_id') or job.get('id'),
+        'enabled': job.get('enabled'),
+        'last_status': job.get('last_status'),
+        'last_error': job.get('last_error'),
+        'next_run_at': job.get('next_run_at'),
+    }
 
 
 def find_job(jobs: list[dict[str, Any]], *needles: str) -> dict[str, Any]:
@@ -132,23 +166,25 @@ def collect() -> dict[str, Any]:
     failed = [j for j in active if j.get('last_status') not in (None, 'ok')]
     pending_call = load_json(PENDING_CALL, [])
     pending_meeting = load_json(PENDING_MEETING, [])
-    task_samples = normalize_tasks(pending_call, '통화') + normalize_tasks(pending_meeting, '회의')
+    task_summaries = [summarize_tasks(pending_call, '통화'), summarize_tasks(pending_meeting, '회의')]
     people_job = find_job(jobs, '피플팀', '브리핑') or find_job(jobs, 'daily insight')
     cache = parse_cache_summary()
     hermes_version_lines = run([str(HERMES_HOME / 'hermes-agent' / 'venv' / 'bin' / 'hermes'), '--version'], timeout=90).splitlines()
+    call_state = public_state(load_json(CALL_STATE, {}))
+    meeting_state = public_state(load_json(MEETING_STATE, {}))
     return {
         'generated_at': datetime.now().isoformat(timespec='seconds'),
-        'jobs': jobs,
+        'jobs': [public_job(j) for j in jobs],
         'active_jobs': len(active),
         'failed_jobs': len(failed),
         'errors': recent_errors(),
         'call_recent_notes': count_recent_md(VAULT / '30_통화녹음'),
         'meeting_recent_notes': count_recent_md(VAULT / '31_회의록'),
-        'call_state': load_json(CALL_STATE, {}),
-        'meeting_state': load_json(MEETING_STATE, {}),
+        'call_state': call_state,
+        'meeting_state': meeting_state,
         'pending_call_tasks': len(pending_call),
         'pending_meeting_tasks': len(pending_meeting),
-        'task_samples': task_samples[:12],
+        'task_summaries': task_summaries,
         'people_briefing': {
             'name': people_job.get('name') or '평일 08시 피플팀 뉴스 브리핑',
             'enabled': people_job.get('enabled'),
@@ -191,15 +227,18 @@ def render(data: dict[str, Any]) -> str:
 
     errors_html = '\n'.join(f"<li><code>{esc(e)}</code></li>" for e in data['errors']) or '<li>최근 주요 에러 없음</li>'
     task_rows = []
-    for t in data.get('task_samples', []):
+    for t in data.get('task_summaries', []):
+        status_text = ', '.join(f"{esc(k)} {v}" for k, v in t.get('status_counts', {}).items()) or '-'
+        due_text = ', '.join(f"{esc(k)} {v}" for k, v in t.get('due_hint_counts', {}).items()) or '-'
         task_rows.append(f"""
         <tr>
           <td><span class='pill'>{esc(t['source'])}</span></td>
-          <td><b>{esc(t['title'])}</b><div class='sub'>{esc(t['note'])} · {esc(t['id'])}</div></td>
-          <td>{esc(t['due_hint'])}</td>
-          <td>{esc(t['status'])}</td>
+          <td><b>{esc(t['count'])}</b>개</td>
+          <td>{status_text}</td>
+          <td>{due_text}</td>
+          <td><code>{esc(t.get('newest_created_at'))}</code></td>
         </tr>""")
-    tasks_html = ''.join(task_rows) or "<tr><td colspan='4'>현재 Google Tasks 승인 후보 없음</td></tr>"
+    tasks_html = ''.join(task_rows) or "<tr><td colspan='5'>현재 Google Tasks 승인 후보 없음</td></tr>"
     people = data.get('people_briefing', {})
     people_status = people.get('last_status') or 'not yet'
     people_cls = status_class(people_status)
@@ -324,10 +363,10 @@ li {{ margin:8px 0; color:#c9d1d9; }}
       </ul>
     </div>
 
-    <div class='card wide'><div class='label'>Google Tasks 후보 상세</div>
-      <div class='sub'>승인 전 후보 상위 12개 · 통화 {data['pending_call_tasks']} / 회의 {data['pending_meeting_tasks']}</div>
+    <div class='card wide'><div class='label'>Google Tasks 후보 요약</div>
+      <div class='sub'>공개 페이지에는 회의/통화 원문, 제목, 인용문, 파일명은 올리지 않고 숫자/상태만 표시</div>
       <table class='compact'>
-        <thead><tr><th>출처</th><th>후보</th><th>기한</th><th>상태</th></tr></thead>
+        <thead><tr><th>출처</th><th>후보 수</th><th>상태</th><th>기한 힌트</th><th>최근 생성</th></tr></thead>
         <tbody>{tasks_html}</tbody>
       </table>
     </div>
