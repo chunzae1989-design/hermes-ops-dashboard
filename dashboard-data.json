@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T20:11:00",
+  "generated_at": "2026-06-03T20:12:03",
   "jobs": [
     {
       "id": "6b91a9914c2e",
@@ -14936,7 +14936,7 @@
   "disk_line": "/dev/disk3s5   460Gi    88Gi   337Gi    21%    836k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-03T20:11:00",
+    "scanned_at": "2026-06-03T20:12:03",
     "min_age_days": 7,
     "candidates": 89,
     "downloaded_candidates": 89,
