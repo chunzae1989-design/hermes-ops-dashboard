@@ -24,6 +24,8 @@ MEETING_STATE = HOME / 'HermesProjects' / 'meeting_recording_processing' / 'auto
 PENDING_CALL = HOME / 'HermesProjects' / 'recording_processing' / 'pending_gtasks.json'
 PENDING_MEETING = HOME / 'HermesProjects' / 'meeting_recording_processing' / 'pending_meeting_gtasks.json'
 CACHE_SCANNER = HERMES_HOME / 'scripts' / 'recording_local_cache_cleanup.py'
+PORTFOLIO_JSON = HOME / 'HermesProjects' / 'finance-manager' / 'portfolio.json'
+CRON_OUTPUT = HERMES_HOME / 'cron' / 'output'
 
 
 def run(cmd: list[str], timeout: int = 30) -> str:
@@ -150,6 +152,103 @@ def public_job(job: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def pct(n: float, d: float) -> float:
+    return round((n / d * 100.0), 1) if d else 0.0
+
+
+def format_krw(v: Any) -> str:
+    try:
+        n = float(v or 0)
+    except Exception:
+        return '0원'
+    if n >= 100_000_000:
+        return f'{n / 100_000_000:.1f}억 원'
+    if n >= 10_000:
+        return f'{n / 10_000:.0f}만 원'
+    return f'{n:.0f}원'
+
+
+def count_recent_files(folder: Path, days: int = 7) -> int:
+    if not folder.exists():
+        return 0
+    cutoff = datetime.now().timestamp() - days * 86400
+    return sum(1 for p in folder.glob('*') if p.is_file() and p.stat().st_mtime >= cutoff)
+
+
+def collect_portfolio_benchmark() -> dict[str, Any]:
+    p = load_json(PORTFOLIO_JSON, {})
+    holdings = p.get('holdings', []) if isinstance(p, dict) else []
+    rows = []
+    total = 0.0
+    cash = 0.0
+    profit_known = 0.0
+    for h in holdings:
+        if not isinstance(h, dict):
+            continue
+        value = float(h.get('value_krw') or 0)
+        total += value
+        if h.get('ticker') == 'CASH':
+            cash += value
+        profit = h.get('profit_krw')
+        if isinstance(profit, (int, float)):
+            profit_known += float(profit)
+        rows.append({'name': h.get('name') or h.get('ticker'), 'ticker': h.get('ticker'), 'value_krw': value})
+    top = max(rows, key=lambda x: x['value_krw'], default={'name': '-', 'ticker': '-', 'value_krw': 0})
+    return {
+        'total_value_krw': round(total),
+        'cash_weight_pct': pct(cash, total),
+        'known_profit_krw': round(profit_known),
+        'top_holding': f"{top.get('name')} ({top.get('ticker')})",
+        'top_weight_pct': pct(float(top.get('value_krw') or 0), total),
+        'benchmarks': ['NASDAQ', 'S&P500', 'SOXX', 'KOSPI', 'USD/KRW'],
+        'last_briefing_outputs_7d': count_recent_files(CRON_OUTPUT / '4ea6aab46e6d', 7),
+    }
+
+
+def collect_benchmarks(jobs: list[dict[str, Any]], active: list[dict[str, Any]], failed: list[dict[str, Any]], errors: list[str], pending_call: Any, pending_meeting: Any, call_notes: int, meeting_notes: int, people_job: dict[str, Any], call_state: dict[str, Any], meeting_state: dict[str, Any]) -> dict[str, Any]:
+    ok_active = [j for j in active if j.get('last_status') == 'ok']
+    total_candidates = (len(pending_call) if isinstance(pending_call, list) else 0) + (len(pending_meeting) if isinstance(pending_meeting, list) else 0)
+    total_notes = call_notes + meeting_notes
+    recording_runs_7d = count_recent_files(CRON_OUTPUT / 'c1ac367cdb01', 7) + count_recent_files(CRON_OUTPUT / '5eb8a9449c5f', 7)
+    cron_runs_7d = sum(count_recent_files(CRON_OUTPUT / str(j.get('id') or j.get('job_id')), 7) for j in jobs)
+    auto_items = call_notes + meeting_notes + total_candidates + cron_runs_7d
+    minutes_saved = round(call_notes * 8 + meeting_notes * 20 + total_candidates * 1.5 + cron_runs_7d * 3)
+    ops_score = max(0, round(100 - (len(failed) / max(len(active), 1) * 45) - min(len(errors), 10) * 2))
+    return {
+        'ai_ops': {
+            'score': ops_score,
+            'active_jobs': len(active),
+            'ok_active_jobs': len(ok_active),
+            'cron_success_rate_pct': pct(len(ok_active), len(active)),
+            'attention_jobs': len(failed),
+            'recent_error_lines': len(errors),
+            'cron_runs_7d': cron_runs_7d,
+        },
+        'task_conversion': {
+            'recording_notes_7d': total_notes,
+            'task_candidates': total_candidates,
+            'candidate_rate_pct': pct(total_candidates, total_notes),
+            'call_pipeline_seen': call_state.get('seen_count', 0),
+            'meeting_pipeline_seen': meeting_state.get('seen_count', 0),
+        },
+        'daily_insight': {
+            'job_status': people_job.get('last_status') or 'not yet',
+            'last_run_at': people_job.get('last_run_at') or 'unknown',
+            'next_run_at': people_job.get('next_run_at') or '-',
+            'last_error_present': bool(people_job.get('last_error')),
+            'delivery_reliability': '주의' if people_job.get('last_status') not in (None, 'ok') else '정상',
+        },
+        'portfolio': collect_portfolio_benchmark(),
+        'roi': {
+            'auto_items_7d': auto_items,
+            'estimated_minutes_saved_7d': minutes_saved,
+            'estimated_hours_saved_7d': round(minutes_saved / 60, 1),
+            'recording_runs_7d': recording_runs_7d,
+            'model': '통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정',
+        },
+    }
+
+
 def find_job(jobs: list[dict[str, Any]], *needles: str) -> dict[str, Any]:
     lowered = [n.lower() for n in needles]
     for job in jobs:
@@ -172,14 +271,19 @@ def collect() -> dict[str, Any]:
     hermes_version_lines = run([str(HERMES_HOME / 'hermes-agent' / 'venv' / 'bin' / 'hermes'), '--version'], timeout=90).splitlines()
     call_state = public_state(load_json(CALL_STATE, {}))
     meeting_state = public_state(load_json(MEETING_STATE, {}))
+    call_notes = count_recent_md(VAULT / '30_통화녹음')
+    meeting_notes = count_recent_md(VAULT / '31_회의록')
+    errors = recent_errors()
+    benchmarks = collect_benchmarks(jobs, active, failed, errors, pending_call, pending_meeting, call_notes, meeting_notes, people_job, call_state, meeting_state)
     return {
         'generated_at': datetime.now().isoformat(timespec='seconds'),
         'jobs': [public_job(j) for j in jobs],
         'active_jobs': len(active),
         'failed_jobs': len(failed),
-        'errors': recent_errors(),
-        'call_recent_notes': count_recent_md(VAULT / '30_통화녹음'),
-        'meeting_recent_notes': count_recent_md(VAULT / '31_회의록'),
+        'errors': errors,
+        'benchmarks': benchmarks,
+        'call_recent_notes': call_notes,
+        'meeting_recent_notes': meeting_notes,
         'call_state': call_state,
         'meeting_state': meeting_state,
         'pending_call_tasks': len(pending_call),
@@ -226,6 +330,24 @@ def render(data: dict[str, Any]) -> str:
         </tr>""")
 
     errors_html = '\n'.join(f"<li><code>{esc(e)}</code></li>" for e in data['errors']) or '<li>최근 주요 에러 없음</li>'
+    bm = data.get('benchmarks', {})
+    ai = bm.get('ai_ops', {})
+    conv = bm.get('task_conversion', {})
+    di = bm.get('daily_insight', {})
+    pf = bm.get('portfolio', {})
+    roi = bm.get('roi', {})
+    benchmark_cards = f"""
+    <div class='card'><div class='label'>1. AI Ops Score</div><div class='kpi'><div class='value'>{esc(ai.get('score', 0))}</div><span class='pill {'ok' if ai.get('score', 0) >= 80 else 'warn'}'>ops</span></div><div class='sub'>cron 성공률 {esc(ai.get('cron_success_rate_pct', 0))}% · 주의 {esc(ai.get('attention_jobs', 0))}개 · 7일 실행 {esc(ai.get('cron_runs_7d', 0))}회</div></div>
+    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>{esc(conv.get('candidate_rate_pct', 0))}%</div><div class='sub'>7일 노트 {esc(conv.get('recording_notes_7d', 0))}개 → 후보 {esc(conv.get('task_candidates', 0))}개</div></div>
+    <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>{esc(di.get('delivery_reliability', '-'))}</div><span class='pill {status_class(di.get('job_status'))}'>{esc(di.get('job_status', '-'))}</span></div><div class='sub'>다음 실행 {esc(di.get('next_run_at', '-'))}</div></div>
+    <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>{esc(pf.get('top_holding', '-'))}</div><div class='sub'>상위 비중 {esc(pf.get('top_weight_pct', 0))}% · 추적: {esc(', '.join(pf.get('benchmarks', [])))}</div></div>
+    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>{esc(roi.get('estimated_hours_saved_7d', 0))}h</div><span class='pill'>7d</span></div><div class='sub'>{esc(roi.get('auto_items_7d', 0))}개 자동 처리 신호 · {esc(roi.get('model', ''))}</div></div>
+    <div class='card wide'><div class='label'>벤치마킹 상태</div><ul>
+      <li>AI Ops: 성공률/주의 cron/오류 로그 기준 점수화</li>
+      <li>Task: 공개 페이지에는 후보 내용 없이 전환 숫자만 표시</li>
+      <li>Finance: 총액 {esc(format_krw(pf.get('total_value_krw', 0)))} · 현금비중 {esc(pf.get('cash_weight_pct', 0))}% · 최근 브리핑 {esc(pf.get('last_briefing_outputs_7d', 0))}건</li>
+    </ul></div>
+    """
     task_rows = []
     for t in data.get('task_summaries', []):
         status_text = ', '.join(f"{esc(k)} {v}" for k, v in t.get('status_counts', {}).items()) or '-'
@@ -340,6 +462,8 @@ li {{ margin:8px 0; color:#c9d1d9; }}
     <div class='card'><div class='label'>실패/주의 cron</div><div class='kpi'><div class='value'>{data['failed_jobs']}</div><span class='pill {'bad' if data['failed_jobs'] else 'ok'}'>{'check' if data['failed_jobs'] else 'ok'}</span></div></div>
     <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>{data['call_recent_notes']} <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>{data['meeting_recent_notes']} 회의록</div></div>
     <div class='card'><div class='label'>Tasks 후보</div><div class='value'>{data['pending_call_tasks'] + data['pending_meeting_tasks']}</div><div class='sub'>통화 {data['pending_call_tasks']} · 회의 {data['pending_meeting_tasks']}</div></div>
+
+    {benchmark_cards}
 
     <div class='card wide'><div class='label'>Hermes</div><div class='value small'>{esc(data['hermes_version'])}</div><div class='sub'>{esc(data.get('hermes_update') or '업데이트 추가 메시지 없음')}</div></div>
     <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>{esc(data['recordings_du'])} 녹음 캐시</div><div class='sub'>{esc(data['disk_line'])}</div></div>
