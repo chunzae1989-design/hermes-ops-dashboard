@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T20:12:03",
+  "generated_at": "2026-06-03T20:13:12",
   "jobs": [
     {
       "id": "6b91a9914c2e",
@@ -291,15 +291,15 @@
       "schedule_display": "every 10m",
       "repeat": {
         "times": null,
-        "completed": 369
+        "completed": 370
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-31T21:00:44.524031+09:00",
-      "next_run_at": "2026-06-03T20:12:10.810118+09:00",
-      "last_run_at": "2026-06-03T20:02:10.810118+09:00",
+      "next_run_at": "2026-06-03T20:22:12.386864+09:00",
+      "last_run_at": "2026-06-03T20:12:12.386864+09:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -359,9 +359,54 @@
       "enabled_toolsets": null,
       "workdir": null,
       "profile": null
+    },
+    {
+      "id": "44037aed6c5c",
+      "name": "Hermes Ops Dashboard 자동 갱신",
+      "prompt": "매일 아침 Hermes Ops Dashboard를 생성하고 변경사항이 있으면 GitHub Pages 저장소에 커밋/푸시한다. 스크립트 stdout이 있으면 그대로 전달한다.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "update_hermes_ops_dashboard.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "10 7 * * *",
+        "display": "10 7 * * *"
+      },
+      "schedule_display": "10 7 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-03T20:12:17.841690+09:00",
+      "next_run_at": "2026-06-03T20:12:23.932386+09:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "8813876157",
+        "chat_name": "형빈 나",
+        "thread_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null
     }
   ],
-  "active_jobs": 7,
+  "active_jobs": 8,
   "failed_jobs": 1,
   "errors": [
     "2026-06-03 08:05:37,312 WARNING [cron_7d884cf4f2dd_20260603_080019] agent.conversation_loop: API call failed (attempt 3/3) error_type=ReadError thread=ThreadPoolExecutor-141_0:6328856576 provider=openai-codex base_url=https://chatgpt.com/ba",
@@ -14844,7 +14889,7 @@
       "음성 260522_073955.m4a",
       "음성 260601_160535.m4a"
     ],
-    "last_run_at": "2026-06-03T20:02:10",
+    "last_run_at": "2026-06-03T20:12:12",
     "root": "/Users/na/Library/CloudStorage/SynologyDrive-RecordingsInbox/Meetings",
     "failed_keys": []
   },
@@ -14936,7 +14981,7 @@
   "disk_line": "/dev/disk3s5   460Gi    88Gi   337Gi    21%    836k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-03T20:12:03",
+    "scanned_at": "2026-06-03T20:13:11",
     "min_age_days": 7,
     "candidates": 89,
     "downloaded_candidates": 89,
