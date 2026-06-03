@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T22:03:43",
+  "generated_at": "2026-06-04T07:02:45",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,7 +7,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T06:00:00+09:00"
+      "next_run_at": "2026-06-05T06:00:00+09:00"
     },
     {
       "name": "평일 08시 피플팀 뉴스 브리핑",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-03T22:04:32.978030+09:00"
+      "next_run_at": "2026-06-04T07:06:11.663696+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-03T22:12:34.030911+09:00"
+      "next_run_at": "2026-06-04T07:04:11.243634+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 75.0,
       "attention_jobs": 1,
       "recent_error_lines": 10,
-      "cron_runs_7d": 812
+      "cron_runs_7d": 919
     },
     "task_conversion": {
       "recording_notes_7d": 115,
@@ -128,23 +128,23 @@
       "last_briefing_outputs_7d": 2
     },
     "roi": {
-      "auto_items_7d": 941,
-      "estimated_minutes_saved_7d": 3401,
-      "estimated_hours_saved_7d": 56.7,
-      "recording_runs_7d": 782,
+      "auto_items_7d": 1048,
+      "estimated_minutes_saved_7d": 3722,
+      "estimated_hours_saved_7d": 62.0,
+      "recording_runs_7d": 889,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
   "call_recent_notes": 113,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-03T21:54:32",
+    "last_run_at": "2026-06-04T06:56:11",
     "seen_count": 7224,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-03T22:02:34",
+    "last_run_at": "2026-06-04T06:54:11",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -181,10 +181,10 @@
     "next_run_at": "2026-06-04T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    88Gi   337Gi    21%    836k  3.5G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    88Gi   337Gi    21%    837k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-03T22:03:43",
+    "scanned_at": "2026-06-04T07:02:44",
     "min_age_days": 7,
     "candidates": 89,
     "downloaded_candidates": 89,
@@ -194,5 +194,46 @@
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 102 commits behind — run 'hermes update'"
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 160 commits behind — run 'hermes update'",
+  "trend": {
+    "history": [
+      {
+        "ts": "2026-06-04T07:02:45",
+        "score": 74,
+        "cron_success_rate_pct": 75.0,
+        "attention_jobs": 1,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 919,
+        "task_candidates": 14,
+        "roi_hours_7d": 62.0
+      }
+    ],
+    "latest": {
+      "ts": "2026-06-04T07:02:45",
+      "score": 74,
+      "cron_success_rate_pct": 75.0,
+      "attention_jobs": 1,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 919,
+      "task_candidates": 14,
+      "roi_hours_7d": 62.0
+    },
+    "previous": null,
+    "score_delta": [
+      "-",
+      "flat"
+    ],
+    "success_delta": [
+      "-",
+      "flat"
+    ],
+    "attention_delta": [
+      "-",
+      "flat"
+    ],
+    "error_delta": [
+      "-",
+      "flat"
+    ]
+  }
 }

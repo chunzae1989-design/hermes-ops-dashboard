@@ -49,6 +49,16 @@ h1 { margin:0; font-size: clamp(28px, 4vw, 48px); letter-spacing:-.04em; }
 .value { font-size:30px; font-weight:750; letter-spacing:-.03em; }
 .value.small { font-size:19px; line-height:1.35; }
 .kpi { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.score-layout { display:grid; grid-template-columns: minmax(0, 1fr) 150px; gap:16px; align-items:end; }
+.trend-delta { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }
+.trend-delta span { font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--muted); }
+.trend-delta .up { color:var(--green); border-color:rgba(63,185,80,.35); background:rgba(63,185,80,.08); }
+.trend-delta .down { color:var(--red); border-color:rgba(248,81,73,.35); background:rgba(248,81,73,.08); }
+.trend-delta .flat { color:var(--muted); }
+.spark-wrap { min-width:130px; }
+.spark { height:58px; display:flex; align-items:end; gap:5px; padding:8px; border:1px solid rgba(48,54,61,.75); border-radius:14px; background:rgba(255,255,255,.03); }
+.spark i { flex:1; min-width:5px; border-radius:999px 999px 3px 3px; background:linear-gradient(180deg, var(--blue), var(--purple)); box-shadow:0 0 18px rgba(88,166,255,.25); }
+.trend-table th, .trend-table td { padding:7px 6px; font-size:12px; }
 .pill { font-size:12px; padding:5px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }
 .pill.ok { color: var(--green); border-color: rgba(63,185,80,.35); }
 .pill.bad { color: var(--red); border-color: rgba(248,81,73,.35); }
@@ -71,6 +81,7 @@ li { margin:8px 0; color:#c9d1d9; }
   header { display:block; }
   .badge { display:inline-block; margin-top:14px; }
   .card, .card.wide { grid-column: 1 / -1; }
+  .score-layout { grid-template-columns: 1fr; }
   table { font-size:12px; }
   th:nth-child(5), td:nth-child(5) { display:none; }
 }
@@ -81,7 +92,7 @@ li { margin:8px 0; color:#c9d1d9; }
   <header>
     <div>
       <h1>Hermes Ops Dashboard</h1>
-      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-03T22:03:43</div>
+      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-04T07:02:45</div>
     </div>
     <div class='badge bad'>상태: 주의 필요</div>
   </header>
@@ -93,11 +104,24 @@ li { margin:8px 0; color:#c9d1d9; }
     <div class='card'><div class='label'>Tasks 후보</div><div class='value'>14</div><div class='sub'>통화 0 · 회의 14</div></div>
 
     
-    <div class='card'><div class='label'>1. AI Ops Score</div><div class='kpi'><div class='value'>74</div><span class='pill warn'>ops</span></div><div class='sub'>cron 성공률 75.0% · 주의 1개 · 7일 실행 812회</div></div>
+    <div class='card trend-card wide'><div class='label'>1. AI Ops Score</div>
+      <div class='score-layout'>
+        <div>
+          <div class='kpi'><div class='value'>74</div><span class='pill warn'>ops</span></div>
+          <div class='trend-delta'><span class='flat'>Score -</span><span class='flat'>성공률 -</span><span class='flat'>주의 -</span><span class='flat'>오류 -</span></div>
+          <div class='sub'>cron 성공률 75.0% · 주의 1개 · 7일 실행 919회</div>
+        </div>
+        <div class='spark-wrap'><div class='spark'><i title='06/04 07:02 · 74점' style='height:74.0%'></i></div><div class='sub'>최근 1회 score 추이</div></div>
+      </div>
+      <table class='compact trend-table'>
+        <thead><tr><th>시각</th><th>Score</th><th>성공률</th><th>주의</th><th>오류</th></tr></thead>
+        <tbody><tr><td>06/04 07:02</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr></tbody>
+      </table>
+    </div>
     <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>12.2%</div><div class='sub'>7일 노트 115개 → 후보 14개</div></div>
     <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>주의</div><span class='pill bad'>error</span></div><div class='sub'>다음 실행 2026-06-04T08:00:00+09:00</div></div>
     <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>Tesla (TSLA)</div><div class='sub'>상위 비중 51.5% · 추적: NASDAQ, S&amp;P500, SOXX, KOSPI, USD/KRW</div></div>
-    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>56.7h</div><span class='pill'>7d</span></div><div class='sub'>941개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
+    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>62.0h</div><span class='pill'>7d</span></div><div class='sub'>1048개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
     <div class='card wide'><div class='label'>벤치마킹 상태</div><ul>
       <li>AI Ops: 성공률/주의 cron/오류 로그 기준 점수화</li>
       <li>Task: 공개 페이지에는 후보 내용 없이 전환 숫자만 표시</li>
@@ -105,13 +129,13 @@ li { margin:8px 0; color:#c9d1d9; }
     </ul></div>
     
 
-    <div class='card wide'><div class='label'>Hermes</div><div class='value small'>Hermes Agent v0.15.1 (2026.5.29)</div><div class='sub'>Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 102 commits behind — run &#x27;hermes update&#x27;</div></div>
-    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    88Gi   337Gi    21%    836k  3.5G    0%   /System/Volumes/Data</div></div>
+    <div class='card wide'><div class='label'>Hermes</div><div class='value small'>Hermes Agent v0.15.1 (2026.5.29)</div><div class='sub'>Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 160 commits behind — run &#x27;hermes update&#x27;</div></div>
+    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    88Gi   337Gi    21%    837k  3.5G    0%   /System/Volumes/Data</div></div>
 
     <div class='card wide'><div class='label'>녹음 처리 상태</div>
       <ul>
-        <li>통화 마지막 실행: <code>2026-06-03T21:54:32</code></li>
-        <li>회의 마지막 실행: <code>2026-06-03T22:02:34</code></li>
+        <li>통화 마지막 실행: <code>2026-06-04T06:56:11</code></li>
+        <li>회의 마지막 실행: <code>2026-06-04T06:54:11</code></li>
         <li>로컬 캐시 후보: <b>89</b>개 · 약 <b>101.8MB</b></li>
       </ul>
     </div>
@@ -159,7 +183,7 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>6b91a9914c2e</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T06:00:00+09:00</td>
+          <td>2026-06-05T06:00:00+09:00</td>
         </tr>
         <tr class='bad'>
           <td><span class='dot'></span>평일 08시 피플팀 뉴스 브리핑</td>
@@ -187,7 +211,7 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>c1ac367cdb01</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-03T22:04:32.978030+09:00</td>
+          <td>2026-06-04T07:06:11.663696+09:00</td>
         </tr>
         <tr class='ok'>
           <td><span class='dot'></span>국내장 마감 포트폴리오 브리핑</td>
@@ -201,7 +225,7 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>5eb8a9449c5f</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-03T22:12:34.030911+09:00</td>
+          <td>2026-06-04T07:04:11.243634+09:00</td>
         </tr>
         <tr class='idle'>
           <td><span class='dot'></span>Hermes 주간 운영 리뷰</td>

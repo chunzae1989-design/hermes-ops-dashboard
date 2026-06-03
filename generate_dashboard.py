@@ -26,6 +26,7 @@ PENDING_MEETING = HOME / 'HermesProjects' / 'meeting_recording_processing' / 'pe
 CACHE_SCANNER = HERMES_HOME / 'scripts' / 'recording_local_cache_cleanup.py'
 PORTFOLIO_JSON = HOME / 'HermesProjects' / 'finance-manager' / 'portfolio.json'
 CRON_OUTPUT = HERMES_HOME / 'cron' / 'output'
+HISTORY_JSON = PROJECT / 'ops-history.json'
 
 
 def run(cmd: list[str], timeout: int = 30) -> str:
@@ -173,6 +174,67 @@ def count_recent_files(folder: Path, days: int = 7) -> int:
         return 0
     cutoff = datetime.now().timestamp() - days * 86400
     return sum(1 for p in folder.glob('*') if p.is_file() and p.stat().st_mtime >= cutoff)
+
+
+def compact_time(ts: str) -> str:
+    try:
+        return datetime.fromisoformat(ts).strftime('%m/%d %H:%M')
+    except Exception:
+        return ts[:16] if ts else '-'
+
+
+def signed_delta(now: Any, prev: Any, suffix: str = '') -> tuple[str, str]:
+    if now is None or prev is None:
+        return '-', 'flat'
+    try:
+        delta = float(now) - float(prev)
+    except Exception:
+        return '-', 'flat'
+    if abs(delta) < 0.05:
+        return f'±0{suffix}', 'flat'
+    cls = 'up' if delta > 0 else 'down'
+    sign = '+' if delta > 0 else ''
+    value = f'{delta:.1f}'.rstrip('0').rstrip('.')
+    return f'{sign}{value}{suffix}', cls
+
+
+def update_history(data: dict[str, Any], limit: int = 30) -> dict[str, Any]:
+    """Persist compact, public-safe dashboard metrics for trend display."""
+    bm = data.get('benchmarks', {})
+    ai = bm.get('ai_ops', {})
+    conv = bm.get('task_conversion', {})
+    roi = bm.get('roi', {})
+    point = {
+        'ts': data.get('generated_at') or datetime.now().isoformat(timespec='seconds'),
+        'score': ai.get('score', 0),
+        'cron_success_rate_pct': ai.get('cron_success_rate_pct', 0),
+        'attention_jobs': ai.get('attention_jobs', 0),
+        'recent_error_lines': ai.get('recent_error_lines', 0),
+        'cron_runs_7d': ai.get('cron_runs_7d', 0),
+        'task_candidates': conv.get('task_candidates', 0),
+        'roi_hours_7d': roi.get('estimated_hours_saved_7d', 0),
+    }
+    history = load_json(HISTORY_JSON, [])
+    if not isinstance(history, list):
+        history = []
+    history = [h for h in history if isinstance(h, dict)]
+    if not history or any(point.get(k) != history[-1].get(k) for k in point if k != 'ts'):
+        history.append(point)
+    else:
+        history[-1]['ts'] = point['ts']
+    history = history[-limit:]
+    HISTORY_JSON.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    prev = history[-2] if len(history) >= 2 else None
+    return {
+        'history': history,
+        'latest': history[-1] if history else point,
+        'previous': prev,
+        'score_delta': signed_delta(point.get('score'), prev.get('score') if prev else None),
+        'success_delta': signed_delta(point.get('cron_success_rate_pct'), prev.get('cron_success_rate_pct') if prev else None, '%p'),
+        'attention_delta': signed_delta(point.get('attention_jobs'), prev.get('attention_jobs') if prev else None),
+        'error_delta': signed_delta(point.get('recent_error_lines'), prev.get('recent_error_lines') if prev else None),
+    }
 
 
 def collect_portfolio_benchmark() -> dict[str, Any]:
@@ -336,8 +398,39 @@ def render(data: dict[str, Any]) -> str:
     di = bm.get('daily_insight', {})
     pf = bm.get('portfolio', {})
     roi = bm.get('roi', {})
+    trend = data.get('trend', {})
+    history = trend.get('history', [])[-5:]
+    score_delta_text, score_delta_cls = trend.get('score_delta', ('-', 'flat'))
+    success_delta_text, success_delta_cls = trend.get('success_delta', ('-', 'flat'))
+    attention_delta_text, attention_delta_raw_cls = trend.get('attention_delta', ('-', 'flat'))
+    error_delta_text, error_delta_raw_cls = trend.get('error_delta', ('-', 'flat'))
+    # 주의/오류는 줄어드는 것이 좋은 방향이므로 색상을 반전한다.
+    attention_delta_cls = 'up' if attention_delta_raw_cls == 'down' else 'down' if attention_delta_raw_cls == 'up' else 'flat'
+    error_delta_cls = 'up' if error_delta_raw_cls == 'down' else 'down' if error_delta_raw_cls == 'up' else 'flat'
+    score_points = [float(h.get('score') or 0) for h in trend.get('history', [])[-10:]] or [float(ai.get('score', 0) or 0)]
+    score_bars = ''.join(
+        f"<i title='{esc(compact_time(h.get('ts', '')))} · {esc(h.get('score', 0))}점' style='height:{max(10, min(100, float(h.get('score') or 0)))}%'></i>"
+        for h in trend.get('history', [])[-10:]
+    ) or "<i style='height:50%'></i>"
+    trend_rows = ''.join(
+        f"<tr><td>{esc(compact_time(h.get('ts', '')))}</td><td><b>{esc(h.get('score', 0))}</b></td><td>{esc(h.get('cron_success_rate_pct', 0))}%</td><td>{esc(h.get('attention_jobs', 0))}</td><td>{esc(h.get('recent_error_lines', 0))}</td></tr>"
+        for h in reversed(history)
+    ) or "<tr><td colspan='5'>추이 데이터 수집 전</td></tr>"
     benchmark_cards = f"""
-    <div class='card'><div class='label'>1. AI Ops Score</div><div class='kpi'><div class='value'>{esc(ai.get('score', 0))}</div><span class='pill {'ok' if ai.get('score', 0) >= 80 else 'warn'}'>ops</span></div><div class='sub'>cron 성공률 {esc(ai.get('cron_success_rate_pct', 0))}% · 주의 {esc(ai.get('attention_jobs', 0))}개 · 7일 실행 {esc(ai.get('cron_runs_7d', 0))}회</div></div>
+    <div class='card trend-card wide'><div class='label'>1. AI Ops Score</div>
+      <div class='score-layout'>
+        <div>
+          <div class='kpi'><div class='value'>{esc(ai.get('score', 0))}</div><span class='pill {'ok' if ai.get('score', 0) >= 80 else 'warn'}'>ops</span></div>
+          <div class='trend-delta'><span class='{score_delta_cls}'>Score {esc(score_delta_text)}</span><span class='{success_delta_cls}'>성공률 {esc(success_delta_text)}</span><span class='{attention_delta_cls}'>주의 {esc(attention_delta_text)}</span><span class='{error_delta_cls}'>오류 {esc(error_delta_text)}</span></div>
+          <div class='sub'>cron 성공률 {esc(ai.get('cron_success_rate_pct', 0))}% · 주의 {esc(ai.get('attention_jobs', 0))}개 · 7일 실행 {esc(ai.get('cron_runs_7d', 0))}회</div>
+        </div>
+        <div class='spark-wrap'><div class='spark'>{score_bars}</div><div class='sub'>최근 {len(score_points)}회 score 추이</div></div>
+      </div>
+      <table class='compact trend-table'>
+        <thead><tr><th>시각</th><th>Score</th><th>성공률</th><th>주의</th><th>오류</th></tr></thead>
+        <tbody>{trend_rows}</tbody>
+      </table>
+    </div>
     <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>{esc(conv.get('candidate_rate_pct', 0))}%</div><div class='sub'>7일 노트 {esc(conv.get('recording_notes_7d', 0))}개 → 후보 {esc(conv.get('task_candidates', 0))}개</div></div>
     <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>{esc(di.get('delivery_reliability', '-'))}</div><span class='pill {status_class(di.get('job_status'))}'>{esc(di.get('job_status', '-'))}</span></div><div class='sub'>다음 실행 {esc(di.get('next_run_at', '-'))}</div></div>
     <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>{esc(pf.get('top_holding', '-'))}</div><div class='sub'>상위 비중 {esc(pf.get('top_weight_pct', 0))}% · 추적: {esc(', '.join(pf.get('benchmarks', [])))}</div></div>
@@ -420,6 +513,16 @@ h1 {{ margin:0; font-size: clamp(28px, 4vw, 48px); letter-spacing:-.04em; }}
 .value {{ font-size:30px; font-weight:750; letter-spacing:-.03em; }}
 .value.small {{ font-size:19px; line-height:1.35; }}
 .kpi {{ display:flex; justify-content:space-between; align-items:center; gap:12px; }}
+.score-layout {{ display:grid; grid-template-columns: minmax(0, 1fr) 150px; gap:16px; align-items:end; }}
+.trend-delta {{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }}
+.trend-delta span {{ font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--muted); }}
+.trend-delta .up {{ color:var(--green); border-color:rgba(63,185,80,.35); background:rgba(63,185,80,.08); }}
+.trend-delta .down {{ color:var(--red); border-color:rgba(248,81,73,.35); background:rgba(248,81,73,.08); }}
+.trend-delta .flat {{ color:var(--muted); }}
+.spark-wrap {{ min-width:130px; }}
+.spark {{ height:58px; display:flex; align-items:end; gap:5px; padding:8px; border:1px solid rgba(48,54,61,.75); border-radius:14px; background:rgba(255,255,255,.03); }}
+.spark i {{ flex:1; min-width:5px; border-radius:999px 999px 3px 3px; background:linear-gradient(180deg, var(--blue), var(--purple)); box-shadow:0 0 18px rgba(88,166,255,.25); }}
+.trend-table th, .trend-table td {{ padding:7px 6px; font-size:12px; }}
 .pill {{ font-size:12px; padding:5px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }}
 .pill.ok {{ color: var(--green); border-color: rgba(63,185,80,.35); }}
 .pill.bad {{ color: var(--red); border-color: rgba(248,81,73,.35); }}
@@ -442,6 +545,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
   header {{ display:block; }}
   .badge {{ display:inline-block; margin-top:14px; }}
   .card, .card.wide {{ grid-column: 1 / -1; }}
+  .score-layout {{ grid-template-columns: 1fr; }}
   table {{ font-size:12px; }}
   th:nth-child(5), td:nth-child(5) {{ display:none; }}
 }}
@@ -518,6 +622,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
 def main() -> int:
     PROJECT.mkdir(parents=True, exist_ok=True)
     data = collect()
+    data['trend'] = update_history(data)
     (PROJECT / 'dashboard-data.json').write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
     (PROJECT / 'index.html').write_text(render(data), encoding='utf-8')
     print(PROJECT / 'index.html')
