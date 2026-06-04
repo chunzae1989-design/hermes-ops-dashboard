@@ -1,0 +1,100 @@
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "background": "#041c1c",
+        "primary": "#ffe6cb",
+        "secondary": "#ffbd38",
+        "accent": "#34d399",
+        "info": "#6ee7f9",
+        "danger": "#fb7185",
+        "purple": "#c4b5fd",
+        "terminal": "#020808",
+        "card": "#102928",
+        "cardStrong": "#203734",
+        "rail": "#0a2222",
+        "border": "#35514d"
+      },
+      "fontFamily": {
+        "display": [
+          "Arial Narrow, Apple SD Gothic Neo, Malgun Gothic, system-ui, sans-serif"
+        ],
+        "headline": [
+          "system-ui, -apple-system, Apple SD Gothic Neo, Malgun Gothic, Segoe UI, sans-serif"
+        ],
+        "body": [
+          "system-ui, -apple-system, Apple SD Gothic Neo, Malgun Gothic, Segoe UI, sans-serif"
+        ],
+        "label": [
+          "ui-monospace, SF Mono, JetBrains Mono, Menlo, Consolas, monospace"
+        ],
+        "mono": [
+          "ui-monospace, SF Mono, JetBrains Mono, Menlo, Consolas, monospace"
+        ]
+      },
+      "fontSize": {
+        "display": [
+          "96px",
+          {
+            "lineHeight": "0.82",
+            "letterSpacing": "-0.085em",
+            "fontWeight": "900"
+          }
+        ],
+        "headline": [
+          "44px",
+          {
+            "lineHeight": "0.95",
+            "letterSpacing": "-0.06em",
+            "fontWeight": "850"
+          }
+        ],
+        "body": [
+          "15px",
+          {
+            "lineHeight": "1.55",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "450"
+          }
+        ],
+        "label": [
+          "11px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0.16em",
+            "fontWeight": "700"
+          }
+        ],
+        "mono": [
+          "12px",
+          {
+            "lineHeight": "1.45",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "500"
+          }
+        ]
+      },
+      "borderRadius": {
+        "none": "0px",
+        "small": "8px",
+        "medium": "14px",
+        "large": "22px",
+        "xlarge": "34px",
+        "pill": "999px"
+      },
+      "spacing": {
+        "none": "0px",
+        "unit": "4px",
+        "xs": "6px",
+        "sm": "10px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "36px",
+        "xxl": "56px",
+        "railWidth": "88px",
+        "sidebarWidth": "292px",
+        "contentMaxWidth": "1480px"
+      }
+    }
+  }
+}
