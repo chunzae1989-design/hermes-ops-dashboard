@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T16:50:47",
+  "generated_at": "2026-06-04T18:39:09",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T16:56:14.467962+09:00"
+      "next_run_at": "2026-06-04T18:47:40.572168+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T16:56:14.300035+09:00"
+      "next_run_at": "2026-06-04T18:46:40.310760+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -96,13 +96,13 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1028
+      "cron_runs_7d": 1050
     },
     "task_conversion": {
-      "recording_notes_7d": 124,
+      "recording_notes_7d": 126,
       "task_candidates": 16,
-      "candidate_rate_pct": 12.9,
-      "call_pipeline_seen": 7233,
+      "candidate_rate_pct": 12.7,
+      "call_pipeline_seen": 7235,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -128,23 +128,50 @@
       "last_briefing_outputs_7d": 3
     },
     "roi": {
-      "auto_items_7d": 1168,
-      "estimated_minutes_saved_7d": 4124,
-      "estimated_hours_saved_7d": 68.7,
-      "recording_runs_7d": 1004,
+      "auto_items_7d": 1192,
+      "estimated_minutes_saved_7d": 4206,
+      "estimated_hours_saved_7d": 70.1,
+      "recording_runs_7d": 1026,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
   "multi_agent": {
     "enabled": true,
+    "chief_agent": "Hermes 주무",
+    "workers": [
+      {
+        "name": "아기",
+        "type": "research",
+        "cli": "agy",
+        "available": true,
+        "role_manual": "AGENTS.md",
+        "prompt_template": "research_worker_prompt.md",
+        "routes_defined": 3,
+        "rule": "리서치 1차 수집/초안"
+      },
+      {
+        "name": "디지고",
+        "type": "design",
+        "cli": "Hermes delegated design context",
+        "available": true,
+        "role_manual": "agents/dizigo/AGENTS.md",
+        "prompt_template": "agents/dizigo/dizigo_prompt_template.md",
+        "style_bible": "agents/dizigo/style_bible.md",
+        "growth_loop": "agents/dizigo/design_growth_loop.md",
+        "routes_defined": 4,
+        "rule": "PPT·사진·디자인 방향성·시각 QA"
+      }
+    ],
     "worker_name": "아기",
     "worker_cli": "agy",
-    "chief_agent": "Hermes 주무",
     "agy_available": true,
+    "design_agent_name": "디지고",
+    "design_agent_available": true,
     "role_manual": "AGENTS.md",
     "prompt_template": "research_worker_prompt.md",
     "token_audit": "token_audit_2026-06-04.md",
     "research_routes_defined": 3,
+    "design_routes_defined": 4,
     "refactor_priority_jobs": [
       {
         "job_id": "7d884cf4f2dd",
@@ -164,18 +191,18 @@
     ],
     "highest_token_job_id": "7d884cf4f2dd",
     "highest_token_job_status": "ok",
-    "operating_rule": "리서치 1차 수집/초안은 아기, 검증·side effect·최종 전달은 Hermes 주무"
+    "operating_rule": "리서치는 아기, 디자인은 디지고, 검증·side effect·최종 전달은 Hermes 주무"
   },
-  "call_recent_notes": 122,
+  "call_recent_notes": 124,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-04T16:46:14",
-    "seen_count": 7233,
+    "last_run_at": "2026-06-04T18:37:40",
+    "seen_count": 7235,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-04T16:46:14",
+    "last_run_at": "2026-06-04T18:36:40",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -219,13 +246,13 @@
   "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    839k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-04T16:50:47",
+    "scanned_at": "2026-06-04T18:39:08",
     "min_age_days": 7,
-    "candidates": 92,
-    "downloaded_candidates": 92,
-    "finder_evictable_candidates": 92,
-    "selected": 92,
-    "selected_bytes": 115112003,
+    "candidates": 96,
+    "downloaded_candidates": 96,
+    "finder_evictable_candidates": 96,
+    "selected": 96,
+    "selected_bytes": 117919933,
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
@@ -261,9 +288,29 @@
         "cron_runs_7d": 1028,
         "task_candidates": 16,
         "roi_hours_7d": 68.7
+      },
+      {
+        "ts": "2026-06-04T18:39:09",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1050,
+        "task_candidates": 16,
+        "roi_hours_7d": 70.1
       }
     ],
     "latest": {
+      "ts": "2026-06-04T18:39:09",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1050,
+      "task_candidates": 16,
+      "roi_hours_7d": 70.1
+    },
+    "previous": {
       "ts": "2026-06-04T16:50:47",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -273,27 +320,17 @@
       "task_candidates": 16,
       "roi_hours_7d": 68.7
     },
-    "previous": {
-      "ts": "2026-06-04T07:10:15",
-      "score": 74,
-      "cron_success_rate_pct": 75.0,
-      "attention_jobs": 1,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 921,
-      "task_candidates": 14,
-      "roi_hours_7d": 62.1
-    },
     "score_delta": [
-      "+6",
-      "up"
+      "±0",
+      "flat"
     ],
     "success_delta": [
-      "+12.5%p",
-      "up"
+      "±0%p",
+      "flat"
     ],
     "attention_delta": [
-      "-1",
-      "down"
+      "±0",
+      "flat"
     ],
     "error_delta": [
       "±0",

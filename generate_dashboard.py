@@ -240,13 +240,19 @@ def update_history(data: dict[str, Any], limit: int = 30) -> dict[str, Any]:
 
 
 def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
-    """Return public-safe status for the Hermes 주무 + 아기 research-worker setup."""
+    """Return public-safe status for the Hermes 주무 + specialist workers setup."""
     agents_md = MULTIAGENT_OPS / 'AGENTS.md'
     prompt_md = MULTIAGENT_OPS / 'research_worker_prompt.md'
     audit_md = MULTIAGENT_OPS / 'token_audit_2026-06-04.md'
+    dizigo_dir = MULTIAGENT_OPS / 'agents' / 'dizigo'
+    dizigo_role = dizigo_dir / 'AGENTS.md'
+    dizigo_prompt = dizigo_dir / 'dizigo_prompt_template.md'
+    dizigo_style = dizigo_dir / 'style_bible.md'
+    dizigo_growth = dizigo_dir / 'design_growth_loop.md'
     text = agents_md.read_text(encoding='utf-8', errors='ignore') if agents_md.exists() else ''
     people_job = find_job(jobs, '피플팀', '브리핑') or find_job(jobs, 'daily insight')
     research_routes = sum(1 for marker in ['External-source research', 'Market/tool/vendor comparison', 'Drafting a first-pass summary'] if marker in text)
+    design_routes = sum(1 for marker in ['PPT/deck planning', 'Photo/image critique', 'Visual design for dashboards', 'Selecting visual systems'] if marker in text)
     priority_jobs = [
         {'job_id': '7d884cf4f2dd', 'name': '피플팀 뉴스 브리핑', 'priority': 1},
         {'job_id': '5eb8a9449c5f', 'name': '회의녹음 회의록 정리', 'priority': 2},
@@ -254,18 +260,45 @@ def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
     ]
     return {
         'enabled': agents_md.exists() and prompt_md.exists(),
-        'worker_name': '아기',
-        'worker_cli': 'agy',
         'chief_agent': 'Hermes 주무',
+        'workers': [
+            {
+                'name': '아기',
+                'type': 'research',
+                'cli': 'agy',
+                'available': AGY_CLI.exists(),
+                'role_manual': agents_md.name if agents_md.exists() else 'missing',
+                'prompt_template': prompt_md.name if prompt_md.exists() else 'missing',
+                'routes_defined': research_routes,
+                'rule': '리서치 1차 수집/초안',
+            },
+            {
+                'name': '디지고',
+                'type': 'design',
+                'cli': 'Hermes delegated design context',
+                'available': dizigo_role.exists() and dizigo_prompt.exists() and dizigo_style.exists(),
+                'role_manual': 'agents/dizigo/AGENTS.md' if dizigo_role.exists() else 'missing',
+                'prompt_template': 'agents/dizigo/dizigo_prompt_template.md' if dizigo_prompt.exists() else 'missing',
+                'style_bible': 'agents/dizigo/style_bible.md' if dizigo_style.exists() else 'missing',
+                'growth_loop': 'agents/dizigo/design_growth_loop.md' if dizigo_growth.exists() else 'missing',
+                'routes_defined': design_routes,
+                'rule': 'PPT·사진·디자인 방향성·시각 QA',
+            },
+        ],
+        'worker_name': '아기',  # kept for backward-compatible dashboard-data consumers
+        'worker_cli': 'agy',
         'agy_available': AGY_CLI.exists(),
+        'design_agent_name': '디지고',
+        'design_agent_available': dizigo_role.exists() and dizigo_prompt.exists() and dizigo_style.exists(),
         'role_manual': agents_md.name if agents_md.exists() else 'missing',
         'prompt_template': prompt_md.name if prompt_md.exists() else 'missing',
         'token_audit': audit_md.name if audit_md.exists() else 'missing',
         'research_routes_defined': research_routes,
+        'design_routes_defined': design_routes,
         'refactor_priority_jobs': priority_jobs,
         'highest_token_job_id': people_job.get('job_id') or people_job.get('id') or '7d884cf4f2dd',
         'highest_token_job_status': people_job.get('last_status') or 'not yet',
-        'operating_rule': '리서치 1차 수집/초안은 아기, 검증·side effect·최종 전달은 Hermes 주무',
+        'operating_rule': '리서치는 아기, 디자인은 디지고, 검증·side effect·최종 전달은 Hermes 주무',
     }
 
 
@@ -500,6 +533,10 @@ def render(data: dict[str, Any]) -> str:
         f"<li>#{esc(j.get('priority'))} <code>{esc(j.get('job_id'))}</code> — {esc(j.get('name'))}</li>"
         for j in ma.get('refactor_priority_jobs', [])
     ) or '<li>리팩터링 후보 없음</li>'
+    multi_workers_html = ''.join(
+        f"<li><b>{esc(w.get('name'))}</b> <span class='pill {'ok' if w.get('available') else 'warn'}'>{esc(w.get('type'))}</span> — {esc(w.get('rule'))} · routes {esc(w.get('routes_defined', 0))}</li>"
+        for w in ma.get('workers', [])
+    ) or '<li>등록된 worker 없음</li>'
 
     html_doc = f"""<!doctype html>
 <html lang='ko'>
@@ -611,13 +648,14 @@ li {{ margin:8px 0; color:#c9d1d9; }}
     <div class='card wide'><div class='label'>Hermes</div><div class='value small'>{esc(data['hermes_version'])}</div><div class='sub'>{esc(data.get('hermes_update') or '업데이트 추가 메시지 없음')}</div></div>
     <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>{esc(data['recordings_du'])} 녹음 캐시</div><div class='sub'>{esc(data['disk_line'])}</div></div>
 
-    <div class='card full'><div class='label'>Multi-Agent System · 주무 × 아기</div>
-      <div class='kpi'><div class='value small'>{esc(ma.get('chief_agent', 'Hermes 주무'))} → {esc(ma.get('worker_name', '아기'))}</div><span class='pill {'ok' if ma.get('enabled') and ma.get('agy_available') else 'warn'}'>{'ready' if ma.get('enabled') and ma.get('agy_available') else 'check'}</span></div>
-      <div class='sub'>{esc(ma.get('operating_rule', '리서치는 아기, 검증/최종 전달은 Hermes'))}</div>
+    <div class='card full'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
+      <div class='kpi'><div class='value small'>{esc(ma.get('chief_agent', 'Hermes 주무'))} → 아기 · 디지고</div><span class='pill {'ok' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'warn'}'>{'ready' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'check'}</span></div>
+      <div class='sub'>{esc(ma.get('operating_rule', '리서치는 아기, 디자인은 디지고, 검증/최종 전달은 Hermes'))}</div>
+      <ul>{multi_workers_html}</ul>
       <ul>
-        <li>Research worker: <b>{esc(ma.get('worker_name', '아기'))}</b> / CLI <code>{esc(ma.get('worker_cli', 'agy'))}</code> / available <b>{esc(ma.get('agy_available'))}</b></li>
-        <li>Role manual: <code>{esc(ma.get('role_manual'))}</code> · Prompt: <code>{esc(ma.get('prompt_template'))}</code> · Audit: <code>{esc(ma.get('token_audit'))}</code></li>
-        <li>리서치 라우팅 규칙: <b>{esc(ma.get('research_routes_defined', 0))}</b>개 · 최우선 절감 job <code>{esc(ma.get('highest_token_job_id'))}</code> 상태 <b>{esc(ma.get('highest_token_job_status'))}</b></li>
+        <li>Manual: <code>{esc(ma.get('role_manual'))}</code> · Research prompt: <code>{esc(ma.get('prompt_template'))}</code> · Audit: <code>{esc(ma.get('token_audit'))}</code></li>
+        <li>Design agent: <b>{esc(ma.get('design_agent_name', '디지고'))}</b> · available <b>{esc(ma.get('design_agent_available'))}</b> · design routes <b>{esc(ma.get('design_routes_defined', 0))}</b></li>
+        <li>최우선 절감 job <code>{esc(ma.get('highest_token_job_id'))}</code> 상태 <b>{esc(ma.get('highest_token_job_status'))}</b></li>
       </ul>
       <div class='sub'>리팩터링 우선순위</div>
       <ul>{multi_priority_html}</ul>
