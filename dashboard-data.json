@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T22:19:17",
+  "generated_at": "2026-06-05T07:10:39",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,7 +7,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-05T06:00:00+09:00"
+      "next_run_at": "2026-06-06T06:00:00+09:00"
     },
     {
       "name": "평일 08시 피플팀 뉴스 브리핑",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T22:19:50.587724+09:00"
+      "next_run_at": "2026-06-05T07:12:34.332767+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T22:28:51.655769+09:00"
+      "next_run_at": "2026-06-05T07:11:33.910571+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -71,14 +71,12 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-05T07:10:00+09:00"
+      "next_run_at": "2026-06-06T07:10:00+09:00"
     }
   ],
   "active_jobs": 8,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-03 11:06:58,407 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code",
-    "2026-06-03 11:06:58,409 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.9920222155108576s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex mode",
     "2026-06-03 11:07:38,410 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code",
     "2026-06-03 11:07:38,411 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.336433018612224s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model",
     "2026-06-03 20:09:21,048 WARNING [20260603_055434_1eeedc97] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
@@ -86,7 +84,9 @@
     "2026-06-04 10:11:50,720 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag",
     "    event = await self._receive_event(timeout=timeout)",
     "2026-06-04 15:28:38,638 WARNING [20260604_064706_14e8c2c6] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
-    "2026-06-04 20:46:16,479 WARNING [20260604_152838_8442b3] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds."
+    "2026-06-04 20:46:16,479 WARNING [20260604_152838_8442b3] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
+    "2026-06-05 00:09:16,874 WARNING [20260604_204616_ab5c65] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
+    "2026-06-05 00:13:37,989 WARNING [20260604_204616_ab5c65] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds."
   ],
   "benchmarks": {
     "ai_ops": {
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1093
+      "cron_runs_7d": 1198
     },
     "task_conversion": {
       "recording_notes_7d": 127,
@@ -128,10 +128,10 @@
       "last_briefing_outputs_7d": 3
     },
     "roi": {
-      "auto_items_7d": 1236,
-      "estimated_minutes_saved_7d": 4343,
-      "estimated_hours_saved_7d": 72.4,
-      "recording_runs_7d": 1069,
+      "auto_items_7d": 1341,
+      "estimated_minutes_saved_7d": 4658,
+      "estimated_hours_saved_7d": 77.6,
+      "recording_runs_7d": 1174,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -196,13 +196,13 @@
   "call_recent_notes": 125,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-04T22:09:50",
+    "last_run_at": "2026-06-05T07:02:34",
     "seen_count": 7236,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-04T22:18:51",
+    "last_run_at": "2026-06-05T07:01:33",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -243,10 +243,10 @@
     "next_run_at": "2026-06-05T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    824k  3.5G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    826k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-04T22:19:17",
+    "scanned_at": "2026-06-05T07:10:37",
     "min_age_days": 7,
     "candidates": 97,
     "downloaded_candidates": 97,
@@ -256,7 +256,7 @@
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Up to date",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 61 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -348,9 +348,29 @@
         "cron_runs_7d": 1093,
         "task_candidates": 16,
         "roi_hours_7d": 72.4
+      },
+      {
+        "ts": "2026-06-05T07:10:39",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1198,
+        "task_candidates": 16,
+        "roi_hours_7d": 77.6
       }
     ],
     "latest": {
+      "ts": "2026-06-05T07:10:39",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1198,
+      "task_candidates": 16,
+      "roi_hours_7d": 77.6
+    },
+    "previous": {
       "ts": "2026-06-04T22:19:17",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -359,16 +379,6 @@
       "cron_runs_7d": 1093,
       "task_candidates": 16,
       "roi_hours_7d": 72.4
-    },
-    "previous": {
-      "ts": "2026-06-04T21:57:44",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1088,
-      "task_candidates": 16,
-      "roi_hours_7d": 72.1
     },
     "score_delta": [
       "±0",
