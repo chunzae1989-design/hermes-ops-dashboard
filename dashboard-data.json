@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T18:39:09",
+  "generated_at": "2026-06-04T20:24:00",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T18:47:40.572168+09:00"
+      "next_run_at": "2026-06-04T20:27:55.049089+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T18:46:40.310760+09:00"
+      "next_run_at": "2026-06-04T20:26:54.770536+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1050
+      "cron_runs_7d": 1070
     },
     "task_conversion": {
       "recording_notes_7d": 126,
@@ -128,10 +128,10 @@
       "last_briefing_outputs_7d": 3
     },
     "roi": {
-      "auto_items_7d": 1192,
-      "estimated_minutes_saved_7d": 4206,
-      "estimated_hours_saved_7d": 70.1,
-      "recording_runs_7d": 1026,
+      "auto_items_7d": 1212,
+      "estimated_minutes_saved_7d": 4266,
+      "estimated_hours_saved_7d": 71.1,
+      "recording_runs_7d": 1046,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -150,14 +150,14 @@
         "rule": "리서치 1차 수집/초안"
       },
       {
-        "name": "디지고",
+        "name": "디지",
         "type": "design",
         "cli": "Hermes delegated design context",
         "available": true,
-        "role_manual": "agents/dizigo/AGENTS.md",
-        "prompt_template": "agents/dizigo/dizigo_prompt_template.md",
-        "style_bible": "agents/dizigo/style_bible.md",
-        "growth_loop": "agents/dizigo/design_growth_loop.md",
+        "role_manual": "agents/diji/AGENTS.md",
+        "prompt_template": "agents/diji/diji_prompt_template.md",
+        "style_bible": "agents/diji/style_bible.md",
+        "growth_loop": "agents/diji/design_growth_loop.md",
         "routes_defined": 4,
         "rule": "PPT·사진·디자인 방향성·시각 QA"
       }
@@ -165,7 +165,7 @@
     "worker_name": "아기",
     "worker_cli": "agy",
     "agy_available": true,
-    "design_agent_name": "디지고",
+    "design_agent_name": "디지",
     "design_agent_available": true,
     "role_manual": "AGENTS.md",
     "prompt_template": "research_worker_prompt.md",
@@ -191,18 +191,18 @@
     ],
     "highest_token_job_id": "7d884cf4f2dd",
     "highest_token_job_status": "ok",
-    "operating_rule": "리서치는 아기, 디자인은 디지고, 검증·side effect·최종 전달은 Hermes 주무"
+    "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 Hermes 주무"
   },
   "call_recent_notes": 124,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-04T18:37:40",
+    "last_run_at": "2026-06-04T20:17:55",
     "seen_count": 7235,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-04T18:36:40",
+    "last_run_at": "2026-06-04T20:16:54",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -246,7 +246,7 @@
   "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    839k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-04T18:39:08",
+    "scanned_at": "2026-06-04T20:23:58",
     "min_age_days": 7,
     "candidates": 96,
     "downloaded_candidates": 96,
@@ -256,7 +256,7 @@
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 199 commits behind — run 'hermes update'",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 257 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -298,9 +298,29 @@
         "cron_runs_7d": 1050,
         "task_candidates": 16,
         "roi_hours_7d": 70.1
+      },
+      {
+        "ts": "2026-06-04T20:24:00",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1070,
+        "task_candidates": 16,
+        "roi_hours_7d": 71.1
       }
     ],
     "latest": {
+      "ts": "2026-06-04T20:24:00",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1070,
+      "task_candidates": 16,
+      "roi_hours_7d": 71.1
+    },
+    "previous": {
       "ts": "2026-06-04T18:39:09",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -309,16 +329,6 @@
       "cron_runs_7d": 1050,
       "task_candidates": 16,
       "roi_hours_7d": 70.1
-    },
-    "previous": {
-      "ts": "2026-06-04T16:50:47",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1028,
-      "task_candidates": 16,
-      "roi_hours_7d": 68.7
     },
     "score_delta": [
       "±0",
