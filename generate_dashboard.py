@@ -240,7 +240,7 @@ def update_history(data: dict[str, Any], limit: int = 30) -> dict[str, Any]:
 
 
 def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
-    """Return public-safe status for the Hermes 주무 + specialist workers setup."""
+    """Return public-safe status for the 헤르미온느 + specialist workers setup."""
     agents_md = MULTIAGENT_OPS / 'AGENTS.md'
     prompt_md = MULTIAGENT_OPS / 'research_worker_prompt.md'
     audit_md = MULTIAGENT_OPS / 'token_audit_2026-06-04.md'
@@ -260,7 +260,7 @@ def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
     ]
     return {
         'enabled': agents_md.exists() and prompt_md.exists(),
-        'chief_agent': 'Hermes 주무',
+        'chief_agent': '헤르미온느',
         'workers': [
             {
                 'name': '아기',
@@ -298,7 +298,7 @@ def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
         'refactor_priority_jobs': priority_jobs,
         'highest_token_job_id': people_job.get('job_id') or people_job.get('id') or '7d884cf4f2dd',
         'highest_token_job_status': people_job.get('last_status') or 'not yet',
-        'operating_rule': '리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 Hermes 주무',
+        'operating_rule': '리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느',
     }
 
 
@@ -711,7 +711,7 @@ table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} t
       <div class='panel dispatch' id='agents'>
         <div class='label'>Agent Dispatch Board</div>
         <div class='agent-flow'>
-          <div class='chief'><span class='node-label'>chief</span><b>{esc(ma.get('chief_agent', 'Hermes 주무'))}</b><small>{esc(ma.get('operating_rule', '검증·side effect·최종 전달 담당'))}</small></div>
+          <div class='chief'><span class='node-label'>chief</span><b>{esc(ma.get('chief_agent', '헤르미온느'))}</b><small>{esc(ma.get('operating_rule', '검증·side effect·최종 전달 담당'))}</small></div>
           <div class='route'>→</div>
           <div class='agent-nodes'>{multi_workers_html}</div>
         </div>

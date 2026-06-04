@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T21:57:44",
+  "generated_at": "2026-06-04T22:19:17",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T21:59:47.763552+09:00"
+      "next_run_at": "2026-06-04T22:19:50.587724+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T21:58:47.465408+09:00"
+      "next_run_at": "2026-06-04T22:28:51.655769+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1088
+      "cron_runs_7d": 1093
     },
     "task_conversion": {
       "recording_notes_7d": 127,
@@ -128,16 +128,16 @@
       "last_briefing_outputs_7d": 3
     },
     "roi": {
-      "auto_items_7d": 1231,
-      "estimated_minutes_saved_7d": 4328,
-      "estimated_hours_saved_7d": 72.1,
-      "recording_runs_7d": 1064,
+      "auto_items_7d": 1236,
+      "estimated_minutes_saved_7d": 4343,
+      "estimated_hours_saved_7d": 72.4,
+      "recording_runs_7d": 1069,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
   "multi_agent": {
     "enabled": true,
-    "chief_agent": "Hermes 주무",
+    "chief_agent": "헤르미온느",
     "workers": [
       {
         "name": "아기",
@@ -191,18 +191,18 @@
     ],
     "highest_token_job_id": "7d884cf4f2dd",
     "highest_token_job_status": "ok",
-    "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 Hermes 주무"
+    "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
   "call_recent_notes": 125,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-04T21:49:47",
+    "last_run_at": "2026-06-04T22:09:50",
     "seen_count": 7236,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-04T21:48:47",
+    "last_run_at": "2026-06-04T22:18:51",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -246,13 +246,13 @@
   "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    824k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-04T21:57:44",
+    "scanned_at": "2026-06-04T22:19:17",
     "min_age_days": 7,
-    "candidates": 96,
-    "downloaded_candidates": 96,
-    "finder_evictable_candidates": 96,
-    "selected": 96,
-    "selected_bytes": 117919933,
+    "candidates": 97,
+    "downloaded_candidates": 97,
+    "finder_evictable_candidates": 97,
+    "selected": 97,
+    "selected_bytes": 118116409,
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
@@ -338,9 +338,29 @@
         "cron_runs_7d": 1088,
         "task_candidates": 16,
         "roi_hours_7d": 72.1
+      },
+      {
+        "ts": "2026-06-04T22:19:17",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1093,
+        "task_candidates": 16,
+        "roi_hours_7d": 72.4
       }
     ],
     "latest": {
+      "ts": "2026-06-04T22:19:17",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1093,
+      "task_candidates": 16,
+      "roi_hours_7d": 72.4
+    },
+    "previous": {
       "ts": "2026-06-04T21:57:44",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -349,16 +369,6 @@
       "cron_runs_7d": 1088,
       "task_candidates": 16,
       "roi_hours_7d": 72.1
-    },
-    "previous": {
-      "ts": "2026-06-04T21:09:10",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1079,
-      "task_candidates": 16,
-      "roi_hours_7d": 71.7
     },
     "score_delta": [
       "±0",

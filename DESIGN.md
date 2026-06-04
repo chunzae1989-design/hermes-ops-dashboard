@@ -253,7 +253,7 @@ Recommended page order:
 1. Command hero with huge `OPS / HERMES`, current state badge, and `public_safe=true` command caption.
 2. Telemetry ribbon: active cron, failed cron, recent notes, task candidates, ROI hours, AI Ops score.
 3. Benchmark cockpit: score spark bars, conversion gauge, reliability, portfolio summary, ROI.
-4. Agent dispatch board: Hermes 주무 → 아기 · 디지.
+4. Agent dispatch board: 헤르미온느 → 아기 · 디지.
 5. Public-safe recording pipeline.
 6. Cron operations board.
 7. Sanitized logs.
@@ -334,7 +334,7 @@ Use for AI Ops score, ROI hours, conversion rate. Include a sparkline, mini bars
 
 ### Agent dispatch board
 
-Shows `Hermes 주무`, `아기`, and `디지` availability, role, route count, and operating rule. Do not expose internal prompt text. Visual form should be a route diagram or dispatch matrix.
+Shows `헤르미온느`, `아기`, and `디지` availability, role, route count, and operating rule. Do not expose internal prompt text. Visual form should be a route diagram or dispatch matrix.
 
 ### Recording pipeline module
 
