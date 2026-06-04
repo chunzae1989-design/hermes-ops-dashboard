@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T21:09:10",
+  "generated_at": "2026-06-04T21:57:44",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T21:09:41.014891+09:00"
+      "next_run_at": "2026-06-04T21:59:47.763552+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-04T21:18:41.720512+09:00"
+      "next_run_at": "2026-06-04T21:58:47.465408+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1079
+      "cron_runs_7d": 1088
     },
     "task_conversion": {
       "recording_notes_7d": 127,
@@ -128,10 +128,10 @@
       "last_briefing_outputs_7d": 3
     },
     "roi": {
-      "auto_items_7d": 1222,
-      "estimated_minutes_saved_7d": 4301,
-      "estimated_hours_saved_7d": 71.7,
-      "recording_runs_7d": 1055,
+      "auto_items_7d": 1231,
+      "estimated_minutes_saved_7d": 4328,
+      "estimated_hours_saved_7d": 72.1,
+      "recording_runs_7d": 1064,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -196,13 +196,13 @@
   "call_recent_notes": 125,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-04T20:59:41",
+    "last_run_at": "2026-06-04T21:49:47",
     "seen_count": 7236,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-04T21:08:41",
+    "last_run_at": "2026-06-04T21:48:47",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -243,10 +243,10 @@
     "next_run_at": "2026-06-05T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    816k  3.5G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    89Gi   336Gi    21%    824k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-04T21:09:10",
+    "scanned_at": "2026-06-04T21:57:44",
     "min_age_days": 7,
     "candidates": 96,
     "downloaded_candidates": 96,
@@ -328,9 +328,29 @@
         "cron_runs_7d": 1079,
         "task_candidates": 16,
         "roi_hours_7d": 71.7
+      },
+      {
+        "ts": "2026-06-04T21:57:44",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1088,
+        "task_candidates": 16,
+        "roi_hours_7d": 72.1
       }
     ],
     "latest": {
+      "ts": "2026-06-04T21:57:44",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1088,
+      "task_candidates": 16,
+      "roi_hours_7d": 72.1
+    },
+    "previous": {
       "ts": "2026-06-04T21:09:10",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -339,16 +359,6 @@
       "cron_runs_7d": 1079,
       "task_candidates": 16,
       "roi_hours_7d": 71.7
-    },
-    "previous": {
-      "ts": "2026-06-04T20:37:07",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1072,
-      "task_candidates": 16,
-      "roi_hours_7d": 71.2
     },
     "score_delta": [
       "±0",

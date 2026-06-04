@@ -436,6 +436,12 @@ def collect() -> dict[str, Any]:
 
 
 def render(data: dict[str, Any]) -> str:
+    """Render a public-safe Hermes teal command-center dashboard.
+
+    The layout intentionally follows DESIGN.md rather than the earlier
+    GitHub-dark card grid: fixed icon rail, mission panel, editorial hero,
+    dense telemetry ribbon, dispatch board, terminal/log motifs.
+    """
     jobs = data['jobs']
     failed_jobs = [j for j in jobs if j.get('enabled') and j.get('last_status') not in (None, 'ok')]
     cache = data.get('cache', {})
@@ -444,21 +450,6 @@ def render(data: dict[str, Any]) -> str:
     health = '주의 필요' if data['failed_jobs'] or data['errors'] else '정상'
     health_class = 'bad' if (data['failed_jobs'] or data['errors']) else 'ok'
 
-    job_rows = []
-    for j in jobs:
-        enabled = j.get('enabled')
-        st = j.get('last_status')
-        cls = 'paused' if not enabled else status_class(st)
-        job_rows.append(f"""
-        <tr class='{cls}'>
-          <td><span class='dot'></span>{esc(j.get('name'))}</td>
-          <td><code>{esc(j.get('job_id') or j.get('id'))}</code></td>
-          <td>{esc('on' if enabled else 'paused')}</td>
-          <td>{esc(st or 'not yet')}</td>
-          <td>{esc(j.get('next_run_at') or '-')}</td>
-        </tr>""")
-
-    errors_html = '\n'.join(f"<li><code>{esc(e)}</code></li>" for e in data['errors']) or '<li>최근 주요 에러 없음</li>'
     bm = data.get('benchmarks', {})
     ai = bm.get('ai_ops', {})
     conv = bm.get('task_conversion', {})
@@ -466,77 +457,105 @@ def render(data: dict[str, Any]) -> str:
     pf = bm.get('portfolio', {})
     roi = bm.get('roi', {})
     ma = data.get('multi_agent', {})
+    people = data.get('people_briefing', {})
+    people_status = people.get('last_status') or 'not yet'
+    people_cls = status_class(people_status)
     trend = data.get('trend', {})
-    history = trend.get('history', [])[-5:]
+    history = trend.get('history', [])[-8:]
     score_delta_text, score_delta_cls = trend.get('score_delta', ('-', 'flat'))
     success_delta_text, success_delta_cls = trend.get('success_delta', ('-', 'flat'))
     attention_delta_text, attention_delta_raw_cls = trend.get('attention_delta', ('-', 'flat'))
     error_delta_text, error_delta_raw_cls = trend.get('error_delta', ('-', 'flat'))
-    # 주의/오류는 줄어드는 것이 좋은 방향이므로 색상을 반전한다.
     attention_delta_cls = 'up' if attention_delta_raw_cls == 'down' else 'down' if attention_delta_raw_cls == 'up' else 'flat'
     error_delta_cls = 'up' if error_delta_raw_cls == 'down' else 'down' if error_delta_raw_cls == 'up' else 'flat'
-    score_points = [float(h.get('score') or 0) for h in trend.get('history', [])[-10:]] or [float(ai.get('score', 0) or 0)]
+
     score_bars = ''.join(
-        f"<i title='{esc(compact_time(h.get('ts', '')))} · {esc(h.get('score', 0))}점' style='height:{max(10, min(100, float(h.get('score') or 0)))}%'></i>"
-        for h in trend.get('history', [])[-10:]
+        f"<i title='{esc(compact_time(h.get('ts', '')))} · {esc(h.get('score', 0))}점' style='height:{max(8, min(100, float(h.get('score') or 0)))}%'></i>"
+        for h in trend.get('history', [])[-12:]
     ) or "<i style='height:50%'></i>"
-    trend_rows = ''.join(
-        f"<tr><td>{esc(compact_time(h.get('ts', '')))}</td><td><b>{esc(h.get('score', 0))}</b></td><td>{esc(h.get('cron_success_rate_pct', 0))}%</td><td>{esc(h.get('attention_jobs', 0))}</td><td>{esc(h.get('recent_error_lines', 0))}</td></tr>"
-        for h in reversed(history)
-    ) or "<tr><td colspan='5'>추이 데이터 수집 전</td></tr>"
-    benchmark_cards = f"""
-    <div class='card trend-card wide'><div class='label'>1. AI Ops Score</div>
-      <div class='score-layout'>
-        <div>
-          <div class='kpi'><div class='value'>{esc(ai.get('score', 0))}</div><span class='pill {'ok' if ai.get('score', 0) >= 80 else 'warn'}'>ops</span></div>
-          <div class='trend-delta'><span class='{score_delta_cls}'>Score {esc(score_delta_text)}</span><span class='{success_delta_cls}'>성공률 {esc(success_delta_text)}</span><span class='{attention_delta_cls}'>주의 {esc(attention_delta_text)}</span><span class='{error_delta_cls}'>오류 {esc(error_delta_text)}</span></div>
-          <div class='sub'>cron 성공률 {esc(ai.get('cron_success_rate_pct', 0))}% · 주의 {esc(ai.get('attention_jobs', 0))}개 · 7일 실행 {esc(ai.get('cron_runs_7d', 0))}회</div>
-        </div>
-        <div class='spark-wrap'><div class='spark'>{score_bars}</div><div class='sub'>최근 {len(score_points)}회 score 추이</div></div>
-      </div>
-      <table class='compact trend-table'>
-        <thead><tr><th>시각</th><th>Score</th><th>성공률</th><th>주의</th><th>오류</th></tr></thead>
-        <tbody>{trend_rows}</tbody>
-      </table>
-    </div>
-    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>{esc(conv.get('candidate_rate_pct', 0))}%</div><div class='sub'>7일 노트 {esc(conv.get('recording_notes_7d', 0))}개 → 후보 {esc(conv.get('task_candidates', 0))}개</div></div>
-    <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>{esc(di.get('delivery_reliability', '-'))}</div><span class='pill {status_class(di.get('job_status'))}'>{esc(di.get('job_status', '-'))}</span></div><div class='sub'>다음 실행 {esc(di.get('next_run_at', '-'))}</div></div>
-    <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>{esc(pf.get('top_holding', '-'))}</div><div class='sub'>상위 비중 {esc(pf.get('top_weight_pct', 0))}% · 추적: {esc(', '.join(pf.get('benchmarks', [])))}</div></div>
-    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>{esc(roi.get('estimated_hours_saved_7d', 0))}h</div><span class='pill'>7d</span></div><div class='sub'>{esc(roi.get('auto_items_7d', 0))}개 자동 처리 신호 · {esc(roi.get('model', ''))}</div></div>
-    <div class='card wide'><div class='label'>벤치마킹 상태</div><ul>
-      <li>AI Ops: 성공률/주의 cron/오류 로그 기준 점수화</li>
-      <li>Task: 공개 페이지에는 후보 내용 없이 전환 숫자만 표시</li>
-      <li>Finance: 총액 {esc(format_krw(pf.get('total_value_krw', 0)))} · 현금비중 {esc(pf.get('cash_weight_pct', 0))}% · 최근 브리핑 {esc(pf.get('last_briefing_outputs_7d', 0))}건</li>
-    </ul></div>
-    """
+
+    def job_category(job: dict[str, Any]) -> str:
+        blob = f"{job.get('name', '')} {job.get('job_id', '')}".lower()
+        if any(x in blob for x in ['피플', 'insight', '브리핑', '스킬']):
+            return 'Insights'
+        if any(x in blob for x in ['녹음', '회의', '통화']):
+            return 'Recordings'
+        if any(x in blob for x in ['포트폴리오', 'finance', '국내장']):
+            return 'Finance'
+        if any(x in blob for x in ['update', 'dashboard', '주간 운영']):
+            return 'Maintenance'
+        return 'Ops'
+
+    def safe_job_name(job: dict[str, Any]) -> str:
+        # Cron labels are operational labels, but keep them compact and category-like.
+        return short_text(job.get('name') or job_category(job), 44)
+
+    job_rows = []
+    for idx, j in enumerate(jobs, 1):
+        enabled = j.get('enabled')
+        st = j.get('last_status')
+        cls = 'paused' if not enabled else status_class(st)
+        job_rows.append(f"""
+        <tr class='{cls}'>
+          <td><span class='led'></span><span class='row-index'>{idx:02d}</span></td>
+          <td><b>{esc(job_category(j))}</b><small>{esc(safe_job_name(j))}</small></td>
+          <td><code>{esc(j.get('job_id') or j.get('id'))}</code></td>
+          <td>{esc('on' if enabled else 'paused')}</td>
+          <td><span class='state-chip {cls}'>{esc(st or 'not yet')}</span></td>
+          <td><code>{esc(j.get('next_run_at') or '-')}</code></td>
+        </tr>""")
+
+    def error_bucket(line: str) -> str:
+        lowered = line.lower()
+        if 'context summary' in lowered or 'compressor' in lowered:
+            return 'context_compressor_timeout'
+        if 'internalservererror' in lowered or 'api call failed' in lowered:
+            return 'provider_api_retry'
+        if 'telegram' in lowered or 'get_updates' in lowered:
+            return 'gateway_polling_warning'
+        if 'broken pipe' in lowered:
+            return 'broken_pipe'
+        if 'timeout' in lowered:
+            return 'timeout'
+        return 'runtime_warning'
+
+    error_counts: dict[str, int] = {}
+    for e in data.get('errors', []):
+        bucket = error_bucket(str(e))
+        error_counts[bucket] = error_counts.get(bucket, 0) + 1
+    error_summary_html = ''.join(
+        f"<li><span>{esc(k)}</span><b>{v}</b></li>" for k, v in sorted(error_counts.items())
+    ) or '<li><span>no_recent_major_errors</span><b>0</b></li>'
+
     task_rows = []
     for t in data.get('task_summaries', []):
         status_text = ', '.join(f"{esc(k)} {v}" for k, v in t.get('status_counts', {}).items()) or '-'
         due_text = ', '.join(f"{esc(k)} {v}" for k, v in t.get('due_hint_counts', {}).items()) or '-'
         task_rows.append(f"""
         <tr>
-          <td><span class='pill'>{esc(t['source'])}</span></td>
+          <td><span class='state-chip neutral'>{esc(t['source'])}</span></td>
           <td><b>{esc(t['count'])}</b>개</td>
           <td>{status_text}</td>
           <td>{due_text}</td>
           <td><code>{esc(t.get('newest_created_at'))}</code></td>
         </tr>""")
     tasks_html = ''.join(task_rows) or "<tr><td colspan='5'>현재 Google Tasks 승인 후보 없음</td></tr>"
-    people = data.get('people_briefing', {})
-    people_status = people.get('last_status') or 'not yet'
-    people_cls = status_class(people_status)
-    failed_html = '\n'.join(
-        f"<li><b>{esc(j.get('name'))}</b> <code>{esc(j.get('job_id') or j.get('id'))}</code> — {esc(j.get('last_status'))}: {esc(j.get('last_error') or '')}</li>"
-        for j in failed_jobs
-    ) or '<li>실패/주의 cron 없음</li>'
-    multi_priority_html = ''.join(
-        f"<li>#{esc(j.get('priority'))} <code>{esc(j.get('job_id'))}</code> — {esc(j.get('name'))}</li>"
-        for j in ma.get('refactor_priority_jobs', [])
-    ) or '<li>리팩터링 후보 없음</li>'
+
     multi_workers_html = ''.join(
-        f"<li><b>{esc(w.get('name'))}</b> <span class='pill {'ok' if w.get('available') else 'warn'}'>{esc(w.get('type'))}</span> — {esc(w.get('rule'))} · routes {esc(w.get('routes_defined', 0))}</li>"
+        f"""
+        <div class='agent-node {'ready' if w.get('available') else 'warn'}'>
+          <span class='node-label'>{esc(w.get('type'))}</span>
+          <b>{esc(w.get('name'))}</b>
+          <small>{esc(w.get('rule'))}</small>
+          <code>routes={esc(w.get('routes_defined', 0))}</code>
+        </div>"""
         for w in ma.get('workers', [])
-    ) or '<li>등록된 worker 없음</li>'
+    ) or '<div class="agent-node warn"><b>worker 없음</b></div>'
+
+    failed_html = ''.join(
+        f"<li><span>{esc(job_category(j))}</span><b>{esc(short_text(j.get('last_status') or 'check', 24))}</b></li>"
+        for j in failed_jobs
+    )
 
     html_doc = f"""<!doctype html>
 <html lang='ko'>
@@ -546,251 +565,203 @@ def render(data: dict[str, Any]) -> str:
 <title>Hermes Ops Dashboard</title>
 <style>
 :root {{
-  --background-base: #041c1c;
-  --midground-base: #ffe6cb;
-  --foreground-soft: rgba(255,230,203,.78);
-  --foreground-dim: rgba(255,230,203,.58);
-  --line: rgba(255,230,203,.16);
-  --line-strong: rgba(255,230,203,.28);
-  --card: color-mix(in srgb, var(--midground-base) 5%, var(--background-base));
-  --card2: color-mix(in srgb, var(--midground-base) 9%, var(--background-base));
-  --glow: rgba(255,189,56,.34);
-  --teal: #34d399;
-  --blue: #6ee7f9;
-  --red: #fb7185;
-  --yellow: #ffbd38;
-  --purple: #c4b5fd;
-  --radius: 20px;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', Segoe UI, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --bg:#041C1C; --cream:#FFE6CB; --warm:#FFBD38; --green:#34D399; --cyan:#6EE7F9; --red:#FB7185; --purple:#C4B5FD;
+  --terminal:#020808; --card:#102928; --card2:#203734; --rail:#0A2222; --border:#35514D;
+  --muted:rgba(255,230,203,.62); --subtle:rgba(255,230,203,.42); --line:rgba(255,230,203,.16); --line2:rgba(255,230,203,.30);
+  --font-sans:system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;
+  --font-mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
 }}
-* {{ box-sizing: border-box; }}
-html {{ scroll-behavior: smooth; }}
-body {{
-  margin: 0;
-  min-height: 100vh;
-  color: var(--midground-base);
-  font-family: var(--font-sans);
-  background:
-    radial-gradient(circle at 18% 8%, rgba(255,189,56,.18), transparent 28%),
-    radial-gradient(circle at 82% 14%, rgba(52,211,153,.14), transparent 30%),
-    radial-gradient(circle at 50% 105%, rgba(110,231,249,.09), transparent 34%),
-    var(--background-base);
-}}
-body::before {{
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .16;
-  mix-blend-mode: screen;
-  background:
-    linear-gradient(rgba(255,230,203,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,230,203,.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at top, #000 0%, transparent 72%);
-}}
-.shell {{ display: grid; grid-template-columns: 244px minmax(0, 1fr); min-height: 100vh; }}
-.sidebar {{
-  position: sticky; top: 0; height: 100vh; padding: 22px 16px;
-  border-right: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255,230,203,.055), rgba(4,28,28,.56));
-  backdrop-filter: blur(22px);
-}}
-.brand {{ display:flex; align-items:center; gap:11px; margin-bottom:24px; }}
-.logo {{
-  width: 38px; height: 38px; border-radius: 14px;
-  display:grid; place-items:center; font-weight:900; color:var(--background-base);
-  background: radial-gradient(circle at 30% 20%, #fff7ed, var(--midground-base) 52%, var(--yellow));
-  box-shadow: 0 0 40px rgba(255,230,203,.28);
-}}
-.brand-title {{ font-weight: 800; letter-spacing: -.04em; line-height:1; }}
-.brand-sub {{ color: var(--foreground-dim); font-size: 12px; margin-top: 4px; }}
-.nav {{ display:grid; gap:8px; margin:18px 0 28px; }}
-.nav a {{
-  color: var(--foreground-soft); text-decoration:none; border:1px solid transparent;
-  padding: 10px 12px; border-radius: 14px; display:flex; justify-content:space-between; gap:10px;
-}}
-.nav a:hover, .nav a.active {{ background: rgba(255,230,203,.07); border-color: var(--line); }}
-.sidebar-card {{ border:1px solid var(--line); border-radius:18px; padding:14px; background: rgba(255,230,203,.045); color:var(--foreground-soft); font-size:13px; }}
-.sidebar-card b {{ color:var(--midground-base); }}
-main {{ max-width: 1240px; margin: 0 auto; padding: 26px 22px 54px; }}
-.topbar {{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; color:var(--foreground-dim); font-size:13px; }}
-.header-hero {{
-  position:relative; overflow:hidden; border:1px solid var(--line); border-radius: 28px;
-  padding: 30px; margin-bottom: 16px;
-  background:
-    linear-gradient(135deg, rgba(255,230,203,.10), rgba(255,230,203,.035) 42%, rgba(52,211,153,.07)),
-    color-mix(in srgb, var(--midground-base) 4%, var(--background-base));
-  box-shadow: 0 22px 70px rgba(0,0,0,.28);
-}}
-.header-hero::after {{ content:''; position:absolute; right:-80px; top:-100px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(255,189,56,.25), transparent 62%); }}
-.eyebrow {{ color: var(--foreground-dim); text-transform: uppercase; letter-spacing:.18em; font-size:12px; margin-bottom:10px; }}
-h1 {{ margin:0; font-size: clamp(38px, 6vw, 76px); line-height:.9; letter-spacing:-.07em; font-weight:900; }}
-.hero-row {{ position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }}
-.hero-copy {{ max-width: 760px; }}
-.hero-sub {{ color: var(--foreground-soft); margin-top:16px; font-size:16px; line-height:1.55; }}
-.badge, .pill {{ border:1px solid var(--line); background:rgba(255,230,203,.055); border-radius:999px; white-space:nowrap; }}
-.badge {{ padding:10px 14px; color:var(--foreground-soft); }}
-.badge.ok, .pill.ok {{ color: var(--teal); border-color: rgba(52,211,153,.36); background:rgba(52,211,153,.08); }}
-.badge.bad, .pill.bad {{ color: var(--yellow); border-color: rgba(255,189,56,.42); background:rgba(255,189,56,.08); }}
-.grid {{ display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; }}
-.card {{
-  grid-column: span 3; position:relative; overflow:hidden;
-  background: linear-gradient(180deg, rgba(255,230,203,.075), rgba(255,230,203,.03));
-  border:1px solid var(--line); border-radius: var(--radius); padding:18px;
-  box-shadow: 0 18px 48px rgba(0,0,0,.20);
-}}
-.card::before {{ content:''; position:absolute; inset:0 0 auto; height:1px; background:linear-gradient(90deg, transparent, rgba(255,230,203,.36), transparent); }}
-.card.wide {{ grid-column: span 6; }}
-.card.full {{ grid-column: 1 / -1; }}
-.label {{ color: var(--foreground-dim); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }}
-.value {{ font-size:34px; font-weight:850; letter-spacing:-.055em; }}
-.value.small {{ font-size:20px; line-height:1.35; letter-spacing:-.025em; }}
-.kpi {{ display:flex; justify-content:space-between; align-items:center; gap:12px; }}
-.score-layout {{ display:grid; grid-template-columns: minmax(0, 1fr) 168px; gap:16px; align-items:end; }}
-.sub {{ color: var(--foreground-dim); margin-top:8px; line-height:1.5; }}
-.trend-delta {{ display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px; }}
-.trend-delta span {{ font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--foreground-dim); }}
-.trend-delta .up {{ color:var(--teal); border-color:rgba(52,211,153,.35); background:rgba(52,211,153,.08); }}
-.trend-delta .down {{ color:var(--red); border-color:rgba(251,113,133,.35); background:rgba(251,113,133,.08); }}
-.trend-delta .flat {{ color:var(--foreground-dim); }}
-.spark-wrap {{ min-width:140px; }}
-.spark {{ height:68px; display:flex; align-items:end; gap:5px; padding:9px; border:1px solid var(--line); border-radius:16px; background:rgba(4,28,28,.38); }}
-.spark i {{ flex:1; min-width:5px; border-radius:999px 999px 4px 4px; background:linear-gradient(180deg, var(--midground-base), var(--teal)); box-shadow:0 0 20px rgba(255,230,203,.2); }}
-.pill {{ font-size:12px; padding:5px 8px; color:var(--foreground-soft); display:inline-block; }}
-.pill.warn {{ color: var(--yellow); border-color: rgba(255,189,56,.35); background:rgba(255,189,56,.08); }}
-table {{ width:100%; border-collapse:collapse; font-size:14px; }}
-table.compact {{ font-size:12px; margin-top:12px; }}
-th, td {{ padding:12px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }}
-th {{ color:var(--foreground-dim); font-weight:650; }}
-tr.bad .dot {{ background: var(--red); }}
-tr.ok .dot {{ background: var(--teal); }}
-tr.idle .dot {{ background: var(--yellow); }}
-tr.paused {{ opacity:.52; }}
-.dot {{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--foreground-dim); margin-right:8px; box-shadow:0 0 12px currentColor; }}
-code {{ color:var(--midground-base); background:rgba(255,230,203,.095); padding:2px 6px; border-radius:7px; font-family:var(--font-mono); font-size:.86em; }}
-ul {{ margin:0; padding-left:20px; }}
-li {{ margin:8px 0; color:var(--foreground-soft); }}
-.footer {{ margin-top:22px; color:var(--foreground-dim); font-size:12px; }}
-@media (max-width: 980px) {{
-  .shell {{ display:block; }}
-  .sidebar {{ position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }}
-  .nav {{ grid-template-columns: repeat(2, minmax(0,1fr)); }}
-  .hero-row, .topbar {{ display:block; }}
-  .badge {{ display:inline-block; margin-top:14px; }}
-  .card, .card.wide {{ grid-column: 1 / -1; }}
-  .score-layout {{ grid-template-columns: 1fr; }}
-  table {{ font-size:12px; }}
-  th:nth-child(5), td:nth-child(5) {{ display:none; }}
-}}
+*{{box-sizing:border-box}}
+html{{scroll-behavior:smooth}}
+body{{margin:0;min-height:100vh;color:var(--cream);font-family:var(--font-sans);background:radial-gradient(circle at 0% 0%,rgba(255,189,56,.18),transparent 34%),radial-gradient(circle at 86% 12%,rgba(52,211,153,.13),transparent 30%),radial-gradient(circle at 50% 115%,rgba(110,231,249,.09),transparent 38%),var(--bg);}}
+body:before{{content:'';position:fixed;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:screen;background:linear-gradient(rgba(255,230,203,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,230,203,.055) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at top,#000 0%,transparent 74%);z-index:0}}
+body:after{{content:'';position:fixed;inset:0;pointer-events:none;opacity:.10;background:repeating-conic-gradient(currentColor 0% 25%,transparent 0% 50%) 0 0/3px 3px;color:var(--cream);z-index:1}}
+.shell{{position:relative;z-index:2;display:grid;grid-template-columns:88px 292px minmax(0,1fr);min-height:100vh}}
+.rail{{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,rgba(10,34,34,.92),rgba(4,28,28,.74));border-right:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:16px}}
+.mark{{width:48px;height:48px;border-radius:16px;background:radial-gradient(circle at 35% 18%,#fff7ed,var(--cream) 52%,var(--warm));color:var(--bg);display:grid;place-items:center;font-weight:950;box-shadow:0 0 44px rgba(255,230,203,.24)}}
+.rail-nav{{display:grid;gap:10px;margin-top:18px;width:100%}}
+.rail-nav a{{height:48px;border:1px solid transparent;border-radius:16px;display:grid;place-items:center;color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-weight:800}}
+.rail-nav a:hover,.rail-nav a.active{{background:rgba(255,230,203,.08);border-color:var(--line);color:var(--cream)}}
+.rail-status{{margin-top:auto;width:38px;height:38px;border-radius:50%;border:1px solid {'rgba(255,189,56,.55)' if health_class == 'bad' else 'rgba(52,211,153,.55)'};background:{'rgba(255,189,56,.10)' if health_class == 'bad' else 'rgba(52,211,153,.10)'};box-shadow:0 0 30px {'rgba(255,189,56,.22)' if health_class == 'bad' else 'rgba(52,211,153,.22)'};}}
+.mission{{position:sticky;top:0;height:100vh;padding:16px;border-right:1px solid var(--line);background:rgba(4,28,28,.55);backdrop-filter:blur(22px)}}
+.mission-card{{height:calc(100vh - 32px);border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,230,203,.08),rgba(255,230,203,.025));padding:22px;display:flex;flex-direction:column;gap:18px;box-shadow:0 24px 80px rgba(0,0,0,.22)}}
+.brand-title{{font-size:34px;line-height:.9;letter-spacing:-.07em;font-weight:950}}
+.brand-kicker,.label{{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--subtle);font-weight:750}}
+.mission-note{{border:1px solid var(--line);border-radius:18px;background:rgba(255,230,203,.05);padding:14px;color:var(--muted);line-height:1.5;font-size:13px}}
+.meta-stack{{display:grid;gap:10px;margin-top:auto}}
+.meta-row{{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;color:var(--muted);font-size:13px}}
+.meta-row b{{color:var(--cream);font-family:var(--font-mono);font-size:12px;text-align:right}}
+main{{min-width:0;padding:22px;max-width:1480px;width:100%;margin:0 auto}}
+.topline{{display:flex;justify-content:space-between;gap:16px;color:var(--subtle);font-size:12px;font-family:var(--font-mono);margin-bottom:14px}}
+.hero{{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:34px;min-height:330px;padding:34px;background:linear-gradient(135deg,rgba(255,230,203,.12),rgba(255,230,203,.035) 45%,rgba(52,211,153,.08)),var(--card);box-shadow:0 24px 80px rgba(0,0,0,.28)}}
+.hero:after{{content:'';position:absolute;right:-90px;top:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,189,56,.28),transparent 64%)}}
+.hero-grid{{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:end;height:100%}}
+h1{{margin:0;font-size:clamp(62px,10vw,132px);line-height:.82;letter-spacing:-.085em;font-weight:950;font-stretch:condensed}}
+.hero-sub{{margin-top:18px;color:var(--muted);font-size:16px;line-height:1.55;max-width:760px}}
+.command{{font-family:var(--font-mono);font-size:12px;color:var(--green);background:var(--terminal);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:18px;display:inline-block}}
+.status-dial{{border:1px solid var(--line2);border-radius:28px;background:rgba(2,8,8,.54);padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between}}
+.dial-value{{font-size:76px;line-height:.82;letter-spacing:-.08em;font-weight:950}}
+.state-chip{{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;width:max-content;background:rgba(255,230,203,.04)}}
+.state-chip.ok,.state-chip.ready{{color:var(--green);border-color:rgba(52,211,153,.38);background:rgba(52,211,153,.08)}}
+.state-chip.bad,.state-chip.warn{{color:var(--warm);border-color:rgba(255,189,56,.42);background:rgba(255,189,56,.08)}}
+.state-chip.paused{{opacity:.55}} .state-chip.neutral{{color:var(--cream)}}
+.grid{{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px}}
+.tile,.panel{{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,230,203,.075),rgba(255,230,203,.025));border-radius:22px;padding:16px;box-shadow:0 12px 36px rgba(0,0,0,.18)}}
+.tile:before,.panel:before{{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,230,203,.34),transparent)}}
+.tile{{grid-column:span 2;min-height:126px;display:flex;flex-direction:column;justify-content:space-between}}
+.tile.wide{{grid-column:span 4}}
+.panel.score{{grid-column:span 7}} .panel.dispatch{{grid-column:span 5}} .panel.pipeline{{grid-column:span 6}} .panel.tasks{{grid-column:span 6}} .panel.cron{{grid-column:1/-1}} .panel.logs{{grid-column:span 5}} .panel.people{{grid-column:span 7}}
+.value{{font-size:38px;line-height:.9;letter-spacing:-.065em;font-weight:900}}
+.value small{{font-size:14px;letter-spacing:0;color:var(--muted);font-weight:650;margin-left:4px}}
+.context{{color:var(--subtle);font-size:12px;line-height:1.45;margin-top:8px}}
+.delta-row{{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}}
+.delta-row span{{font-family:var(--font-mono);font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:var(--subtle)}}
+.delta-row .up{{color:var(--green);border-color:rgba(52,211,153,.34)}} .delta-row .down{{color:var(--red);border-color:rgba(251,113,133,.34)}}
+.score-layout{{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:20px;align-items:end}}
+.spark{{height:96px;display:flex;align-items:end;gap:6px;border:1px solid var(--line);border-radius:18px;background:rgba(2,8,8,.48);padding:12px}}
+.spark i{{flex:1;min-width:6px;border-radius:999px 999px 4px 4px;background:linear-gradient(180deg,var(--cream),var(--green));box-shadow:0 0 20px rgba(255,230,203,.18)}}
+.agent-flow{{display:grid;grid-template-columns:1fr;gap:12px;align-items:stretch;margin-top:16px}}
+.chief,.agent-node{{border:1px solid var(--line);border-radius:18px;background:rgba(2,8,8,.34);padding:14px;min-height:auto}}
+.chief b,.agent-node b{{display:block;font-size:22px;letter-spacing:-.04em}} .chief small,.agent-node small{{display:block;color:var(--muted);margin-top:8px;line-height:1.45}}
+.node-label{{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--subtle);text-transform:uppercase}}
+.route{{color:var(--warm);font-family:var(--font-mono);font-weight:900;transform:rotate(90deg);width:max-content;margin:0 auto}}
+.agent-nodes{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.metric-list{{display:grid;gap:10px;margin-top:14px}}
+.metric-list li{{list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:1px solid var(--line);padding-bottom:8px;color:var(--muted)}}
+.metric-list b{{color:var(--cream);font-family:var(--font-mono);text-align:right;overflow-wrap:anywhere}}
+table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} th,td{{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}} th{{color:var(--subtle);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em}} td small{{display:block;color:var(--subtle);margin-top:4px}} code{{font-family:var(--font-mono);font-size:11px;color:var(--cream);background:rgba(255,230,203,.08);border:1px solid rgba(255,230,203,.08);padding:3px 6px;border-radius:8px}}
+.led{{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--subtle);margin-right:9px;box-shadow:0 0 12px currentColor}} tr.ok .led{{background:var(--green)}} tr.bad .led{{background:var(--red)}} tr.idle .led{{background:var(--warm)}} tr.paused{{opacity:.52}} .row-index{{font-family:var(--font-mono);color:var(--subtle);font-size:11px}}
+.log-terminal{{background:var(--terminal);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;font-family:var(--font-mono)}}
+.log-terminal ul{{margin:0;padding:0;display:grid;gap:8px}} .log-terminal li{{list-style:none;display:flex;justify-content:space-between;gap:12px;color:var(--green)}}
+.footer{{margin:22px 0 4px;color:var(--subtle);font-family:var(--font-mono);font-size:11px}}
+@media(max-width:1280px){{.agent-nodes{{grid-template-columns:1fr}}}}
+@media(max-width:1120px){{.shell{{display:block}}.rail,.mission{{position:relative;height:auto}}.rail{{flex-direction:row;justify-content:space-between}}.rail-nav{{display:flex;margin:0;width:auto}}.mission-card{{height:auto}}.hero-grid,.score-layout,.agent-flow{{grid-template-columns:1fr}}.tile,.tile.wide,.panel.score,.panel.dispatch,.panel.pipeline,.panel.tasks,.panel.logs,.panel.people{{grid-column:1/-1}}h1{{font-size:clamp(58px,18vw,112px)}}main{{padding:16px}}}}
+@media(max-width:720px){{.rail-nav a{{width:42px;height:42px}}.hero{{padding:22px;min-height:auto}}.grid{{gap:10px}}th:nth-child(6),td:nth-child(6){{display:none}}table{{font-size:12px}}}}
 </style>
 </head>
 <body>
 <div class='shell'>
-  <aside class='sidebar'>
-    <div class='brand'>
-      <div class='logo'>H</div>
-      <div><div class='brand-title'>Hermes Ops</div><div class='brand-sub'>Mac mini Control Plane</div></div>
-    </div>
-    <nav class='nav'>
-      <a class='active' href='#overview'>Overview <span>⌘</span></a>
-      <a href='#agents'>Agents <span>↗</span></a>
-      <a href='#recordings'>Recordings <span>●</span></a>
-      <a href='#cron'>Cron <span>↻</span></a>
+  <aside class='rail' aria-label='icon navigation'>
+    <div class='mark'>H</div>
+    <nav class='rail-nav'>
+      <a class='active' href='#overview' title='Overview'>⌘</a>
+      <a href='#agents' title='Agents'>A</a>
+      <a href='#recordings' title='Recordings'>●</a>
+      <a href='#cron' title='Cron'>↻</a>
+      <a href='#logs' title='Logs'>▣</a>
     </nav>
-    <div class='sidebar-card'>
-      <b>Public-safe mirror</b><br>
-      GitHub Pages에는 회의/통화 원문·파일명·인용문 없이 운영 지표만 표시.
+    <div class='rail-status' title='state {esc(health)}'></div>
+  </aside>
+
+  <aside class='mission'>
+    <div class='mission-card'>
+      <div>
+        <div class='brand-kicker'>Public Control Plane</div>
+        <div class='brand-title'>Hermes<br>Ops</div>
+      </div>
+      <div class='mission-note'><b>Public-safe mirror</b><br>GitHub Pages에는 회의/통화 원문·파일명·인용문 없이 운영 지표만 표시.</div>
+      <div class='mission-note'><b>Design mode</b><br>Teal command center · rail + mission panel + cockpit modules.</div>
+      <div class='meta-stack'>
+        <div class='meta-row'><span>generated</span><b>{esc(data['generated_at'])}</b></div>
+        <div class='meta-row'><span>version</span><b>{esc(data['hermes_version'].replace('Hermes Agent ', ''))}</b></div>
+        <div class='meta-row'><span>active cron</span><b>{esc(data['active_jobs'])}</b></div>
+        <div class='meta-row'><span>public_safe</span><b>true</b></div>
+      </div>
     </div>
   </aside>
+
   <main>
-    <div class='topbar'>
-      <span>Hermes Web Dashboard visual system · GitHub Pages edition</span>
-      <span>{esc(data.get('hermes_version', 'Hermes'))}</span>
-    </div>
-    <section class='header-hero' id='overview'>
-      <div class='hero-row'>
-        <div class='hero-copy'>
-          <div class='eyebrow'>Hermes Agent Operations</div>
-          <h1>Ops Dashboard</h1>
-          <div class='hero-sub'>Mac mini 기반 AI 운영 현황 · generated {esc(data['generated_at'])}</div>
+    <div class='topline'><span>source=aggregated_metrics · private_content=redacted</span><span>{esc(data.get('hermes_update') or 'Up to date')}</span></div>
+    <section class='hero' id='overview'>
+      <div class='hero-grid'>
+        <div>
+          <div class='label'>Hermes Agent Operations</div>
+          <h1>OPS /<br>HERMES</h1>
+          <div class='hero-sub'>Mac mini 기반 AI 운영 관제판. Cron, 녹음 파이프라인, 멀티에이전트, Daily Insight, Finance 지표를 공개-safe 형태로 미러링.</div>
+          <div class='command'>public_safe=true · source=aggregated_metrics · private_content=redacted</div>
         </div>
-        <div class='badge {health_class}'>상태: {health}</div>
+        <div class='status-dial'>
+          <span class='state-chip {health_class}'>{esc(health)}</span>
+          <div class='dial-value'>{esc(ai.get('score', 0))}</div>
+          <div class='context'>AI Ops Score · cron 성공률 {esc(ai.get('cron_success_rate_pct', 0))}% · 오류 신호 {esc(ai.get('recent_error_lines', 0))}</div>
+        </div>
       </div>
     </section>
 
-  <div class='grid'>
-    <div class='card'><div class='label'>활성 cron</div><div class='kpi'><div class='value'>{data['active_jobs']}</div><span class='pill'>jobs</span></div></div>
-    <div class='card'><div class='label'>실패/주의 cron</div><div class='kpi'><div class='value'>{data['failed_jobs']}</div><span class='pill {'bad' if data['failed_jobs'] else 'ok'}'>{'check' if data['failed_jobs'] else 'ok'}</span></div></div>
-    <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>{data['call_recent_notes']} <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>{data['meeting_recent_notes']} 회의록</div></div>
-    <div class='card'><div class='label'>Tasks 후보</div><div class='value'>{data['pending_call_tasks'] + data['pending_meeting_tasks']}</div><div class='sub'>통화 {data['pending_call_tasks']} · 회의 {data['pending_meeting_tasks']}</div></div>
+    <section class='grid' aria-label='telemetry ribbon'>
+      <div class='tile'><div class='label'>Active Automation</div><div class='value'>{data['active_jobs']}</div><div class='context'>cron jobs online</div></div>
+      <div class='tile'><div class='label'>Attention</div><div class='value'>{data['failed_jobs']}</div><div class='context'>failed/watch jobs</div></div>
+      <div class='tile'><div class='label'>Record Notes</div><div class='value'>{data['call_recent_notes']}<small>통화</small></div><div class='context'>{data['meeting_recent_notes']} meeting notes</div></div>
+      <div class='tile'><div class='label'>Task Candidates</div><div class='value'>{data['pending_call_tasks'] + data['pending_meeting_tasks']}</div><div class='context'>approval queue only</div></div>
+      <div class='tile'><div class='label'>ROI / 7D</div><div class='value'>{esc(roi.get('estimated_hours_saved_7d', 0))}<small>h</small></div><div class='context'>{esc(roi.get('auto_items_7d', 0))} auto signals</div></div>
+      <div class='tile'><div class='label'>Daily Insight</div><div class='value' style='font-size:28px'>{esc(di.get('delivery_reliability', '-'))}</div><div class='context'>next {esc(short_text(di.get('next_run_at', '-'), 24))}</div></div>
 
-    {benchmark_cards}
+      <div class='panel score'>
+        <div class='label'>Benchmark Cockpit</div>
+        <div class='score-layout'>
+          <div>
+            <div class='value'>{esc(ai.get('score', 0))}<small> AI Ops Score</small></div>
+            <div class='delta-row'><span class='{score_delta_cls}'>score {esc(score_delta_text)}</span><span class='{success_delta_cls}'>success {esc(success_delta_text)}</span><span class='{attention_delta_cls}'>attention {esc(attention_delta_text)}</span><span class='{error_delta_cls}'>errors {esc(error_delta_text)}</span></div>
+            <div class='context'>Task 전환율 {esc(conv.get('candidate_rate_pct', 0))}% · 포트폴리오 top {esc(pf.get('top_holding', '-'))} · ROI {esc(roi.get('estimated_hours_saved_7d', 0))}h/7d</div>
+          </div>
+          <div><div class='spark'>{score_bars}</div><div class='context'>최근 {len(history)}회 score bars</div></div>
+        </div>
+      </div>
 
-    <div class='card wide'><div class='label'>Hermes</div><div class='value small'>{esc(data['hermes_version'])}</div><div class='sub'>{esc(data.get('hermes_update') or '업데이트 추가 메시지 없음')}</div></div>
-    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>{esc(data['recordings_du'])} 녹음 캐시</div><div class='sub'>{esc(data['disk_line'])}</div></div>
+      <div class='panel dispatch' id='agents'>
+        <div class='label'>Agent Dispatch Board</div>
+        <div class='agent-flow'>
+          <div class='chief'><span class='node-label'>chief</span><b>{esc(ma.get('chief_agent', 'Hermes 주무'))}</b><small>{esc(ma.get('operating_rule', '검증·side effect·최종 전달 담당'))}</small></div>
+          <div class='route'>→</div>
+          <div class='agent-nodes'>{multi_workers_html}</div>
+        </div>
+      </div>
 
-    <div class='card full' id='agents'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
-      <div class='kpi'><div class='value small'>{esc(ma.get('chief_agent', 'Hermes 주무'))} → 아기 · 디지</div><span class='pill {'ok' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'warn'}'>{'ready' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'check'}</span></div>
-      <div class='sub'>{esc(ma.get('operating_rule', '리서치는 아기, 디자인은 디지, 검증/최종 전달은 Hermes'))}</div>
-      <ul>{multi_workers_html}</ul>
-      <ul>
-        <li>Manual: <code>{esc(ma.get('role_manual'))}</code> · Research prompt: <code>{esc(ma.get('prompt_template'))}</code> · Audit: <code>{esc(ma.get('token_audit'))}</code></li>
-        <li>Design agent: <b>{esc(ma.get('design_agent_name', '디지'))}</b> · available <b>{esc(ma.get('design_agent_available'))}</b> · design routes <b>{esc(ma.get('design_routes_defined', 0))}</b></li>
-        <li>최우선 절감 job <code>{esc(ma.get('highest_token_job_id'))}</code> 상태 <b>{esc(ma.get('highest_token_job_status'))}</b></li>
-      </ul>
-      <div class='sub'>리팩터링 우선순위</div>
-      <ul>{multi_priority_html}</ul>
-    </div>
+      <div class='panel pipeline' id='recordings'>
+        <div class='label'>Public-safe Recording Pipeline</div>
+        <ul class='metric-list'>
+          <li><span>call_last_run</span><b>{esc(data['call_state'].get('last_run_at', 'unknown'))}</b></li>
+          <li><span>meeting_last_run</span><b>{esc(data['meeting_state'].get('last_run_at', 'unknown'))}</b></li>
+          <li><span>cache_candidates</span><b>{esc(cache.get('finder_evictable_candidates', 'n/a'))} · {cache_mb:.1f}MB</b></li>
+          <li><span>private_content</span><b>redacted</b></li>
+        </ul>
+      </div>
 
-    <div class='card wide' id='recordings'><div class='label'>녹음 처리 상태</div>
-      <ul>
-        <li>통화 마지막 실행: <code>{esc(data['call_state'].get('last_run_at', 'unknown'))}</code></li>
-        <li>회의 마지막 실행: <code>{esc(data['meeting_state'].get('last_run_at', 'unknown'))}</code></li>
-        <li>로컬 캐시 후보: <b>{esc(cache.get('finder_evictable_candidates', 'n/a'))}</b>개 · 약 <b>{cache_mb:.1f}MB</b></li>
-      </ul>
-    </div>
-    <div class='card wide'><div class='label'>주의 항목</div><ul>{failed_html}</ul></div>
+      <div class='panel tasks'>
+        <div class='label'>Google Tasks Candidate Matrix</div>
+        <table>
+          <thead><tr><th>source</th><th>count</th><th>status</th><th>due hint</th><th>newest</th></tr></thead>
+          <tbody>{tasks_html}</tbody>
+        </table>
+      </div>
 
-    <div class='card wide'><div class='label'>피플팀 브리핑 발송 상태</div>
-      <div class='kpi'><div class='value small'>{esc(people.get('name'))}</div><span class='pill {people_cls}'>{esc(people_status)}</span></div>
-      <ul>
-        <li>마지막 실행: <code>{esc(people.get('last_run_at'))}</code></li>
-        <li>다음 실행: <code>{esc(people.get('next_run_at'))}</code></li>
-        <li>Job ID: <code>{esc(people.get('job_id'))}</code></li>
-        <li>{'최근 오류: ' + esc(people.get('last_error')) if people.get('last_error') else '최근 오류 없음'}</li>
-      </ul>
-    </div>
+      <div class='panel people'>
+        <div class='label'>Daily Insight / People Team</div>
+        <div class='value' style='font-size:30px'>{esc(people.get('name'))}</div>
+        <div class='delta-row'><span class='{people_cls}'>{esc(people_status)}</span><span>next {esc(short_text(people.get('next_run_at'), 28))}</span><span>job {esc(people.get('job_id'))}</span></div>
+        <div class='context'>최근 오류: {esc('없음' if not people.get('last_error') else '있음 — 상세는 비공개 운영 로그에서 확인')}</div>
+      </div>
 
-    <div class='card wide'><div class='label'>Google Tasks 후보 요약</div>
-      <div class='sub'>공개 페이지에는 회의/통화 원문, 제목, 인용문, 파일명은 올리지 않고 숫자/상태만 표시</div>
-      <table class='compact'>
-        <thead><tr><th>출처</th><th>후보 수</th><th>상태</th><th>기한 힌트</th><th>최근 생성</th></tr></thead>
-        <tbody>{tasks_html}</tbody>
-      </table>
-    </div>
+      <div class='panel logs' id='logs'>
+        <div class='label'>Sanitized Log Stream</div>
+        <div class='log-terminal'><ul>{error_summary_html}</ul></div>
+        <ul class='metric-list'><li><span>attention_jobs</span><b>{len(failed_jobs)}</b></li>{failed_html}</ul>
+      </div>
 
-    <div class='card full' id='cron'>
-      <div class='label'>Cron Jobs</div>
-      <table>
-        <thead><tr><th>이름</th><th>ID</th><th>상태</th><th>마지막 결과</th><th>다음 실행</th></tr></thead>
-        <tbody>{''.join(job_rows)}</tbody>
-      </table>
-    </div>
-
-    <div class='card full'>
-      <div class='label'>최근 에러 로그</div>
-      <ul>{errors_html}</ul>
-    </div>
-  </div>
-  <div class='footer'>Source: ~/.hermes/cron/jobs.json, errors.log, recording processing state, Obsidian notes. 원본 삭제 명령은 포함하지 않음.</div>
-</main>
+      <div class='panel cron' id='cron'>
+        <div class='label'>Cron Operations Board</div>
+        <table>
+          <thead><tr><th></th><th>category / job</th><th>id</th><th>mode</th><th>last</th><th>next run</th></tr></thead>
+          <tbody>{''.join(job_rows)}</tbody>
+        </table>
+      </div>
+    </section>
+    <div class='footer'>Source: public-safe aggregates from Hermes cron/state/log summaries. Raw call/meeting contents, filenames, evidence snippets, secrets, and local private paths are intentionally omitted.</div>
+  </main>
 </div>
 </body>
 </html>"""
     return html_doc
-
 
 def main() -> int:
     PROJECT.mkdir(parents=True, exist_ok=True)
