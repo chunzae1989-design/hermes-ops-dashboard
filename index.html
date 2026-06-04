@@ -6,79 +6,138 @@
 <title>Hermes Ops Dashboard</title>
 <style>
 :root {
-  --bg: #0d1117;
-  --panel: #151b23;
-  --panel2: #0f1620;
-  --text: #e6edf3;
-  --muted: #8b949e;
-  --line: #30363d;
-  --blue: #58a6ff;
-  --green: #3fb950;
-  --red: #f85149;
-  --yellow: #d29922;
-  --purple: #bc8cff;
-  --radius: 18px;
+  --background-base: #041c1c;
+  --midground-base: #ffe6cb;
+  --foreground-soft: rgba(255,230,203,.78);
+  --foreground-dim: rgba(255,230,203,.58);
+  --line: rgba(255,230,203,.16);
+  --line-strong: rgba(255,230,203,.28);
+  --card: color-mix(in srgb, var(--midground-base) 5%, var(--background-base));
+  --card2: color-mix(in srgb, var(--midground-base) 9%, var(--background-base));
+  --glow: rgba(255,189,56,.34);
+  --teal: #34d399;
+  --blue: #6ee7f9;
+  --red: #fb7185;
+  --yellow: #ffbd38;
+  --purple: #c4b5fd;
+  --radius: 20px;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', Segoe UI, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(88,166,255,.16), transparent 32%), var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', Segoe UI, sans-serif;
+  color: var(--midground-base);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255,189,56,.18), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(52,211,153,.14), transparent 30%),
+    radial-gradient(circle at 50% 105%, rgba(110,231,249,.09), transparent 34%),
+    var(--background-base);
 }
-main { max-width: 1180px; margin: 0 auto; padding: 32px 18px 56px; }
-header { display:flex; justify-content:space-between; gap:20px; align-items:flex-end; margin-bottom:24px; }
-h1 { margin:0; font-size: clamp(28px, 4vw, 48px); letter-spacing:-.04em; }
-.sub { color: var(--muted); margin-top:8px; }
-.badge { border:1px solid var(--line); background:rgba(255,255,255,.04); padding:10px 14px; border-radius:999px; white-space:nowrap; }
-.badge.ok { color: var(--green); border-color: rgba(63,185,80,.38); }
-.badge.bad { color: var(--yellow); border-color: rgba(210,153,34,.45); }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(rgba(255,230,203,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,230,203,.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at top, #000 0%, transparent 72%);
+}
+.shell { display: grid; grid-template-columns: 244px minmax(0, 1fr); min-height: 100vh; }
+.sidebar {
+  position: sticky; top: 0; height: 100vh; padding: 22px 16px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,230,203,.055), rgba(4,28,28,.56));
+  backdrop-filter: blur(22px);
+}
+.brand { display:flex; align-items:center; gap:11px; margin-bottom:24px; }
+.logo {
+  width: 38px; height: 38px; border-radius: 14px;
+  display:grid; place-items:center; font-weight:900; color:var(--background-base);
+  background: radial-gradient(circle at 30% 20%, #fff7ed, var(--midground-base) 52%, var(--yellow));
+  box-shadow: 0 0 40px rgba(255,230,203,.28);
+}
+.brand-title { font-weight: 800; letter-spacing: -.04em; line-height:1; }
+.brand-sub { color: var(--foreground-dim); font-size: 12px; margin-top: 4px; }
+.nav { display:grid; gap:8px; margin:18px 0 28px; }
+.nav a {
+  color: var(--foreground-soft); text-decoration:none; border:1px solid transparent;
+  padding: 10px 12px; border-radius: 14px; display:flex; justify-content:space-between; gap:10px;
+}
+.nav a:hover, .nav a.active { background: rgba(255,230,203,.07); border-color: var(--line); }
+.sidebar-card { border:1px solid var(--line); border-radius:18px; padding:14px; background: rgba(255,230,203,.045); color:var(--foreground-soft); font-size:13px; }
+.sidebar-card b { color:var(--midground-base); }
+main { max-width: 1240px; margin: 0 auto; padding: 26px 22px 54px; }
+.topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; color:var(--foreground-dim); font-size:13px; }
+.header-hero {
+  position:relative; overflow:hidden; border:1px solid var(--line); border-radius: 28px;
+  padding: 30px; margin-bottom: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,230,203,.10), rgba(255,230,203,.035) 42%, rgba(52,211,153,.07)),
+    color-mix(in srgb, var(--midground-base) 4%, var(--background-base));
+  box-shadow: 0 22px 70px rgba(0,0,0,.28);
+}
+.header-hero::after { content:''; position:absolute; right:-80px; top:-100px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(255,189,56,.25), transparent 62%); }
+.eyebrow { color: var(--foreground-dim); text-transform: uppercase; letter-spacing:.18em; font-size:12px; margin-bottom:10px; }
+h1 { margin:0; font-size: clamp(38px, 6vw, 76px); line-height:.9; letter-spacing:-.07em; font-weight:900; }
+.hero-row { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+.hero-copy { max-width: 760px; }
+.hero-sub { color: var(--foreground-soft); margin-top:16px; font-size:16px; line-height:1.55; }
+.badge, .pill { border:1px solid var(--line); background:rgba(255,230,203,.055); border-radius:999px; white-space:nowrap; }
+.badge { padding:10px 14px; color:var(--foreground-soft); }
+.badge.ok, .pill.ok { color: var(--teal); border-color: rgba(52,211,153,.36); background:rgba(52,211,153,.08); }
+.badge.bad, .pill.bad { color: var(--yellow); border-color: rgba(255,189,56,.42); background:rgba(255,189,56,.08); }
 .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; }
 .card {
-  grid-column: span 3;
-  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-  border-radius: var(--radius);
-  padding:18px;
-  box-shadow: 0 16px 45px rgba(0,0,0,.22);
+  grid-column: span 3; position:relative; overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,230,203,.075), rgba(255,230,203,.03));
+  border:1px solid var(--line); border-radius: var(--radius); padding:18px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.20);
 }
+.card::before { content:''; position:absolute; inset:0 0 auto; height:1px; background:linear-gradient(90deg, transparent, rgba(255,230,203,.36), transparent); }
 .card.wide { grid-column: span 6; }
 .card.full { grid-column: 1 / -1; }
-.label { color: var(--muted); font-size:13px; margin-bottom:12px; }
-.value { font-size:30px; font-weight:750; letter-spacing:-.03em; }
-.value.small { font-size:19px; line-height:1.35; }
+.label { color: var(--foreground-dim); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }
+.value { font-size:34px; font-weight:850; letter-spacing:-.055em; }
+.value.small { font-size:20px; line-height:1.35; letter-spacing:-.025em; }
 .kpi { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.score-layout { display:grid; grid-template-columns: minmax(0, 1fr) 150px; gap:16px; align-items:end; }
-.trend-delta { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }
-.trend-delta span { font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--muted); }
-.trend-delta .up { color:var(--green); border-color:rgba(63,185,80,.35); background:rgba(63,185,80,.08); }
-.trend-delta .down { color:var(--red); border-color:rgba(248,81,73,.35); background:rgba(248,81,73,.08); }
-.trend-delta .flat { color:var(--muted); }
-.spark-wrap { min-width:130px; }
-.spark { height:58px; display:flex; align-items:end; gap:5px; padding:8px; border:1px solid rgba(48,54,61,.75); border-radius:14px; background:rgba(255,255,255,.03); }
-.spark i { flex:1; min-width:5px; border-radius:999px 999px 3px 3px; background:linear-gradient(180deg, var(--blue), var(--purple)); box-shadow:0 0 18px rgba(88,166,255,.25); }
-.trend-table th, .trend-table td { padding:7px 6px; font-size:12px; }
-.pill { font-size:12px; padding:5px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }
-.pill.ok { color: var(--green); border-color: rgba(63,185,80,.35); }
-.pill.bad { color: var(--red); border-color: rgba(248,81,73,.35); }
-.pill.warn { color: var(--yellow); border-color: rgba(210,153,34,.35); }
-section { margin-top:14px; }
+.score-layout { display:grid; grid-template-columns: minmax(0, 1fr) 168px; gap:16px; align-items:end; }
+.sub { color: var(--foreground-dim); margin-top:8px; line-height:1.5; }
+.trend-delta { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px; }
+.trend-delta span { font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--foreground-dim); }
+.trend-delta .up { color:var(--teal); border-color:rgba(52,211,153,.35); background:rgba(52,211,153,.08); }
+.trend-delta .down { color:var(--red); border-color:rgba(251,113,133,.35); background:rgba(251,113,133,.08); }
+.trend-delta .flat { color:var(--foreground-dim); }
+.spark-wrap { min-width:140px; }
+.spark { height:68px; display:flex; align-items:end; gap:5px; padding:9px; border:1px solid var(--line); border-radius:16px; background:rgba(4,28,28,.38); }
+.spark i { flex:1; min-width:5px; border-radius:999px 999px 4px 4px; background:linear-gradient(180deg, var(--midground-base), var(--teal)); box-shadow:0 0 20px rgba(255,230,203,.2); }
+.pill { font-size:12px; padding:5px 8px; color:var(--foreground-soft); display:inline-block; }
+.pill.warn { color: var(--yellow); border-color: rgba(255,189,56,.35); background:rgba(255,189,56,.08); }
 table { width:100%; border-collapse:collapse; font-size:14px; }
 table.compact { font-size:12px; margin-top:12px; }
-th, td { padding:12px 10px; border-bottom:1px solid rgba(48,54,61,.75); text-align:left; vertical-align:top; }
-th { color:var(--muted); font-weight:600; }
+th, td { padding:12px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { color:var(--foreground-dim); font-weight:650; }
 tr.bad .dot { background: var(--red); }
-tr.ok .dot { background: var(--green); }
+tr.ok .dot { background: var(--teal); }
 tr.idle .dot { background: var(--yellow); }
-tr.paused { opacity:.55; }
-.dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--muted); margin-right:8px; }
-code { color:#c9d1d9; background:rgba(110,118,129,.16); padding:2px 5px; border-radius:6px; }
+tr.paused { opacity:.52; }
+.dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--foreground-dim); margin-right:8px; box-shadow:0 0 12px currentColor; }
+code { color:var(--midground-base); background:rgba(255,230,203,.095); padding:2px 6px; border-radius:7px; font-family:var(--font-mono); font-size:.86em; }
 ul { margin:0; padding-left:20px; }
-li { margin:8px 0; color:#c9d1d9; }
-.footer { margin-top:22px; color:var(--muted); font-size:12px; }
-@media (max-width: 860px) {
-  header { display:block; }
+li { margin:8px 0; color:var(--foreground-soft); }
+.footer { margin-top:22px; color:var(--foreground-dim); font-size:12px; }
+@media (max-width: 980px) {
+  .shell { display:block; }
+  .sidebar { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }
+  .nav { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .hero-row, .topbar { display:block; }
   .badge { display:inline-block; margin-top:14px; }
   .card, .card.wide { grid-column: 1 / -1; }
   .score-layout { grid-template-columns: 1fr; }
@@ -88,19 +147,43 @@ li { margin:8px 0; color:#c9d1d9; }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <div>
-      <h1>Hermes Ops Dashboard</h1>
-      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-04T20:37:07</div>
+<div class='shell'>
+  <aside class='sidebar'>
+    <div class='brand'>
+      <div class='logo'>H</div>
+      <div><div class='brand-title'>Hermes Ops</div><div class='brand-sub'>Mac mini Control Plane</div></div>
     </div>
-    <div class='badge ok'>상태: 주의 필요</div>
-  </header>
+    <nav class='nav'>
+      <a class='active' href='#overview'>Overview <span>⌘</span></a>
+      <a href='#agents'>Agents <span>↗</span></a>
+      <a href='#recordings'>Recordings <span>●</span></a>
+      <a href='#cron'>Cron <span>↻</span></a>
+    </nav>
+    <div class='sidebar-card'>
+      <b>Public-safe mirror</b><br>
+      GitHub Pages에는 회의/통화 원문·파일명·인용문 없이 운영 지표만 표시.
+    </div>
+  </aside>
+  <main>
+    <div class='topbar'>
+      <span>Hermes Web Dashboard visual system · GitHub Pages edition</span>
+      <span>Hermes Agent v0.15.1 (2026.5.29)</span>
+    </div>
+    <section class='header-hero' id='overview'>
+      <div class='hero-row'>
+        <div class='hero-copy'>
+          <div class='eyebrow'>Hermes Agent Operations</div>
+          <h1>Ops Dashboard</h1>
+          <div class='hero-sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-04T21:09:10</div>
+        </div>
+        <div class='badge bad'>상태: 주의 필요</div>
+      </div>
+    </section>
 
   <div class='grid'>
     <div class='card'><div class='label'>활성 cron</div><div class='kpi'><div class='value'>8</div><span class='pill'>jobs</span></div></div>
     <div class='card'><div class='label'>실패/주의 cron</div><div class='kpi'><div class='value'>0</div><span class='pill ok'>ok</span></div></div>
-    <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>124 <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>2 회의록</div></div>
+    <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>125 <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>2 회의록</div></div>
     <div class='card'><div class='label'>Tasks 후보</div><div class='value'>16</div><div class='sub'>통화 2 · 회의 14</div></div>
 
     
@@ -109,19 +192,19 @@ li { margin:8px 0; color:#c9d1d9; }
         <div>
           <div class='kpi'><div class='value'>80</div><span class='pill ok'>ops</span></div>
           <div class='trend-delta'><span class='flat'>Score ±0</span><span class='flat'>성공률 ±0%p</span><span class='flat'>주의 ±0</span><span class='flat'>오류 ±0</span></div>
-          <div class='sub'>cron 성공률 87.5% · 주의 0개 · 7일 실행 1072회</div>
+          <div class='sub'>cron 성공률 87.5% · 주의 0개 · 7일 실행 1079회</div>
         </div>
-        <div class='spark-wrap'><div class='spark'><i title='06/04 07:02 · 74점' style='height:74.0%'></i><i title='06/04 07:10 · 74점' style='height:74.0%'></i><i title='06/04 16:50 · 80점' style='height:80.0%'></i><i title='06/04 18:39 · 80점' style='height:80.0%'></i><i title='06/04 20:24 · 80점' style='height:80.0%'></i><i title='06/04 20:37 · 80점' style='height:80.0%'></i></div><div class='sub'>최근 6회 score 추이</div></div>
+        <div class='spark-wrap'><div class='spark'><i title='06/04 07:02 · 74점' style='height:74.0%'></i><i title='06/04 07:10 · 74점' style='height:74.0%'></i><i title='06/04 16:50 · 80점' style='height:80.0%'></i><i title='06/04 18:39 · 80점' style='height:80.0%'></i><i title='06/04 20:24 · 80점' style='height:80.0%'></i><i title='06/04 20:37 · 80점' style='height:80.0%'></i><i title='06/04 21:09 · 80점' style='height:80.0%'></i></div><div class='sub'>최근 7회 score 추이</div></div>
       </div>
       <table class='compact trend-table'>
         <thead><tr><th>시각</th><th>Score</th><th>성공률</th><th>주의</th><th>오류</th></tr></thead>
-        <tbody><tr><td>06/04 20:37</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 20:24</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 18:39</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 16:50</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 07:10</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr></tbody>
+        <tbody><tr><td>06/04 21:09</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 20:37</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 20:24</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 18:39</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 16:50</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr></tbody>
       </table>
     </div>
-    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>12.7%</div><div class='sub'>7일 노트 126개 → 후보 16개</div></div>
+    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>12.6%</div><div class='sub'>7일 노트 127개 → 후보 16개</div></div>
     <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>정상</div><span class='pill ok'>ok</span></div><div class='sub'>다음 실행 2026-06-05T08:00:00+09:00</div></div>
     <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>Tesla (TSLA)</div><div class='sub'>상위 비중 51.5% · 추적: NASDAQ, S&amp;P500, SOXX, KOSPI, USD/KRW</div></div>
-    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>71.2h</div><span class='pill'>7d</span></div><div class='sub'>1214개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
+    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>71.7h</div><span class='pill'>7d</span></div><div class='sub'>1222개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
     <div class='card wide'><div class='label'>벤치마킹 상태</div><ul>
       <li>AI Ops: 성공률/주의 cron/오류 로그 기준 점수화</li>
       <li>Task: 공개 페이지에는 후보 내용 없이 전환 숫자만 표시</li>
@@ -130,9 +213,9 @@ li { margin:8px 0; color:#c9d1d9; }
     
 
     <div class='card wide'><div class='label'>Hermes</div><div class='value small'>Hermes Agent v0.15.1 (2026.5.29)</div><div class='sub'>Python: 3.11.15 / OpenAI SDK: 2.24.0 / Up to date</div></div>
-    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    88Gi   338Gi    21%    753k  3.5G    0%   /System/Volumes/Data</div></div>
+    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    89Gi   336Gi    21%    816k  3.5G    0%   /System/Volumes/Data</div></div>
 
-    <div class='card full'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
+    <div class='card full' id='agents'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
       <div class='kpi'><div class='value small'>Hermes 주무 → 아기 · 디지</div><span class='pill ok'>ready</span></div>
       <div class='sub'>리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 Hermes 주무</div>
       <ul><li><b>아기</b> <span class='pill ok'>research</span> — 리서치 1차 수집/초안 · routes 3</li><li><b>디지</b> <span class='pill ok'>design</span> — PPT·사진·디자인 방향성·시각 QA · routes 4</li></ul>
@@ -145,10 +228,10 @@ li { margin:8px 0; color:#c9d1d9; }
       <ul><li>#1 <code>7d884cf4f2dd</code> — 피플팀 뉴스 브리핑</li><li>#2 <code>5eb8a9449c5f</code> — 회의녹음 회의록 정리</li><li>#3 <code>6b91a9914c2e</code> — Hermes 스킬 코너</li></ul>
     </div>
 
-    <div class='card wide'><div class='label'>녹음 처리 상태</div>
+    <div class='card wide' id='recordings'><div class='label'>녹음 처리 상태</div>
       <ul>
-        <li>통화 마지막 실행: <code>2026-06-04T20:28:43</code></li>
-        <li>회의 마지막 실행: <code>2026-06-04T20:26:56</code></li>
+        <li>통화 마지막 실행: <code>2026-06-04T20:59:41</code></li>
+        <li>회의 마지막 실행: <code>2026-06-04T21:08:41</code></li>
         <li>로컬 캐시 후보: <b>96</b>개 · 약 <b>112.5MB</b></li>
       </ul>
     </div>
@@ -186,7 +269,7 @@ li { margin:8px 0; color:#c9d1d9; }
       </table>
     </div>
 
-    <div class='card full'>
+    <div class='card full' id='cron'>
       <div class='label'>Cron Jobs</div>
       <table>
         <thead><tr><th>이름</th><th>ID</th><th>상태</th><th>마지막 결과</th><th>다음 실행</th></tr></thead>
@@ -224,7 +307,7 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>c1ac367cdb01</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T20:38:44.843194+09:00</td>
+          <td>2026-06-04T21:09:41.014891+09:00</td>
         </tr>
         <tr class='ok'>
           <td><span class='dot'></span>국내장 마감 포트폴리오 브리핑</td>
@@ -238,7 +321,7 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>5eb8a9449c5f</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T20:36:56.317761+09:00</td>
+          <td>2026-06-04T21:18:41.720512+09:00</td>
         </tr>
         <tr class='idle'>
           <td><span class='dot'></span>Hermes 주간 운영 리뷰</td>
@@ -259,8 +342,7 @@ li { margin:8px 0; color:#c9d1d9; }
 
     <div class='card full'>
       <div class='label'>최근 에러 로그</div>
-      <ul><li><code>RuntimeError: [Errno 32] Broken pipe</code></li>
-<li><code>2026-06-03 11:06:58,407 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
+      <ul><li><code>2026-06-03 11:06:58,407 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
 <li><code>2026-06-03 11:06:58,409 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.9920222155108576s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex mode</code></li>
 <li><code>2026-06-03 11:07:38,410 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
 <li><code>2026-06-03 11:07:38,411 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.336433018612224s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model</code></li>
@@ -268,10 +350,12 @@ li { margin:8px 0; color:#c9d1d9; }
 <li><code>2026-06-04 09:10:03,302 WARNING [20260604_064706_14e8c2c6] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_2:6227898368 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
 <li><code>2026-06-04 10:11:50,720 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag</code></li>
 <li><code>    event = await self._receive_event(timeout=timeout)</code></li>
-<li><code>2026-06-04 15:28:38,638 WARNING [20260604_064706_14e8c2c6] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li></ul>
+<li><code>2026-06-04 15:28:38,638 WARNING [20260604_064706_14e8c2c6] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li>
+<li><code>2026-06-04 20:46:16,479 WARNING [20260604_152838_8442b3] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li></ul>
     </div>
   </div>
   <div class='footer'>Source: ~/.hermes/cron/jobs.json, errors.log, recording processing state, Obsidian notes. 원본 삭제 명령은 포함하지 않음.</div>
 </main>
+</div>
 </body>
 </html>

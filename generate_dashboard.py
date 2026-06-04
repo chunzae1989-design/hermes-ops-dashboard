@@ -442,7 +442,7 @@ def render(data: dict[str, Any]) -> str:
     cache_bytes = int(cache.get('selected_bytes') or 0)
     cache_mb = cache_bytes / 1024 / 1024
     health = '주의 필요' if data['failed_jobs'] or data['errors'] else '정상'
-    health_class = 'bad' if data['failed_jobs'] else 'ok'
+    health_class = 'bad' if (data['failed_jobs'] or data['errors']) else 'ok'
 
     job_rows = []
     for j in jobs:
@@ -546,79 +546,138 @@ def render(data: dict[str, Any]) -> str:
 <title>Hermes Ops Dashboard</title>
 <style>
 :root {{
-  --bg: #0d1117;
-  --panel: #151b23;
-  --panel2: #0f1620;
-  --text: #e6edf3;
-  --muted: #8b949e;
-  --line: #30363d;
-  --blue: #58a6ff;
-  --green: #3fb950;
-  --red: #f85149;
-  --yellow: #d29922;
-  --purple: #bc8cff;
-  --radius: 18px;
+  --background-base: #041c1c;
+  --midground-base: #ffe6cb;
+  --foreground-soft: rgba(255,230,203,.78);
+  --foreground-dim: rgba(255,230,203,.58);
+  --line: rgba(255,230,203,.16);
+  --line-strong: rgba(255,230,203,.28);
+  --card: color-mix(in srgb, var(--midground-base) 5%, var(--background-base));
+  --card2: color-mix(in srgb, var(--midground-base) 9%, var(--background-base));
+  --glow: rgba(255,189,56,.34);
+  --teal: #34d399;
+  --blue: #6ee7f9;
+  --red: #fb7185;
+  --yellow: #ffbd38;
+  --purple: #c4b5fd;
+  --radius: 20px;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', Segoe UI, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }}
 * {{ box-sizing: border-box; }}
+html {{ scroll-behavior: smooth; }}
 body {{
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(88,166,255,.16), transparent 32%), var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', Segoe UI, sans-serif;
+  color: var(--midground-base);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255,189,56,.18), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(52,211,153,.14), transparent 30%),
+    radial-gradient(circle at 50% 105%, rgba(110,231,249,.09), transparent 34%),
+    var(--background-base);
 }}
-main {{ max-width: 1180px; margin: 0 auto; padding: 32px 18px 56px; }}
-header {{ display:flex; justify-content:space-between; gap:20px; align-items:flex-end; margin-bottom:24px; }}
-h1 {{ margin:0; font-size: clamp(28px, 4vw, 48px); letter-spacing:-.04em; }}
-.sub {{ color: var(--muted); margin-top:8px; }}
-.badge {{ border:1px solid var(--line); background:rgba(255,255,255,.04); padding:10px 14px; border-radius:999px; white-space:nowrap; }}
-.badge.ok {{ color: var(--green); border-color: rgba(63,185,80,.38); }}
-.badge.bad {{ color: var(--yellow); border-color: rgba(210,153,34,.45); }}
+body::before {{
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  mix-blend-mode: screen;
+  background:
+    linear-gradient(rgba(255,230,203,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,230,203,.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at top, #000 0%, transparent 72%);
+}}
+.shell {{ display: grid; grid-template-columns: 244px minmax(0, 1fr); min-height: 100vh; }}
+.sidebar {{
+  position: sticky; top: 0; height: 100vh; padding: 22px 16px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,230,203,.055), rgba(4,28,28,.56));
+  backdrop-filter: blur(22px);
+}}
+.brand {{ display:flex; align-items:center; gap:11px; margin-bottom:24px; }}
+.logo {{
+  width: 38px; height: 38px; border-radius: 14px;
+  display:grid; place-items:center; font-weight:900; color:var(--background-base);
+  background: radial-gradient(circle at 30% 20%, #fff7ed, var(--midground-base) 52%, var(--yellow));
+  box-shadow: 0 0 40px rgba(255,230,203,.28);
+}}
+.brand-title {{ font-weight: 800; letter-spacing: -.04em; line-height:1; }}
+.brand-sub {{ color: var(--foreground-dim); font-size: 12px; margin-top: 4px; }}
+.nav {{ display:grid; gap:8px; margin:18px 0 28px; }}
+.nav a {{
+  color: var(--foreground-soft); text-decoration:none; border:1px solid transparent;
+  padding: 10px 12px; border-radius: 14px; display:flex; justify-content:space-between; gap:10px;
+}}
+.nav a:hover, .nav a.active {{ background: rgba(255,230,203,.07); border-color: var(--line); }}
+.sidebar-card {{ border:1px solid var(--line); border-radius:18px; padding:14px; background: rgba(255,230,203,.045); color:var(--foreground-soft); font-size:13px; }}
+.sidebar-card b {{ color:var(--midground-base); }}
+main {{ max-width: 1240px; margin: 0 auto; padding: 26px 22px 54px; }}
+.topbar {{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; color:var(--foreground-dim); font-size:13px; }}
+.header-hero {{
+  position:relative; overflow:hidden; border:1px solid var(--line); border-radius: 28px;
+  padding: 30px; margin-bottom: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,230,203,.10), rgba(255,230,203,.035) 42%, rgba(52,211,153,.07)),
+    color-mix(in srgb, var(--midground-base) 4%, var(--background-base));
+  box-shadow: 0 22px 70px rgba(0,0,0,.28);
+}}
+.header-hero::after {{ content:''; position:absolute; right:-80px; top:-100px; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(255,189,56,.25), transparent 62%); }}
+.eyebrow {{ color: var(--foreground-dim); text-transform: uppercase; letter-spacing:.18em; font-size:12px; margin-bottom:10px; }}
+h1 {{ margin:0; font-size: clamp(38px, 6vw, 76px); line-height:.9; letter-spacing:-.07em; font-weight:900; }}
+.hero-row {{ position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }}
+.hero-copy {{ max-width: 760px; }}
+.hero-sub {{ color: var(--foreground-soft); margin-top:16px; font-size:16px; line-height:1.55; }}
+.badge, .pill {{ border:1px solid var(--line); background:rgba(255,230,203,.055); border-radius:999px; white-space:nowrap; }}
+.badge {{ padding:10px 14px; color:var(--foreground-soft); }}
+.badge.ok, .pill.ok {{ color: var(--teal); border-color: rgba(52,211,153,.36); background:rgba(52,211,153,.08); }}
+.badge.bad, .pill.bad {{ color: var(--yellow); border-color: rgba(255,189,56,.42); background:rgba(255,189,56,.08); }}
 .grid {{ display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; }}
 .card {{
-  grid-column: span 3;
-  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-  border-radius: var(--radius);
-  padding:18px;
-  box-shadow: 0 16px 45px rgba(0,0,0,.22);
+  grid-column: span 3; position:relative; overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,230,203,.075), rgba(255,230,203,.03));
+  border:1px solid var(--line); border-radius: var(--radius); padding:18px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.20);
 }}
+.card::before {{ content:''; position:absolute; inset:0 0 auto; height:1px; background:linear-gradient(90deg, transparent, rgba(255,230,203,.36), transparent); }}
 .card.wide {{ grid-column: span 6; }}
 .card.full {{ grid-column: 1 / -1; }}
-.label {{ color: var(--muted); font-size:13px; margin-bottom:12px; }}
-.value {{ font-size:30px; font-weight:750; letter-spacing:-.03em; }}
-.value.small {{ font-size:19px; line-height:1.35; }}
+.label {{ color: var(--foreground-dim); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:12px; }}
+.value {{ font-size:34px; font-weight:850; letter-spacing:-.055em; }}
+.value.small {{ font-size:20px; line-height:1.35; letter-spacing:-.025em; }}
 .kpi {{ display:flex; justify-content:space-between; align-items:center; gap:12px; }}
-.score-layout {{ display:grid; grid-template-columns: minmax(0, 1fr) 150px; gap:16px; align-items:end; }}
-.trend-delta {{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }}
-.trend-delta span {{ font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--muted); }}
-.trend-delta .up {{ color:var(--green); border-color:rgba(63,185,80,.35); background:rgba(63,185,80,.08); }}
-.trend-delta .down {{ color:var(--red); border-color:rgba(248,81,73,.35); background:rgba(248,81,73,.08); }}
-.trend-delta .flat {{ color:var(--muted); }}
-.spark-wrap {{ min-width:130px; }}
-.spark {{ height:58px; display:flex; align-items:end; gap:5px; padding:8px; border:1px solid rgba(48,54,61,.75); border-radius:14px; background:rgba(255,255,255,.03); }}
-.spark i {{ flex:1; min-width:5px; border-radius:999px 999px 3px 3px; background:linear-gradient(180deg, var(--blue), var(--purple)); box-shadow:0 0 18px rgba(88,166,255,.25); }}
-.trend-table th, .trend-table td {{ padding:7px 6px; font-size:12px; }}
-.pill {{ font-size:12px; padding:5px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }}
-.pill.ok {{ color: var(--green); border-color: rgba(63,185,80,.35); }}
-.pill.bad {{ color: var(--red); border-color: rgba(248,81,73,.35); }}
-.pill.warn {{ color: var(--yellow); border-color: rgba(210,153,34,.35); }}
-section {{ margin-top:14px; }}
+.score-layout {{ display:grid; grid-template-columns: minmax(0, 1fr) 168px; gap:16px; align-items:end; }}
+.sub {{ color: var(--foreground-dim); margin-top:8px; line-height:1.5; }}
+.trend-delta {{ display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px; }}
+.trend-delta span {{ font-size:11px; border:1px solid var(--line); border-radius:999px; padding:4px 7px; color:var(--foreground-dim); }}
+.trend-delta .up {{ color:var(--teal); border-color:rgba(52,211,153,.35); background:rgba(52,211,153,.08); }}
+.trend-delta .down {{ color:var(--red); border-color:rgba(251,113,133,.35); background:rgba(251,113,133,.08); }}
+.trend-delta .flat {{ color:var(--foreground-dim); }}
+.spark-wrap {{ min-width:140px; }}
+.spark {{ height:68px; display:flex; align-items:end; gap:5px; padding:9px; border:1px solid var(--line); border-radius:16px; background:rgba(4,28,28,.38); }}
+.spark i {{ flex:1; min-width:5px; border-radius:999px 999px 4px 4px; background:linear-gradient(180deg, var(--midground-base), var(--teal)); box-shadow:0 0 20px rgba(255,230,203,.2); }}
+.pill {{ font-size:12px; padding:5px 8px; color:var(--foreground-soft); display:inline-block; }}
+.pill.warn {{ color: var(--yellow); border-color: rgba(255,189,56,.35); background:rgba(255,189,56,.08); }}
 table {{ width:100%; border-collapse:collapse; font-size:14px; }}
 table.compact {{ font-size:12px; margin-top:12px; }}
-th, td {{ padding:12px 10px; border-bottom:1px solid rgba(48,54,61,.75); text-align:left; vertical-align:top; }}
-th {{ color:var(--muted); font-weight:600; }}
+th, td {{ padding:12px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }}
+th {{ color:var(--foreground-dim); font-weight:650; }}
 tr.bad .dot {{ background: var(--red); }}
-tr.ok .dot {{ background: var(--green); }}
+tr.ok .dot {{ background: var(--teal); }}
 tr.idle .dot {{ background: var(--yellow); }}
-tr.paused {{ opacity:.55; }}
-.dot {{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--muted); margin-right:8px; }}
-code {{ color:#c9d1d9; background:rgba(110,118,129,.16); padding:2px 5px; border-radius:6px; }}
+tr.paused {{ opacity:.52; }}
+.dot {{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--foreground-dim); margin-right:8px; box-shadow:0 0 12px currentColor; }}
+code {{ color:var(--midground-base); background:rgba(255,230,203,.095); padding:2px 6px; border-radius:7px; font-family:var(--font-mono); font-size:.86em; }}
 ul {{ margin:0; padding-left:20px; }}
-li {{ margin:8px 0; color:#c9d1d9; }}
-.footer {{ margin-top:22px; color:var(--muted); font-size:12px; }}
-@media (max-width: 860px) {{
-  header {{ display:block; }}
+li {{ margin:8px 0; color:var(--foreground-soft); }}
+.footer {{ margin-top:22px; color:var(--foreground-dim); font-size:12px; }}
+@media (max-width: 980px) {{
+  .shell {{ display:block; }}
+  .sidebar {{ position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }}
+  .nav {{ grid-template-columns: repeat(2, minmax(0,1fr)); }}
+  .hero-row, .topbar {{ display:block; }}
   .badge {{ display:inline-block; margin-top:14px; }}
   .card, .card.wide {{ grid-column: 1 / -1; }}
   .score-layout {{ grid-template-columns: 1fr; }}
@@ -628,14 +687,38 @@ li {{ margin:8px 0; color:#c9d1d9; }}
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <div>
-      <h1>Hermes Ops Dashboard</h1>
-      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated {esc(data['generated_at'])}</div>
+<div class='shell'>
+  <aside class='sidebar'>
+    <div class='brand'>
+      <div class='logo'>H</div>
+      <div><div class='brand-title'>Hermes Ops</div><div class='brand-sub'>Mac mini Control Plane</div></div>
     </div>
-    <div class='badge {health_class}'>상태: {health}</div>
-  </header>
+    <nav class='nav'>
+      <a class='active' href='#overview'>Overview <span>⌘</span></a>
+      <a href='#agents'>Agents <span>↗</span></a>
+      <a href='#recordings'>Recordings <span>●</span></a>
+      <a href='#cron'>Cron <span>↻</span></a>
+    </nav>
+    <div class='sidebar-card'>
+      <b>Public-safe mirror</b><br>
+      GitHub Pages에는 회의/통화 원문·파일명·인용문 없이 운영 지표만 표시.
+    </div>
+  </aside>
+  <main>
+    <div class='topbar'>
+      <span>Hermes Web Dashboard visual system · GitHub Pages edition</span>
+      <span>{esc(data.get('hermes_version', 'Hermes'))}</span>
+    </div>
+    <section class='header-hero' id='overview'>
+      <div class='hero-row'>
+        <div class='hero-copy'>
+          <div class='eyebrow'>Hermes Agent Operations</div>
+          <h1>Ops Dashboard</h1>
+          <div class='hero-sub'>Mac mini 기반 AI 운영 현황 · generated {esc(data['generated_at'])}</div>
+        </div>
+        <div class='badge {health_class}'>상태: {health}</div>
+      </div>
+    </section>
 
   <div class='grid'>
     <div class='card'><div class='label'>활성 cron</div><div class='kpi'><div class='value'>{data['active_jobs']}</div><span class='pill'>jobs</span></div></div>
@@ -648,7 +731,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
     <div class='card wide'><div class='label'>Hermes</div><div class='value small'>{esc(data['hermes_version'])}</div><div class='sub'>{esc(data.get('hermes_update') or '업데이트 추가 메시지 없음')}</div></div>
     <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>{esc(data['recordings_du'])} 녹음 캐시</div><div class='sub'>{esc(data['disk_line'])}</div></div>
 
-    <div class='card full'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
+    <div class='card full' id='agents'><div class='label'>Multi-Agent System · 주무 × Specialists</div>
       <div class='kpi'><div class='value small'>{esc(ma.get('chief_agent', 'Hermes 주무'))} → 아기 · 디지</div><span class='pill {'ok' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'warn'}'>{'ready' if ma.get('enabled') and ma.get('agy_available') and ma.get('design_agent_available') else 'check'}</span></div>
       <div class='sub'>{esc(ma.get('operating_rule', '리서치는 아기, 디자인은 디지, 검증/최종 전달은 Hermes'))}</div>
       <ul>{multi_workers_html}</ul>
@@ -661,7 +744,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
       <ul>{multi_priority_html}</ul>
     </div>
 
-    <div class='card wide'><div class='label'>녹음 처리 상태</div>
+    <div class='card wide' id='recordings'><div class='label'>녹음 처리 상태</div>
       <ul>
         <li>통화 마지막 실행: <code>{esc(data['call_state'].get('last_run_at', 'unknown'))}</code></li>
         <li>회의 마지막 실행: <code>{esc(data['meeting_state'].get('last_run_at', 'unknown'))}</code></li>
@@ -688,7 +771,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
       </table>
     </div>
 
-    <div class='card full'>
+    <div class='card full' id='cron'>
       <div class='label'>Cron Jobs</div>
       <table>
         <thead><tr><th>이름</th><th>ID</th><th>상태</th><th>마지막 결과</th><th>다음 실행</th></tr></thead>
@@ -703,6 +786,7 @@ li {{ margin:8px 0; color:#c9d1d9; }}
   </div>
   <div class='footer'>Source: ~/.hermes/cron/jobs.json, errors.log, recording processing state, Obsidian notes. 원본 삭제 명령은 포함하지 않음.</div>
 </main>
+</div>
 </body>
 </html>"""
     return html_doc
