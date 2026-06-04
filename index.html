@@ -92,62 +92,74 @@ li { margin:8px 0; color:#c9d1d9; }
   <header>
     <div>
       <h1>Hermes Ops Dashboard</h1>
-      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-04T07:10:15</div>
+      <div class='sub'>Mac mini 기반 AI 운영 현황 · generated 2026-06-04T16:50:47</div>
     </div>
-    <div class='badge bad'>상태: 주의 필요</div>
+    <div class='badge ok'>상태: 주의 필요</div>
   </header>
 
   <div class='grid'>
     <div class='card'><div class='label'>활성 cron</div><div class='kpi'><div class='value'>8</div><span class='pill'>jobs</span></div></div>
-    <div class='card'><div class='label'>실패/주의 cron</div><div class='kpi'><div class='value'>1</div><span class='pill bad'>check</span></div></div>
-    <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>113 <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>2 회의록</div></div>
-    <div class='card'><div class='label'>Tasks 후보</div><div class='value'>14</div><div class='sub'>통화 0 · 회의 14</div></div>
+    <div class='card'><div class='label'>실패/주의 cron</div><div class='kpi'><div class='value'>0</div><span class='pill ok'>ok</span></div></div>
+    <div class='card'><div class='label'>최근 7일 녹음 노트</div><div class='value'>122 <span style='color:var(--muted);font-size:18px'>통화</span></div><div class='sub'>2 회의록</div></div>
+    <div class='card'><div class='label'>Tasks 후보</div><div class='value'>16</div><div class='sub'>통화 2 · 회의 14</div></div>
 
     
     <div class='card trend-card wide'><div class='label'>1. AI Ops Score</div>
       <div class='score-layout'>
         <div>
-          <div class='kpi'><div class='value'>74</div><span class='pill warn'>ops</span></div>
-          <div class='trend-delta'><span class='flat'>Score ±0</span><span class='flat'>성공률 ±0%p</span><span class='flat'>주의 ±0</span><span class='flat'>오류 ±0</span></div>
-          <div class='sub'>cron 성공률 75.0% · 주의 1개 · 7일 실행 921회</div>
+          <div class='kpi'><div class='value'>80</div><span class='pill ok'>ops</span></div>
+          <div class='trend-delta'><span class='up'>Score +6</span><span class='up'>성공률 +12.5%p</span><span class='up'>주의 -1</span><span class='flat'>오류 ±0</span></div>
+          <div class='sub'>cron 성공률 87.5% · 주의 0개 · 7일 실행 1028회</div>
         </div>
-        <div class='spark-wrap'><div class='spark'><i title='06/04 07:02 · 74점' style='height:74.0%'></i><i title='06/04 07:10 · 74점' style='height:74.0%'></i></div><div class='sub'>최근 2회 score 추이</div></div>
+        <div class='spark-wrap'><div class='spark'><i title='06/04 07:02 · 74점' style='height:74.0%'></i><i title='06/04 07:10 · 74점' style='height:74.0%'></i><i title='06/04 16:50 · 80점' style='height:80.0%'></i></div><div class='sub'>최근 3회 score 추이</div></div>
       </div>
       <table class='compact trend-table'>
         <thead><tr><th>시각</th><th>Score</th><th>성공률</th><th>주의</th><th>오류</th></tr></thead>
-        <tbody><tr><td>06/04 07:10</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr><tr><td>06/04 07:02</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr></tbody>
+        <tbody><tr><td>06/04 16:50</td><td><b>80</b></td><td>87.5%</td><td>0</td><td>10</td></tr><tr><td>06/04 07:10</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr><tr><td>06/04 07:02</td><td><b>74</b></td><td>75.0%</td><td>1</td><td>10</td></tr></tbody>
       </table>
     </div>
-    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>12.2%</div><div class='sub'>7일 노트 115개 → 후보 14개</div></div>
-    <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>주의</div><span class='pill bad'>error</span></div><div class='sub'>다음 실행 2026-06-04T08:00:00+09:00</div></div>
+    <div class='card'><div class='label'>2. Task 전환율</div><div class='value'>12.9%</div><div class='sub'>7일 노트 124개 → 후보 16개</div></div>
+    <div class='card'><div class='label'>3. Daily Insight 품질</div><div class='kpi'><div class='value small'>정상</div><span class='pill ok'>ok</span></div><div class='sub'>다음 실행 2026-06-05T08:00:00+09:00</div></div>
     <div class='card'><div class='label'>4. 포트폴리오 벤치마크</div><div class='value small'>Tesla (TSLA)</div><div class='sub'>상위 비중 51.5% · 추적: NASDAQ, S&amp;P500, SOXX, KOSPI, USD/KRW</div></div>
-    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>62.1h</div><span class='pill'>7d</span></div><div class='sub'>1050개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
+    <div class='card wide'><div class='label'>5. Mac mini 자동화 ROI</div><div class='kpi'><div class='value'>68.7h</div><span class='pill'>7d</span></div><div class='sub'>1168개 자동 처리 신호 · 통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정</div></div>
     <div class='card wide'><div class='label'>벤치마킹 상태</div><ul>
       <li>AI Ops: 성공률/주의 cron/오류 로그 기준 점수화</li>
       <li>Task: 공개 페이지에는 후보 내용 없이 전환 숫자만 표시</li>
-      <li>Finance: 총액 1.2억 원 · 현금비중 8.6% · 최근 브리핑 2건</li>
+      <li>Finance: 총액 1.2억 원 · 현금비중 8.6% · 최근 브리핑 3건</li>
     </ul></div>
     
 
-    <div class='card wide'><div class='label'>Hermes</div><div class='value small'>Hermes Agent v0.15.1 (2026.5.29)</div><div class='sub'>Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 160 commits behind — run &#x27;hermes update&#x27;</div></div>
-    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    88Gi   337Gi    21%    837k  3.5G    0%   /System/Volumes/Data</div></div>
+    <div class='card wide'><div class='label'>Hermes</div><div class='value small'>Hermes Agent v0.15.1 (2026.5.29)</div><div class='sub'>Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 199 commits behind — run &#x27;hermes update&#x27;</div></div>
+    <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>12G 녹음 캐시</div><div class='sub'>/dev/disk3s5   460Gi    89Gi   336Gi    21%    839k  3.5G    0%   /System/Volumes/Data</div></div>
+
+    <div class='card full'><div class='label'>Multi-Agent System · 주무 × 아기</div>
+      <div class='kpi'><div class='value small'>Hermes 주무 → 아기</div><span class='pill ok'>ready</span></div>
+      <div class='sub'>리서치 1차 수집/초안은 아기, 검증·side effect·최종 전달은 Hermes 주무</div>
+      <ul>
+        <li>Research worker: <b>아기</b> / CLI <code>agy</code> / available <b>True</b></li>
+        <li>Role manual: <code>AGENTS.md</code> · Prompt: <code>research_worker_prompt.md</code> · Audit: <code>token_audit_2026-06-04.md</code></li>
+        <li>리서치 라우팅 규칙: <b>3</b>개 · 최우선 절감 job <code>7d884cf4f2dd</code> 상태 <b>ok</b></li>
+      </ul>
+      <div class='sub'>리팩터링 우선순위</div>
+      <ul><li>#1 <code>7d884cf4f2dd</code> — 피플팀 뉴스 브리핑</li><li>#2 <code>5eb8a9449c5f</code> — 회의녹음 회의록 정리</li><li>#3 <code>6b91a9914c2e</code> — Hermes 스킬 코너</li></ul>
+    </div>
 
     <div class='card wide'><div class='label'>녹음 처리 상태</div>
       <ul>
-        <li>통화 마지막 실행: <code>2026-06-04T07:06:13</code></li>
-        <li>회의 마지막 실행: <code>2026-06-04T07:04:12</code></li>
-        <li>로컬 캐시 후보: <b>89</b>개 · 약 <b>101.8MB</b></li>
+        <li>통화 마지막 실행: <code>2026-06-04T16:46:14</code></li>
+        <li>회의 마지막 실행: <code>2026-06-04T16:46:14</code></li>
+        <li>로컬 캐시 후보: <b>92</b>개 · 약 <b>109.8MB</b></li>
       </ul>
     </div>
-    <div class='card wide'><div class='label'>주의 항목</div><ul><li><b>평일 08시 피플팀 뉴스 브리핑</b> <code>7d884cf4f2dd</code> — error: RuntimeError: [Errno 32] Broken pipe</li></ul></div>
+    <div class='card wide'><div class='label'>주의 항목</div><ul><li>실패/주의 cron 없음</li></ul></div>
 
     <div class='card wide'><div class='label'>피플팀 브리핑 발송 상태</div>
-      <div class='kpi'><div class='value small'>평일 08시 피플팀 뉴스 브리핑</div><span class='pill bad'>error</span></div>
+      <div class='kpi'><div class='value small'>평일 08시 피플팀 뉴스 브리핑</div><span class='pill ok'>ok</span></div>
       <ul>
-        <li>마지막 실행: <code>2026-06-03T08:05:38.676566+09:00</code></li>
-        <li>다음 실행: <code>2026-06-04T08:00:00+09:00</code></li>
+        <li>마지막 실행: <code>2026-06-04T08:09:32.563470+09:00</code></li>
+        <li>다음 실행: <code>2026-06-05T08:00:00+09:00</code></li>
         <li>Job ID: <code>7d884cf4f2dd</code></li>
-        <li>최근 오류: RuntimeError: [Errno 32] Broken pipe</li>
+        <li>최근 오류 없음</li>
       </ul>
     </div>
 
@@ -158,10 +170,10 @@ li { margin:8px 0; color:#c9d1d9; }
         <tbody>
         <tr>
           <td><span class='pill'>통화</span></td>
-          <td><b>0</b>개</td>
-          <td>-</td>
-          <td>-</td>
-          <td><code>unknown</code></td>
+          <td><b>2</b>개</td>
+          <td>pending_approval 2</td>
+          <td>기한 없음 2</td>
+          <td><code>2026-06-04T08:51:13</code></td>
         </tr>
         <tr>
           <td><span class='pill'>회의</span></td>
@@ -185,12 +197,12 @@ li { margin:8px 0; color:#c9d1d9; }
           <td>ok</td>
           <td>2026-06-05T06:00:00+09:00</td>
         </tr>
-        <tr class='bad'>
+        <tr class='ok'>
           <td><span class='dot'></span>평일 08시 피플팀 뉴스 브리핑</td>
           <td><code>7d884cf4f2dd</code></td>
           <td>on</td>
-          <td>error</td>
-          <td>2026-06-04T08:00:00+09:00</td>
+          <td>ok</td>
+          <td>2026-06-05T08:00:00+09:00</td>
         </tr>
         <tr class='paused'>
           <td><span class='dot'></span>SRT 동탄→동대구 20:46 잔여석 알림</td>
@@ -204,28 +216,28 @@ li { margin:8px 0; color:#c9d1d9; }
           <td><code>bdcfdbb4676d</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T09:00:00+09:00</td>
+          <td>2026-06-05T09:00:00+09:00</td>
         </tr>
         <tr class='ok'>
           <td><span class='dot'></span>통화녹음 반자동 전사+Google Tasks 후보 감지</td>
           <td><code>c1ac367cdb01</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T07:16:13.238977+09:00</td>
+          <td>2026-06-04T16:56:14.467962+09:00</td>
         </tr>
         <tr class='ok'>
           <td><span class='dot'></span>국내장 마감 포트폴리오 브리핑</td>
           <td><code>4ea6aab46e6d</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T16:05:00+09:00</td>
+          <td>2026-06-05T16:05:00+09:00</td>
         </tr>
         <tr class='ok'>
           <td><span class='dot'></span>회의녹음 자동 전사+AI 회의록 정리</td>
           <td><code>5eb8a9449c5f</code></td>
           <td>on</td>
           <td>ok</td>
-          <td>2026-06-04T07:14:12.821125+09:00</td>
+          <td>2026-06-04T16:56:14.300035+09:00</td>
         </tr>
         <tr class='idle'>
           <td><span class='dot'></span>Hermes 주간 운영 리뷰</td>
@@ -246,16 +258,16 @@ li { margin:8px 0; color:#c9d1d9; }
 
     <div class='card full'>
       <div class='label'>최근 에러 로그</div>
-      <ul><li><code>2026-06-03 08:05:37,312 WARNING [cron_7d884cf4f2dd_20260603_080019] agent.conversation_loop: API call failed (attempt 3/3) error_type=ReadError thread=ThreadPoolExecutor-141_0:6328856576 provider=openai-codex base_url=https://chatgpt.com/ba</code></li>
-<li><code>2026-06-03 08:05:37,312 ERROR [cron_7d884cf4f2dd_20260603_080019] agent.conversation_loop: API call failed after 3 retries. [Errno 32] Broken pipe | provider=openai-codex model=gpt-5.5 msgs=11 tokens=~17,689</code></li>
-<li><code>2026-06-03 08:05:37,344 ERROR cron.scheduler: Job &#x27;평일 08시 피플팀 뉴스 브리핑&#x27; failed: RuntimeError: [Errno 32] Broken pipe</code></li>
-<li><code>    raise RuntimeError(_err_text)</code></li>
-<li><code>RuntimeError: [Errno 32] Broken pipe</code></li>
+      <ul><li><code>RuntimeError: [Errno 32] Broken pipe</code></li>
 <li><code>2026-06-03 11:06:58,407 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
 <li><code>2026-06-03 11:06:58,409 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.9920222155108576s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex mode</code></li>
 <li><code>2026-06-03 11:07:38,410 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
 <li><code>2026-06-03 11:07:38,411 WARNING [20260603_055434_1eeedc97] agent.conversation_loop: Retrying API call in 2.336433018612224s (attempt 1/3) thread=asyncio_0:6193098752 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model</code></li>
-<li><code>2026-06-03 20:09:21,048 WARNING [20260603_055434_1eeedc97] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li></ul>
+<li><code>2026-06-03 20:09:21,048 WARNING [20260603_055434_1eeedc97] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li>
+<li><code>2026-06-04 09:10:03,302 WARNING [20260604_064706_14e8c2c6] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_2:6227898368 provider=openai-codex base_url=https://chatgpt.com/backend-api/code</code></li>
+<li><code>2026-06-04 10:11:50,720 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag</code></li>
+<li><code>    event = await self._receive_event(timeout=timeout)</code></li>
+<li><code>2026-06-04 15:28:38,638 WARNING [20260604_064706_14e8c2c6] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.</code></li></ul>
     </div>
   </div>
   <div class='footer'>Source: ~/.hermes/cron/jobs.json, errors.log, recording processing state, Obsidian notes. 원본 삭제 명령은 포함하지 않음.</div>

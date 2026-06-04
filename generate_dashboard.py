@@ -27,6 +27,8 @@ CACHE_SCANNER = HERMES_HOME / 'scripts' / 'recording_local_cache_cleanup.py'
 PORTFOLIO_JSON = HOME / 'HermesProjects' / 'finance-manager' / 'portfolio.json'
 CRON_OUTPUT = HERMES_HOME / 'cron' / 'output'
 HISTORY_JSON = PROJECT / 'ops-history.json'
+MULTIAGENT_OPS = HOME / 'HermesProjects' / 'hermes-multiagent-ops'
+AGY_CLI = HOME / '.local' / 'bin' / 'agy'
 
 
 def run(cmd: list[str], timeout: int = 30) -> str:
@@ -237,6 +239,36 @@ def update_history(data: dict[str, Any], limit: int = 30) -> dict[str, Any]:
     }
 
 
+def collect_multi_agent_status(jobs: list[dict[str, Any]]) -> dict[str, Any]:
+    """Return public-safe status for the Hermes 주무 + 아기 research-worker setup."""
+    agents_md = MULTIAGENT_OPS / 'AGENTS.md'
+    prompt_md = MULTIAGENT_OPS / 'research_worker_prompt.md'
+    audit_md = MULTIAGENT_OPS / 'token_audit_2026-06-04.md'
+    text = agents_md.read_text(encoding='utf-8', errors='ignore') if agents_md.exists() else ''
+    people_job = find_job(jobs, '피플팀', '브리핑') or find_job(jobs, 'daily insight')
+    research_routes = sum(1 for marker in ['External-source research', 'Market/tool/vendor comparison', 'Drafting a first-pass summary'] if marker in text)
+    priority_jobs = [
+        {'job_id': '7d884cf4f2dd', 'name': '피플팀 뉴스 브리핑', 'priority': 1},
+        {'job_id': '5eb8a9449c5f', 'name': '회의녹음 회의록 정리', 'priority': 2},
+        {'job_id': '6b91a9914c2e', 'name': 'Hermes 스킬 코너', 'priority': 3},
+    ]
+    return {
+        'enabled': agents_md.exists() and prompt_md.exists(),
+        'worker_name': '아기',
+        'worker_cli': 'agy',
+        'chief_agent': 'Hermes 주무',
+        'agy_available': AGY_CLI.exists(),
+        'role_manual': agents_md.name if agents_md.exists() else 'missing',
+        'prompt_template': prompt_md.name if prompt_md.exists() else 'missing',
+        'token_audit': audit_md.name if audit_md.exists() else 'missing',
+        'research_routes_defined': research_routes,
+        'refactor_priority_jobs': priority_jobs,
+        'highest_token_job_id': people_job.get('job_id') or people_job.get('id') or '7d884cf4f2dd',
+        'highest_token_job_status': people_job.get('last_status') or 'not yet',
+        'operating_rule': '리서치 1차 수집/초안은 아기, 검증·side effect·최종 전달은 Hermes 주무',
+    }
+
+
 def collect_portfolio_benchmark() -> dict[str, Any]:
     p = load_json(PORTFOLIO_JSON, {})
     holdings = p.get('holdings', []) if isinstance(p, dict) else []
@@ -337,6 +369,7 @@ def collect() -> dict[str, Any]:
     meeting_notes = count_recent_md(VAULT / '31_회의록')
     errors = recent_errors()
     benchmarks = collect_benchmarks(jobs, active, failed, errors, pending_call, pending_meeting, call_notes, meeting_notes, people_job, call_state, meeting_state)
+    multi_agent = collect_multi_agent_status(jobs)
     return {
         'generated_at': datetime.now().isoformat(timespec='seconds'),
         'jobs': [public_job(j) for j in jobs],
@@ -344,6 +377,7 @@ def collect() -> dict[str, Any]:
         'failed_jobs': len(failed),
         'errors': errors,
         'benchmarks': benchmarks,
+        'multi_agent': multi_agent,
         'call_recent_notes': call_notes,
         'meeting_recent_notes': meeting_notes,
         'call_state': call_state,
@@ -398,6 +432,7 @@ def render(data: dict[str, Any]) -> str:
     di = bm.get('daily_insight', {})
     pf = bm.get('portfolio', {})
     roi = bm.get('roi', {})
+    ma = data.get('multi_agent', {})
     trend = data.get('trend', {})
     history = trend.get('history', [])[-5:]
     score_delta_text, score_delta_cls = trend.get('score_delta', ('-', 'flat'))
@@ -461,6 +496,10 @@ def render(data: dict[str, Any]) -> str:
         f"<li><b>{esc(j.get('name'))}</b> <code>{esc(j.get('job_id') or j.get('id'))}</code> — {esc(j.get('last_status'))}: {esc(j.get('last_error') or '')}</li>"
         for j in failed_jobs
     ) or '<li>실패/주의 cron 없음</li>'
+    multi_priority_html = ''.join(
+        f"<li>#{esc(j.get('priority'))} <code>{esc(j.get('job_id'))}</code> — {esc(j.get('name'))}</li>"
+        for j in ma.get('refactor_priority_jobs', [])
+    ) or '<li>리팩터링 후보 없음</li>'
 
     html_doc = f"""<!doctype html>
 <html lang='ko'>
@@ -571,6 +610,18 @@ li {{ margin:8px 0; color:#c9d1d9; }}
 
     <div class='card wide'><div class='label'>Hermes</div><div class='value small'>{esc(data['hermes_version'])}</div><div class='sub'>{esc(data.get('hermes_update') or '업데이트 추가 메시지 없음')}</div></div>
     <div class='card wide'><div class='label'>Disk / Synology</div><div class='value small'>{esc(data['recordings_du'])} 녹음 캐시</div><div class='sub'>{esc(data['disk_line'])}</div></div>
+
+    <div class='card full'><div class='label'>Multi-Agent System · 주무 × 아기</div>
+      <div class='kpi'><div class='value small'>{esc(ma.get('chief_agent', 'Hermes 주무'))} → {esc(ma.get('worker_name', '아기'))}</div><span class='pill {'ok' if ma.get('enabled') and ma.get('agy_available') else 'warn'}'>{'ready' if ma.get('enabled') and ma.get('agy_available') else 'check'}</span></div>
+      <div class='sub'>{esc(ma.get('operating_rule', '리서치는 아기, 검증/최종 전달은 Hermes'))}</div>
+      <ul>
+        <li>Research worker: <b>{esc(ma.get('worker_name', '아기'))}</b> / CLI <code>{esc(ma.get('worker_cli', 'agy'))}</code> / available <b>{esc(ma.get('agy_available'))}</b></li>
+        <li>Role manual: <code>{esc(ma.get('role_manual'))}</code> · Prompt: <code>{esc(ma.get('prompt_template'))}</code> · Audit: <code>{esc(ma.get('token_audit'))}</code></li>
+        <li>리서치 라우팅 규칙: <b>{esc(ma.get('research_routes_defined', 0))}</b>개 · 최우선 절감 job <code>{esc(ma.get('highest_token_job_id'))}</code> 상태 <b>{esc(ma.get('highest_token_job_status'))}</b></li>
+      </ul>
+      <div class='sub'>리팩터링 우선순위</div>
+      <ul>{multi_priority_html}</ul>
+    </div>
 
     <div class='card wide'><div class='label'>녹음 처리 상태</div>
       <ul>
