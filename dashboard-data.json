@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T17:04:18",
+  "generated_at": "2026-06-06T17:54:48",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,7 +7,16 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-07T06:00:00+09:00"
+      "last_run_at": "2026-06-06T06:01:10.875465+09:00",
+      "next_run_at": "2026-06-07T06:00:00+09:00",
+      "schedule": "0 6 * * *",
+      "script": "daily_hermes_skill_corner.py",
+      "no_agent": true,
+      "skills": [
+        "hermes-agent",
+        "personal-ai-ops"
+      ],
+      "recovery": "rotate skills · avoid repeats"
     },
     {
       "name": "평일 08시 피플팀 뉴스 브리핑",
@@ -15,15 +24,16 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-08T08:00:00+09:00"
-    },
-    {
-      "name": "SRT 동탄→동대구 20:46 잔여석 알림",
-      "job_id": "0bfb3e26cd37",
-      "enabled": false,
-      "last_status": "ok",
-      "last_error": null,
-      "next_run_at": "2026-05-28T10:22:42.247335+09:00"
+      "last_run_at": "2026-06-05T08:09:39.763622+09:00",
+      "next_run_at": "2026-06-08T08:00:00+09:00",
+      "schedule": "0 8 * * 1-5",
+      "script": "agent",
+      "no_agent": false,
+      "skills": [
+        "google-workspace",
+        "productivity-content-pipelines"
+      ],
+      "recovery": "dedupe preflight · single Gmail send"
     },
     {
       "name": "Hermes Agent update watcher",
@@ -31,7 +41,15 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-07T09:00:00+09:00"
+      "last_run_at": "2026-06-06T09:00:14.375935+09:00",
+      "next_run_at": "2026-06-07T09:00:00+09:00",
+      "schedule": "0 9 * * *",
+      "script": "hermes_update_watch.py",
+      "no_agent": true,
+      "skills": [
+        "hermes-agent"
+      ],
+      "recovery": "safe update script only"
     },
     {
       "name": "통화녹음 반자동 전사+Google Tasks 후보 감지",
@@ -39,7 +57,17 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-06T17:10:10.912727+09:00"
+      "last_run_at": "2026-06-06T17:50:14.331678+09:00",
+      "next_run_at": "2026-06-06T18:00:14.331678+09:00",
+      "schedule": "every 10m",
+      "script": "process_new_call_recordings_semiauto.py",
+      "no_agent": true,
+      "skills": [
+        "productivity-content-pipelines",
+        "obsidian",
+        "google-workspace"
+      ],
+      "recovery": "placeholder skip · no rm · alert on stale"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -47,7 +75,16 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-08T16:05:00+09:00"
+      "last_run_at": "2026-06-05T16:06:08.369422+09:00",
+      "next_run_at": "2026-06-08T16:05:00+09:00",
+      "schedule": "5 16 * * 1-5",
+      "script": "finance_domestic_close.py",
+      "no_agent": true,
+      "skills": [
+        "personal-market-briefings",
+        "finance-analysis-pack"
+      ],
+      "recovery": "quote/news validation · no trade action"
     },
     {
       "name": "회의녹음 자동 전사+AI 회의록 정리",
@@ -55,7 +92,17 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-06T17:10:10.848306+09:00"
+      "last_run_at": "2026-06-06T17:50:14.268946+09:00",
+      "next_run_at": "2026-06-06T18:00:14.268946+09:00",
+      "schedule": "every 10m",
+      "script": "process_new_meeting_recordings_semiauto.py",
+      "no_agent": false,
+      "skills": [
+        "productivity-content-pipelines",
+        "obsidian",
+        "google-workspace"
+      ],
+      "recovery": "placeholder skip · no rm · alert on stale"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -63,7 +110,16 @@
       "enabled": true,
       "last_status": null,
       "last_error": null,
-      "next_run_at": "2026-06-08T08:30:00+09:00"
+      "last_run_at": null,
+      "next_run_at": "2026-06-08T08:30:00+09:00",
+      "schedule": "30 8 * * 1",
+      "script": "hermes_weekly_ops_review.py",
+      "no_agent": true,
+      "skills": [
+        "personal-ai-ops",
+        "hermes-agent"
+      ],
+      "recovery": "weekly audit → Obsidian log"
     },
     {
       "name": "Hermes Ops Dashboard 자동 갱신",
@@ -71,13 +127,38 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-07T07:10:00+09:00"
+      "last_run_at": "2026-06-06T07:11:05.544306+09:00",
+      "next_run_at": "2026-06-07T07:10:00+09:00",
+      "schedule": "10 7 * * *",
+      "script": "update_hermes_ops_dashboard.sh",
+      "no_agent": true,
+      "skills": [
+        "personal-ai-ops",
+        "public-ops-dashboard-design"
+      ],
+      "recovery": "regenerate → git push → Pages verify"
+    },
+    {
+      "name": "Hermes Ops 실패 자동복구/알림 watchdog",
+      "job_id": "0ab3f319bcb9",
+      "enabled": true,
+      "last_status": null,
+      "last_error": null,
+      "last_run_at": null,
+      "next_run_at": "2026-06-06T18:20:16.765505+09:00",
+      "schedule": "every 30m",
+      "script": "hermes_ops_failure_watchdog.py",
+      "no_agent": true,
+      "skills": [
+        "personal-ai-ops",
+        "hermes-agent"
+      ],
+      "recovery": "auto-recovery / de-duped alerts"
     }
   ],
-  "active_jobs": 8,
+  "active_jobs": 9,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-05 22:15:26,913 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:17:27,049 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:21:27,323 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:26:27,722 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
@@ -86,17 +167,18 @@
     "2026-06-06 12:10:55,986 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.355051644738084s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model=g",
     "2026-06-06 12:26:40,463 WARNING [20260606_093753_9f8a9b] agent.chat_completion_helpers: Non-streaming API call stale for 900s (threshold 900s). model=gpt-5.5 context=~74,708 tokens. Killing connection.",
     "2026-06-06 12:26:40,465 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
-    "2026-06-06 12:26:40,466 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.7003562551327898s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model="
+    "2026-06-06 12:26:40,466 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.7003562551327898s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model=",
+    "2026-06-06 17:17:26,667 WARNING [20260606_093753_9f8a9b] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds."
   ],
   "benchmarks": {
     "ai_ops": {
       "score": 80,
-      "active_jobs": 8,
+      "active_jobs": 9,
       "ok_active_jobs": 7,
-      "cron_success_rate_pct": 87.5,
+      "cron_success_rate_pct": 77.8,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1590
+      "cron_runs_7d": 1600
     },
     "task_conversion": {
       "recording_notes_7d": 131,
@@ -128,10 +210,10 @@
       "last_briefing_outputs_7d": 4
     },
     "roi": {
-      "auto_items_7d": 1739,
-      "estimated_minutes_saved_7d": 5869,
-      "estimated_hours_saved_7d": 97.8,
-      "recording_runs_7d": 1561,
+      "auto_items_7d": 1749,
+      "estimated_minutes_saved_7d": 5899,
+      "estimated_hours_saved_7d": 98.3,
+      "recording_runs_7d": 1571,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -196,13 +278,13 @@
   "call_recent_notes": 129,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-06T17:00:10",
+    "last_run_at": "2026-06-06T17:50:14",
     "seen_count": 7240,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-06T17:00:10",
+    "last_run_at": "2026-06-06T17:50:14",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -245,10 +327,10 @@
     "next_run_at": "2026-06-08T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    90Gi   349Gi    21%    798k  3.7G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    92Gi   347Gi    21%    876k  3.6G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-06T17:04:17",
+    "scanned_at": "2026-06-06T17:54:48",
     "min_age_days": 7,
     "candidates": 102,
     "downloaded_candidates": 102,
@@ -380,9 +462,29 @@
         "cron_runs_7d": 1590,
         "task_candidates": 18,
         "roi_hours_7d": 97.8
+      },
+      {
+        "ts": "2026-06-06T17:54:48",
+        "score": 80,
+        "cron_success_rate_pct": 77.8,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1600,
+        "task_candidates": 18,
+        "roi_hours_7d": 98.3
       }
     ],
     "latest": {
+      "ts": "2026-06-06T17:54:48",
+      "score": 80,
+      "cron_success_rate_pct": 77.8,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1600,
+      "task_candidates": 18,
+      "roi_hours_7d": 98.3
+    },
+    "previous": {
       "ts": "2026-06-06T17:04:18",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -392,23 +494,13 @@
       "task_candidates": 18,
       "roi_hours_7d": 97.8
     },
-    "previous": {
-      "ts": "2026-06-06T07:11:02",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1486,
-      "task_candidates": 18,
-      "roi_hours_7d": 92.6
-    },
     "score_delta": [
       "±0",
       "flat"
     ],
     "success_delta": [
-      "±0%p",
-      "flat"
+      "-9.7%p",
+      "down"
     ],
     "attention_delta": [
       "±0",

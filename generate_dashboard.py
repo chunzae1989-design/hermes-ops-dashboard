@@ -144,6 +144,34 @@ def public_state(state: Any) -> dict[str, Any]:
     }
 
 
+def skill_stack(job: dict[str, Any]) -> list[str]:
+    skills = job.get('skills') or []
+    if not skills and job.get('skill'):
+        skills = [job.get('skill')]
+    return [short_text(s, 36) for s in skills if s]
+
+
+def recovery_hint(job: dict[str, Any]) -> str:
+    blob = f"{job.get('name', '')} {job.get('script', '')} {' '.join(skill_stack(job))}".lower()
+    if 'watchdog' in blob or '실패' in blob:
+        return 'auto-recovery / de-duped alerts'
+    if 'dashboard' in blob:
+        return 'regenerate → git push → Pages verify'
+    if '주간 운영' in blob or 'weekly' in blob:
+        return 'weekly audit → Obsidian log'
+    if '스킬 코너' in blob or 'skill_corner' in blob:
+        return 'rotate skills · avoid repeats'
+    if 'recording' in blob or '녹음' in blob or '회의' in blob or '통화' in blob:
+        return 'placeholder skip · no rm · alert on stale'
+    if '피플' in blob or 'insight' in blob:
+        return 'dedupe preflight · single Gmail send'
+    if 'finance' in blob or '포트폴리오' in blob or 'market' in blob:
+        return 'quote/news validation · no trade action'
+    if 'update' in blob:
+        return 'safe update script only'
+    return 'manual review if failed'
+
+
 def public_job(job: dict[str, Any]) -> dict[str, Any]:
     return {
         'name': job.get('name'),
@@ -151,7 +179,13 @@ def public_job(job: dict[str, Any]) -> dict[str, Any]:
         'enabled': job.get('enabled'),
         'last_status': job.get('last_status'),
         'last_error': job.get('last_error'),
+        'last_run_at': job.get('last_run_at'),
         'next_run_at': job.get('next_run_at'),
+        'schedule': job.get('schedule_display') or ((job.get('schedule') or {}).get('display') if isinstance(job.get('schedule'), dict) else ''),
+        'script': job.get('script') or ('agent' if not job.get('no_agent') else ''),
+        'no_agent': bool(job.get('no_agent')),
+        'skills': skill_stack(job),
+        'recovery': recovery_hint(job),
     }
 
 
@@ -495,14 +529,20 @@ def render(data: dict[str, Any]) -> str:
         enabled = j.get('enabled')
         st = j.get('last_status')
         cls = 'paused' if not enabled else status_class(st)
+        skills = ', '.join(j.get('skills') or []) or '-'
+        mode = 'script/no-agent' if j.get('no_agent') else 'agent'
+        if j.get('script') and not j.get('no_agent'):
+            mode = 'script+agent'
         job_rows.append(f"""
         <tr class='{cls}'>
           <td><span class='led'></span><span class='row-index'>{idx:02d}</span></td>
           <td><b>{esc(job_category(j))}</b><small>{esc(safe_job_name(j))}</small></td>
           <td><code>{esc(j.get('job_id') or j.get('id'))}</code></td>
-          <td>{esc('on' if enabled else 'paused')}</td>
-          <td><span class='state-chip {cls}'>{esc(st or 'not yet')}</span></td>
-          <td><code>{esc(j.get('next_run_at') or '-')}</code></td>
+          <td><span class='state-chip neutral'>{esc(mode)}</span><small>{esc(short_text(j.get('script') or 'LLM prompt', 34))}</small></td>
+          <td>{esc(short_text(skills, 72))}</td>
+          <td><span class='state-chip {cls}'>{esc(st or 'not yet')}</span><small>last {esc(short_text(j.get('last_run_at') or '-', 24))}</small></td>
+          <td><code>{esc(j.get('next_run_at') or '-')}</code><small>{esc(j.get('schedule') or '')}</small></td>
+          <td>{esc(short_text(j.get('recovery') or '-', 72))}</td>
         </tr>""")
 
     def error_bucket(line: str) -> str:
@@ -751,7 +791,7 @@ table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} t
       <div class='panel cron' id='cron'>
         <div class='label'>Cron Operations Board</div>
         <table>
-          <thead><tr><th></th><th>category / job</th><th>id</th><th>mode</th><th>last</th><th>next run</th></tr></thead>
+          <thead><tr><th></th><th>category / job</th><th>id</th><th>mode/script</th><th>skill stack</th><th>last</th><th>next run</th><th>recovery</th></tr></thead>
           <tbody>{''.join(job_rows)}</tbody>
         </table>
       </div>
