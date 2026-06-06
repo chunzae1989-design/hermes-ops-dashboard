@@ -88,5 +88,35 @@
     "cron_runs_7d": 1093,
     "task_candidates": 16,
     "roi_hours_7d": 72.4
+  },
+  {
+    "ts": "2026-06-05T07:10:39",
+    "score": 80,
+    "cron_success_rate_pct": 87.5,
+    "attention_jobs": 0,
+    "recent_error_lines": 10,
+    "cron_runs_7d": 1198,
+    "task_candidates": 16,
+    "roi_hours_7d": 77.6
+  },
+  {
+    "ts": "2026-06-06T07:11:02",
+    "score": 80,
+    "cron_success_rate_pct": 87.5,
+    "attention_jobs": 0,
+    "recent_error_lines": 10,
+    "cron_runs_7d": 1486,
+    "task_candidates": 18,
+    "roi_hours_7d": 92.6
+  },
+  {
+    "ts": "2026-06-06T17:04:18",
+    "score": 80,
+    "cron_success_rate_pct": 87.5,
+    "attention_jobs": 0,
+    "recent_error_lines": 10,
+    "cron_runs_7d": 1590,
+    "task_candidates": 18,
+    "roi_hours_7d": 97.8
   }
 ]
