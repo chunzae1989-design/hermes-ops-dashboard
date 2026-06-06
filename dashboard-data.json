@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T07:11:02",
+  "generated_at": "2026-06-06T17:04:18",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -31,7 +31,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-06T09:00:00+09:00"
+      "next_run_at": "2026-06-07T09:00:00+09:00"
     },
     {
       "name": "통화녹음 반자동 전사+Google Tasks 후보 감지",
@@ -39,7 +39,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-06T07:20:58.723976+09:00"
+      "next_run_at": "2026-06-06T17:10:10.912727+09:00"
     },
     {
       "name": "국내장 마감 포트폴리오 브리핑",
@@ -55,7 +55,7 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "next_run_at": "2026-06-06T07:16:58.229234+09:00"
+      "next_run_at": "2026-06-06T17:10:10.848306+09:00"
     },
     {
       "name": "Hermes 주간 운영 리뷰",
@@ -77,16 +77,16 @@
   "active_jobs": 8,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-05 16:56:26,639 WARNING [20260605_001338_f5fddb] agent.tool_executor: Tool terminal returned error (2.89s): {\"output\": \"ERROR: Could not find a version that satisfies the requirement cuda-bindings==13.2.1 (from versions: 11.8.6, 11.",
-    "2026-06-05 17:21:34,736 WARNING [20260605_165602_83c8e4] agent.tool_executor: Tool terminal returned error (2.93s): {\"output\": \"ERROR: Could not find a version that satisfies the requirement nvidia-cublas-cu13==0.0.1 (from versions: 0.0.0a0",
-    "2026-06-05 17:56:36,264 WARNING [20260605_165602_83c8e4] agent.tool_executor: Tool terminal returned error (1.04s): {\"output\": \"ERROR: No matching distribution found for nvidia-cublas\", \"exit_code\": 1, \"error\": null}",
-    "2026-06-05 22:09:12,694 ERROR asyncio: Task exception was never retrieved",
-    "2026-06-05 22:13:55,734 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
-    "2026-06-05 22:14:26,816 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:15:26,913 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:17:27,049 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
     "2026-06-05 22:21:27,323 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
-    "2026-06-05 22:26:27,722 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]"
+    "2026-06-05 22:26:27,722 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
+    "2026-06-06 09:37:53,793 WARNING [20260605_165602_83c8e4] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
+    "2026-06-06 12:10:55,984 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
+    "2026-06-06 12:10:55,986 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.355051644738084s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model=g",
+    "2026-06-06 12:26:40,463 WARNING [20260606_093753_9f8a9b] agent.chat_completion_helpers: Non-streaming API call stale for 900s (threshold 900s). model=gpt-5.5 context=~74,708 tokens. Killing connection.",
+    "2026-06-06 12:26:40,465 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
+    "2026-06-06 12:26:40,466 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.7003562551327898s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model="
   ],
   "benchmarks": {
     "ai_ops": {
@@ -96,7 +96,7 @@
       "cron_success_rate_pct": 87.5,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1486
+      "cron_runs_7d": 1590
     },
     "task_conversion": {
       "recording_notes_7d": 131,
@@ -113,11 +113,11 @@
       "delivery_reliability": "정상"
     },
     "portfolio": {
-      "total_value_krw": 116510000,
-      "cash_weight_pct": 8.6,
-      "known_profit_krw": 16100000,
+      "total_value_krw": 142377339,
+      "cash_weight_pct": 1.1,
+      "known_profit_krw": 25000840,
       "top_holding": "Tesla (TSLA)",
-      "top_weight_pct": 51.5,
+      "top_weight_pct": 42.1,
       "benchmarks": [
         "NASDAQ",
         "S&P500",
@@ -128,10 +128,10 @@
       "last_briefing_outputs_7d": 4
     },
     "roi": {
-      "auto_items_7d": 1635,
-      "estimated_minutes_saved_7d": 5557,
-      "estimated_hours_saved_7d": 92.6,
-      "recording_runs_7d": 1459,
+      "auto_items_7d": 1739,
+      "estimated_minutes_saved_7d": 5869,
+      "estimated_hours_saved_7d": 97.8,
+      "recording_runs_7d": 1561,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -196,13 +196,13 @@
   "call_recent_notes": 129,
   "meeting_recent_notes": 2,
   "call_state": {
-    "last_run_at": "2026-06-06T07:10:58",
+    "last_run_at": "2026-06-06T17:00:10",
     "seen_count": 7240,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-06T07:06:58",
+    "last_run_at": "2026-06-06T17:00:10",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -245,10 +245,10 @@
     "next_run_at": "2026-06-08T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    91Gi   348Gi    21%    861k  3.6G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    90Gi   349Gi    21%    798k  3.7G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-06T07:11:00",
+    "scanned_at": "2026-06-06T17:04:17",
     "min_age_days": 7,
     "candidates": 102,
     "downloaded_candidates": 102,
@@ -258,7 +258,7 @@
     "available": true
   },
   "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 25 commits behind — run 'hermes update'",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 29 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -370,9 +370,29 @@
         "cron_runs_7d": 1486,
         "task_candidates": 18,
         "roi_hours_7d": 92.6
+      },
+      {
+        "ts": "2026-06-06T17:04:18",
+        "score": 80,
+        "cron_success_rate_pct": 87.5,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1590,
+        "task_candidates": 18,
+        "roi_hours_7d": 97.8
       }
     ],
     "latest": {
+      "ts": "2026-06-06T17:04:18",
+      "score": 80,
+      "cron_success_rate_pct": 87.5,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1590,
+      "task_candidates": 18,
+      "roi_hours_7d": 97.8
+    },
+    "previous": {
       "ts": "2026-06-06T07:11:02",
       "score": 80,
       "cron_success_rate_pct": 87.5,
@@ -381,16 +401,6 @@
       "cron_runs_7d": 1486,
       "task_candidates": 18,
       "roi_hours_7d": 92.6
-    },
-    "previous": {
-      "ts": "2026-06-05T07:10:39",
-      "score": 80,
-      "cron_success_rate_pct": 87.5,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1198,
-      "task_candidates": 16,
-      "roi_hours_7d": 77.6
     },
     "score_delta": [
       "±0",
