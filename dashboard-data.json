@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T07:10:50",
+  "generated_at": "2026-06-08T07:10:58",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,14 +7,13 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-07T06:00:38.763961+09:00",
-      "next_run_at": "2026-06-08T06:00:00+09:00",
+      "last_run_at": "2026-06-08T06:00:46.809899+09:00",
+      "next_run_at": "2026-06-09T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
       "skills": [
-        "hermes-agent",
-        "personal-ai-ops"
+        "hermes-agent"
       ],
       "recovery": "rotate skills · avoid repeats"
     },
@@ -30,7 +29,6 @@
       "script": "agent",
       "no_agent": false,
       "skills": [
-        "google-workspace",
         "productivity-content-pipelines"
       ],
       "recovery": "dedupe preflight · single Gmail send"
@@ -41,8 +39,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-06T09:00:14.375935+09:00",
-      "next_run_at": "2026-06-07T09:00:00+09:00",
+      "last_run_at": "2026-06-07T09:01:00.292481+09:00",
+      "next_run_at": "2026-06-08T09:00:00+09:00",
       "schedule": "0 9 * * *",
       "script": "hermes_update_watch.py",
       "no_agent": true,
@@ -57,15 +55,13 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-07T07:01:44.524295+09:00",
-      "next_run_at": "2026-06-07T07:11:44.524295+09:00",
+      "last_run_at": "2026-06-08T07:06:54.128686+09:00",
+      "next_run_at": "2026-06-08T07:16:54.128686+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
       "skills": [
-        "productivity-content-pipelines",
-        "obsidian",
-        "google-workspace"
+        "productivity-content-pipelines"
       ],
       "recovery": "placeholder skip · no rm · alert on stale"
     },
@@ -92,15 +88,13 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-07T07:01:44.451675+09:00",
-      "next_run_at": "2026-06-07T07:11:44.451675+09:00",
+      "last_run_at": "2026-06-08T07:04:53.759565+09:00",
+      "next_run_at": "2026-06-08T07:14:53.759565+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
       "skills": [
-        "productivity-content-pipelines",
-        "obsidian",
-        "google-workspace"
+        "productivity-content-pipelines"
       ],
       "recovery": "placeholder skip · no rm · alert on stale"
     },
@@ -116,7 +110,6 @@
       "script": "hermes_weekly_ops_review.py",
       "no_agent": true,
       "skills": [
-        "personal-ai-ops",
         "hermes-agent"
       ],
       "recovery": "weekly audit → Obsidian log"
@@ -127,15 +120,12 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-06T07:11:05.544306+09:00",
-      "next_run_at": "2026-06-08T07:10:00+09:00",
+      "last_run_at": "2026-06-07T07:10:53.242188+09:00",
+      "next_run_at": "2026-06-09T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
-      "skills": [
-        "personal-ai-ops",
-        "public-ops-dashboard-design"
-      ],
+      "skills": [],
       "recovery": "regenerate → git push → Pages verify"
     },
     {
@@ -144,13 +134,12 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-07T06:51:43.571130+09:00",
-      "next_run_at": "2026-06-07T07:21:43.571130+09:00",
+      "last_run_at": "2026-06-08T06:54:52.688646+09:00",
+      "next_run_at": "2026-06-08T07:24:52.688646+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
       "skills": [
-        "personal-ai-ops",
         "hermes-agent"
       ],
       "recovery": "auto-recovery / de-duped alerts"
@@ -168,9 +157,7 @@
       "no_agent": true,
       "skills": [
         "personal-market-briefings",
-        "finance-analysis-pack",
-        "obsidian",
-        "public-dashboard-design"
+        "finance-analysis-pack"
       ],
       "recovery": "regenerate → git push → Pages verify"
     }
@@ -178,16 +165,16 @@
   "active_jobs": 10,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-05 22:21:27,323 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
-    "2026-06-05 22:26:27,722 ERROR gateway.platforms.homeassistant: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Connect call failed ('192.168.1.26', 8123)]",
-    "2026-06-06 09:37:53,793 WARNING [20260605_165602_83c8e4] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-06-06 12:10:55,984 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
     "2026-06-06 12:10:55,986 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.355051644738084s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model=g",
     "2026-06-06 12:26:40,463 WARNING [20260606_093753_9f8a9b] agent.chat_completion_helpers: Non-streaming API call stale for 900s (threshold 900s). model=gpt-5.5 context=~74,708 tokens. Killing connection.",
     "2026-06-06 12:26:40,465 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
     "2026-06-06 12:26:40,466 WARNING [20260606_093753_9f8a9b] agent.conversation_loop: Retrying API call in 2.7003562551327898s (attempt 1/3) thread=asyncio_1:6148468736 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex model=",
     "2026-06-06 17:17:26,667 WARNING [20260606_093753_9f8a9b] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
-    "2026-06-07 00:11:52,053 WARNING [20260606_171726_08aec5] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds."
+    "2026-06-07 00:11:52,053 WARNING [20260606_171726_08aec5] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
+    "2026-06-07 11:20:27,729 ERROR gateway.run: Another gateway instance (PID 68455) started during our startup. Exiting to avoid double-running.",
+    "2026-06-07 11:56:08,755 WARNING [20260607_001152_e759f8] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
+    "2026-06-07 12:01:14,110 WARNING [20260607_001152_e759f8] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds."
   ],
   "benchmarks": {
     "ai_ops": {
@@ -197,13 +184,13 @@
       "cron_success_rate_pct": 80.0,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 1784
+      "cron_runs_7d": 1972
     },
     "task_conversion": {
-      "recording_notes_7d": 131,
+      "recording_notes_7d": 30,
       "task_candidates": 18,
-      "candidate_rate_pct": 13.7,
-      "call_pipeline_seen": 7240,
+      "candidate_rate_pct": 60.0,
+      "call_pipeline_seen": 7242,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -229,10 +216,10 @@
       "last_briefing_outputs_7d": 4
     },
     "roi": {
-      "auto_items_7d": 1933,
-      "estimated_minutes_saved_7d": 6451,
-      "estimated_hours_saved_7d": 107.5,
-      "recording_runs_7d": 1729,
+      "auto_items_7d": 2020,
+      "estimated_minutes_saved_7d": 6195,
+      "estimated_hours_saved_7d": 103.2,
+      "recording_runs_7d": 1870,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -294,16 +281,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 129,
-  "meeting_recent_notes": 2,
+  "call_recent_notes": 29,
+  "meeting_recent_notes": 1,
   "call_state": {
-    "last_run_at": "2026-06-07T07:01:44",
-    "seen_count": 7240,
+    "last_run_at": "2026-06-08T07:06:54",
+    "seen_count": 7242,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-07T07:01:44",
+    "last_run_at": "2026-06-08T07:04:53",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -346,10 +333,10 @@
     "next_run_at": "2026-06-08T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi    99Gi   337Gi    23%    881k  3.5G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi    98Gi   338Gi    23%    820k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-07T07:10:48",
+    "scanned_at": "2026-06-08T07:10:56",
     "min_age_days": 7,
     "candidates": 102,
     "downloaded_candidates": 102,
@@ -358,8 +345,8 @@
     "selected_bytes": 123507116,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.15.1 (2026.5.29)",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 75 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream a317e549",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 16 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -501,9 +488,29 @@
         "cron_runs_7d": 1784,
         "task_candidates": 18,
         "roi_hours_7d": 107.5
+      },
+      {
+        "ts": "2026-06-08T07:10:58",
+        "score": 80,
+        "cron_success_rate_pct": 80.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 1972,
+        "task_candidates": 18,
+        "roi_hours_7d": 103.2
       }
     ],
     "latest": {
+      "ts": "2026-06-08T07:10:58",
+      "score": 80,
+      "cron_success_rate_pct": 80.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 1972,
+      "task_candidates": 18,
+      "roi_hours_7d": 103.2
+    },
+    "previous": {
       "ts": "2026-06-07T07:10:50",
       "score": 80,
       "cron_success_rate_pct": 80.0,
@@ -513,23 +520,13 @@
       "task_candidates": 18,
       "roi_hours_7d": 107.5
     },
-    "previous": {
-      "ts": "2026-06-06T17:54:48",
-      "score": 80,
-      "cron_success_rate_pct": 77.8,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 1600,
-      "task_candidates": 18,
-      "roi_hours_7d": 98.3
-    },
     "score_delta": [
       "±0",
       "flat"
     ],
     "success_delta": [
-      "+2.2%p",
-      "up"
+      "±0%p",
+      "flat"
     ],
     "attention_delta": [
       "±0",
