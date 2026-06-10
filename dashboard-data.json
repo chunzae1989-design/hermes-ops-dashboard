@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T22:44:13",
+  "generated_at": "2026-06-11T07:10:23",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,8 +7,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-10T06:00:15.724872+09:00",
-      "next_run_at": "2026-06-11T06:00:00+09:00",
+      "last_run_at": "2026-06-11T06:00:16.706973+09:00",
+      "next_run_at": "2026-06-12T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
@@ -53,8 +53,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-10T22:36:08.151618+09:00",
-      "next_run_at": "2026-06-10T22:46:08.151618+09:00",
+      "last_run_at": "2026-06-11T07:00:17.667798+09:00",
+      "next_run_at": "2026-06-11T07:20:18.678552+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
@@ -86,8 +86,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-10T22:37:08.115588+09:00",
-      "next_run_at": "2026-06-10T22:47:08.115588+09:00",
+      "last_run_at": "2026-06-11T07:01:17.738731+09:00",
+      "next_run_at": "2026-06-11T07:11:17.738731+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
@@ -119,7 +119,7 @@
       "last_status": "ok",
       "last_error": null,
       "last_run_at": "2026-06-10T07:10:30.651070+09:00",
-      "next_run_at": "2026-06-11T07:10:00+09:00",
+      "next_run_at": "2026-06-12T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
@@ -132,8 +132,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-10T22:35:08.650162+09:00",
-      "next_run_at": "2026-06-10T23:05:08.650162+09:00",
+      "last_run_at": "2026-06-11T07:09:19.128014+09:00",
+      "next_run_at": "2026-06-11T07:39:19.128014+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
@@ -163,16 +163,16 @@
   "active_jobs": 10,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-08 21:34:52,966 ERROR gateway.run: Agent error in session agent:main:telegram:dm:8813876157",
-    "2026-06-08 21:37:39,625 ERROR gateway.run: Agent error in session agent:main:telegram:dm:8813876157",
-    "2026-06-09 15:08:22,202 ERROR [20260608_213850_f20654ce] agent.conversation_loop: API call failed after 3 retries. HTTP 429: The usage limit has been reached | provider=openai-codex model=gpt-5.4-mini msgs=38 tokens=~39,989",
     "2026-06-10 08:00:41,286 ERROR [cron_7d884cf4f2dd_20260610_080029] agent.conversation_loop: API call failed after 3 retries. HTTP 429: The usage limit has been reached | provider=openai-codex model=gpt-5.4 msgs=2 tokens=~6,481",
     "2026-06-10 08:00:41,291 ERROR cron.scheduler: Job '평일 08시 피플팀 뉴스 브리핑' failed: RuntimeError: HTTP 429: The usage limit has been reached",
     "    raise RuntimeError(_err_text)",
     "RuntimeError: HTTP 429: The usage limit has been reached",
     "2026-06-10 14:10:13,609 ERROR [20260608_213850_f20654ce] agent.conversation_loop: API call failed after 3 retries. HTTP 429: The usage limit has been reached | provider=openai-codex model=gpt-5.4-mini msgs=40 tokens=~40,290",
     "2026-06-10 18:37:03,390 WARNING [20260608_213850_f20654ce] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,368/2,200 chars. Shorten the new content, or 'remove' other s",
-    "2026-06-10 19:33:59,630 WARNING [20260610_183931_f502f8] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_2:6289551360 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex "
+    "2026-06-10 19:33:59,630 WARNING [20260610_183931_f502f8] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_2:6289551360 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
+    "2026-06-10 22:53:13,424 WARNING [20260610_222248_18a9537c] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,299/2,200 chars. Shorten the new content, or 'remove' other s",
+    "2026-06-11 01:28:50,306 WARNING [20260610_222248_18a9537c] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,386/1,375 chars. Shorten the new content, or 'remove' other s",
+    "2026-06-11 01:35:34,403 WARNING [20260611_013343_d7444f] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,418/1,375 chars. Shorten the new content, or 'remove' other sta"
   ],
   "benchmarks": {
     "ai_ops": {
@@ -182,7 +182,7 @@
       "cron_success_rate_pct": 100.0,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 2222
+      "cron_runs_7d": 2238
     },
     "task_conversion": {
       "recording_notes_7d": 38,
@@ -214,9 +214,9 @@
       "last_briefing_outputs_7d": 5
     },
     "roi": {
-      "auto_items_7d": 2284,
-      "estimated_minutes_saved_7d": 7006,
-      "estimated_hours_saved_7d": 116.8,
+      "auto_items_7d": 2300,
+      "estimated_minutes_saved_7d": 7054,
+      "estimated_hours_saved_7d": 117.6,
       "recording_runs_7d": 1985,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -282,13 +282,13 @@
   "call_recent_notes": 38,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-06-10T22:36:08",
+    "last_run_at": "2026-06-11T07:10:18",
     "seen_count": 7261,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-10T22:37:08",
+    "last_run_at": "2026-06-11T07:01:17",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -332,10 +332,10 @@
     "next_run_at": "2026-06-11T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   102Gi   335Gi    24%    840k  3.5G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   108Gi   329Gi    25%    960k  3.5G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-10T22:44:11",
+    "scanned_at": "2026-06-11T07:10:21",
     "min_age_days": 7,
     "candidates": 114,
     "downloaded_candidates": 114,
@@ -344,8 +344,8 @@
     "selected_bytes": 169029545,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream 57c67149",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 248 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream a72bb037",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 23 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -527,9 +527,29 @@
         "cron_runs_7d": 2222,
         "task_candidates": 24,
         "roi_hours_7d": 116.8
+      },
+      {
+        "ts": "2026-06-11T07:10:23",
+        "score": 80,
+        "cron_success_rate_pct": 100.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 2238,
+        "task_candidates": 24,
+        "roi_hours_7d": 117.6
       }
     ],
     "latest": {
+      "ts": "2026-06-11T07:10:23",
+      "score": 80,
+      "cron_success_rate_pct": 100.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 2238,
+      "task_candidates": 24,
+      "roi_hours_7d": 117.6
+    },
+    "previous": {
       "ts": "2026-06-10T22:44:13",
       "score": 80,
       "cron_success_rate_pct": 100.0,
@@ -538,16 +558,6 @@
       "cron_runs_7d": 2222,
       "task_candidates": 24,
       "roi_hours_7d": 116.8
-    },
-    "previous": {
-      "ts": "2026-06-10T07:10:27",
-      "score": 80,
-      "cron_success_rate_pct": 100.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 2189,
-      "task_candidates": 22,
-      "roi_hours_7d": 114.0
     },
     "score_delta": [
       "±0",
