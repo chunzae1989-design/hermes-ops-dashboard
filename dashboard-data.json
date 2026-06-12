@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T07:10:22",
+  "generated_at": "2026-06-13T07:10:56",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,8 +7,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-12T06:00:11.112186+09:00",
-      "next_run_at": "2026-06-13T06:00:00+09:00",
+      "last_run_at": "2026-06-13T06:00:50.448706+09:00",
+      "next_run_at": "2026-06-14T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
@@ -23,8 +23,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-11T08:03:40.632935+09:00",
-      "next_run_at": "2026-06-12T08:00:00+09:00",
+      "last_run_at": "2026-06-12T08:03:59.447454+09:00",
+      "next_run_at": "2026-06-15T08:00:00+09:00",
       "schedule": "0 8 * * 1-5",
       "script": "agent",
       "no_agent": false,
@@ -37,8 +37,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-11T09:00:37.615620+09:00",
-      "next_run_at": "2026-06-12T09:00:00+09:00",
+      "last_run_at": "2026-06-12T09:00:33.264204+09:00",
+      "next_run_at": "2026-06-13T09:00:00+09:00",
       "schedule": "0 9 * * *",
       "script": "hermes_update_watch.py",
       "no_agent": true,
@@ -53,8 +53,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-12T07:02:17.261953+09:00",
-      "next_run_at": "2026-06-12T07:12:17.261953+09:00",
+      "last_run_at": "2026-06-13T07:03:50.713779+09:00",
+      "next_run_at": "2026-06-13T07:13:50.713779+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
@@ -69,8 +69,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-11T15:45:40.813183+09:00",
-      "next_run_at": "2026-06-12T15:45:00+09:00",
+      "last_run_at": "2026-06-12T15:45:44.739851+09:00",
+      "next_run_at": "2026-06-15T15:45:00+09:00",
       "schedule": "45 15 * * 1-5",
       "script": "finance_domestic_close.py",
       "no_agent": true,
@@ -86,8 +86,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-12T07:07:17.704905+09:00",
-      "next_run_at": "2026-06-12T07:17:17.704905+09:00",
+      "last_run_at": "2026-06-13T07:02:50.621351+09:00",
+      "next_run_at": "2026-06-13T07:12:50.621351+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
@@ -118,8 +118,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-11T07:10:26.884529+09:00",
-      "next_run_at": "2026-06-13T07:10:00+09:00",
+      "last_run_at": "2026-06-12T07:10:26.006135+09:00",
+      "next_run_at": "2026-06-14T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
@@ -132,8 +132,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-12T06:43:15.198954+09:00",
-      "next_run_at": "2026-06-12T07:13:15.198954+09:00",
+      "last_run_at": "2026-06-13T06:47:50.615740+09:00",
+      "next_run_at": "2026-06-13T07:17:50.615740+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
@@ -148,8 +148,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-11T07:21:35.221375+09:00",
-      "next_run_at": "2026-06-12T07:20:00+09:00",
+      "last_run_at": "2026-06-12T07:21:38.183195+09:00",
+      "next_run_at": "2026-06-13T07:20:00+09:00",
       "schedule": "20 7 * * 1-6",
       "script": "update_30gogo_investment_dashboard_quiet.sh",
       "no_agent": true,
@@ -163,10 +163,10 @@
       "name": "저녁 19시 Chief of Staff 브리핑",
       "job_id": "7da7537c58fd",
       "enabled": true,
-      "last_status": null,
+      "last_status": "ok",
       "last_error": null,
-      "last_run_at": null,
-      "next_run_at": "2026-06-12T19:00:00+09:00",
+      "last_run_at": "2026-06-12T19:03:10.086241+09:00",
+      "next_run_at": "2026-06-13T19:00:00+09:00",
       "schedule": "0 19 * * *",
       "script": "agent",
       "no_agent": false,
@@ -180,8 +180,6 @@
   "active_jobs": 11,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-10 19:33:59,630 WARNING [20260610_183931_f502f8] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=asyncio_2:6289551360 provider=openai-codex base_url=https://chatgpt.com/backend-api/codex ",
-    "2026-06-10 22:53:13,424 WARNING [20260610_222248_18a9537c] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,299/2,200 chars. Shorten the new content, or 'remove' other s",
     "2026-06-11 01:28:50,306 WARNING [20260610_222248_18a9537c] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,386/1,375 chars. Shorten the new content, or 'remove' other s",
     "2026-06-11 01:35:34,403 WARNING [20260611_013343_d7444f] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,418/1,375 chars. Shorten the new content, or 'remove' other sta",
     "2026-06-11 19:32:48,610 WARNING [20260611_061921_a35d5b1a] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,235/2,200 chars. Shorten the new content, or 'remove' other s",
@@ -189,38 +187,40 @@
     "2026-06-11 22:49:53,140 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag",
     "    event = await self._receive_event(timeout=timeout)",
     "2026-06-12 06:27:33,866 WARNING [20260612_062710_a6306a80] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,402/1,375 chars. Shorten the new content, or 'remove' other s",
-    "2026-06-12 06:43:59,690 WARNING [20260612_062710_a6306a80] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,404/1,375 chars. Shorten the new content, or 'remove' other s"
+    "2026-06-12 06:43:59,690 WARNING [20260612_062710_a6306a80] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,404/1,375 chars. Shorten the new content, or 'remove' other s",
+    "2026-06-12 07:31:16,871 WARNING [20260612_072122_c3c981] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,379/1,375 chars. Shorten the new content, or 'remove' other sta",
+    "2026-06-13 01:02:33,688 WARNING [20260613_005151_63486b] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,422/1,375 chars. Shorten the new content, or 'remove' other sta"
   ],
   "benchmarks": {
     "ai_ops": {
       "score": 80,
       "active_jobs": 11,
-      "ok_active_jobs": 10,
-      "cron_success_rate_pct": 90.9,
+      "ok_active_jobs": 11,
+      "cron_success_rate_pct": 100.0,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 2288
+      "cron_runs_7d": 2340
     },
     "task_conversion": {
       "recording_notes_7d": 30,
-      "task_candidates": 27,
-      "candidate_rate_pct": 90.0,
-      "call_pipeline_seen": 7265,
+      "task_candidates": 31,
+      "candidate_rate_pct": 103.3,
+      "call_pipeline_seen": 7269,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
       "job_status": "ok",
-      "last_run_at": "2026-06-11T08:03:40.632935+09:00",
-      "next_run_at": "2026-06-12T08:00:00+09:00",
+      "last_run_at": "2026-06-12T08:03:59.447454+09:00",
+      "next_run_at": "2026-06-15T08:00:00+09:00",
       "last_error_present": false,
       "delivery_reliability": "정상"
     },
     "portfolio": {
-      "total_value_krw": 142377339,
-      "cash_weight_pct": 1.1,
-      "known_profit_krw": 25000840,
+      "total_value_krw": 156796052,
+      "cash_weight_pct": 1.0,
+      "known_profit_krw": 24971079,
       "top_holding": "Tesla (TSLA)",
-      "top_weight_pct": 42.1,
+      "top_weight_pct": 38.3,
       "benchmarks": [
         "NASDAQ",
         "S&P500",
@@ -231,10 +231,10 @@
       "last_briefing_outputs_7d": 5
     },
     "roi": {
-      "auto_items_7d": 2345,
-      "estimated_minutes_saved_7d": 7144,
-      "estimated_hours_saved_7d": 119.1,
-      "recording_runs_7d": 1986,
+      "auto_items_7d": 2401,
+      "estimated_minutes_saved_7d": 7306,
+      "estimated_hours_saved_7d": 121.8,
+      "recording_runs_7d": 1988,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -299,33 +299,33 @@
   "call_recent_notes": 30,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-06-12T07:02:17",
-    "seen_count": 7265,
+    "last_run_at": "2026-06-13T07:03:50",
+    "seen_count": 7269,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-12T07:07:17",
+    "last_run_at": "2026-06-13T07:02:50",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
   },
-  "pending_call_tasks": 13,
+  "pending_call_tasks": 17,
   "pending_meeting_tasks": 14,
   "task_summaries": [
     {
       "source": "통화",
-      "count": 13,
+      "count": 17,
       "status_counts": {
-        "pending_approval": 13
+        "pending_approval": 17
       },
       "due_hint_counts": {
-        "기한 없음": 8,
-        "오늘": 3,
+        "기한 없음": 11,
+        "오늘": 4,
         "오늘, 다음 주": 1,
         "6/16 이전": 1
       },
-      "newest_created_at": "2026-06-11T19:32:18"
+      "newest_created_at": "2026-06-12T09:56:46"
     },
     {
       "source": "회의",
@@ -344,25 +344,25 @@
     "name": "평일 08시 피플팀 뉴스 브리핑",
     "enabled": true,
     "last_status": "ok",
-    "last_run_at": "2026-06-11T08:03:40.632935+09:00",
+    "last_run_at": "2026-06-12T08:03:59.447454+09:00",
     "last_error": "",
-    "next_run_at": "2026-06-12T08:00:00+09:00",
+    "next_run_at": "2026-06-15T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   111Gi   326Gi    26%    978k  3.4G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   114Gi   323Gi    26%    1.0M  3.4G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-12T07:10:20",
+    "scanned_at": "2026-06-13T07:10:53",
     "min_age_days": 7,
-    "candidates": 126,
-    "downloaded_candidates": 126,
-    "finder_evictable_candidates": 126,
-    "selected": 126,
-    "selected_bytes": 177941521,
+    "candidates": 130,
+    "downloaded_candidates": 130,
+    "finder_evictable_candidates": 130,
+    "selected": 130,
+    "selected_bytes": 192825105,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream d1383a6b",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 129 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream 2ee69d05",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 234 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -564,9 +564,29 @@
         "cron_runs_7d": 2288,
         "task_candidates": 27,
         "roi_hours_7d": 119.1
+      },
+      {
+        "ts": "2026-06-13T07:10:56",
+        "score": 80,
+        "cron_success_rate_pct": 100.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 2340,
+        "task_candidates": 31,
+        "roi_hours_7d": 121.8
       }
     ],
     "latest": {
+      "ts": "2026-06-13T07:10:56",
+      "score": 80,
+      "cron_success_rate_pct": 100.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 2340,
+      "task_candidates": 31,
+      "roi_hours_7d": 121.8
+    },
+    "previous": {
       "ts": "2026-06-12T07:10:22",
       "score": 80,
       "cron_success_rate_pct": 90.9,
@@ -576,23 +596,13 @@
       "task_candidates": 27,
       "roi_hours_7d": 119.1
     },
-    "previous": {
-      "ts": "2026-06-11T07:10:23",
-      "score": 80,
-      "cron_success_rate_pct": 100.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 2238,
-      "task_candidates": 24,
-      "roi_hours_7d": 117.6
-    },
     "score_delta": [
       "±0",
       "flat"
     ],
     "success_delta": [
-      "-9.1%p",
-      "down"
+      "+9.1%p",
+      "up"
     ],
     "attention_delta": [
       "±0",
