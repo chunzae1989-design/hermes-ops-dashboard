@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T07:10:27",
+  "generated_at": "2026-06-15T07:10:34",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,8 +7,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T06:00:13.945330+09:00",
-      "next_run_at": "2026-06-15T06:00:00+09:00",
+      "last_run_at": "2026-06-15T06:00:19.608675+09:00",
+      "next_run_at": "2026-06-16T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
@@ -37,8 +37,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-13T09:00:57.364365+09:00",
-      "next_run_at": "2026-06-14T09:00:00+09:00",
+      "last_run_at": "2026-06-14T09:00:38.837161+09:00",
+      "next_run_at": "2026-06-15T09:00:00+09:00",
       "schedule": "0 9 * * *",
       "script": "hermes_update_watch.py",
       "no_agent": true,
@@ -53,8 +53,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T07:03:21.964863+09:00",
-      "next_run_at": "2026-06-14T07:13:21.964863+09:00",
+      "last_run_at": "2026-06-15T07:09:28.638071+09:00",
+      "next_run_at": "2026-06-15T07:19:28.638071+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
@@ -86,8 +86,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T07:07:22.436452+09:00",
-      "next_run_at": "2026-06-14T07:17:22.436452+09:00",
+      "last_run_at": "2026-06-15T07:03:27.642585+09:00",
+      "next_run_at": "2026-06-15T07:13:27.642585+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
@@ -118,8 +118,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-13T07:10:59.656023+09:00",
-      "next_run_at": "2026-06-15T07:10:00+09:00",
+      "last_run_at": "2026-06-14T07:10:28.900318+09:00",
+      "next_run_at": "2026-06-16T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
@@ -132,8 +132,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T06:56:21.499042+09:00",
-      "next_run_at": "2026-06-14T07:26:21.499042+09:00",
+      "last_run_at": "2026-06-15T07:00:27.706396+09:00",
+      "next_run_at": "2026-06-15T07:30:27.706396+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
@@ -165,8 +165,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-13T19:05:19.209828+09:00",
-      "next_run_at": "2026-06-14T19:00:00+09:00",
+      "last_run_at": "2026-06-14T19:05:37.850648+09:00",
+      "next_run_at": "2026-06-15T19:00:00+09:00",
       "schedule": "0 19 * * *",
       "script": "agent",
       "no_agent": false,
@@ -182,8 +182,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T07:00:22.834756+09:00",
-      "next_run_at": "2026-06-15T07:00:00+09:00",
+      "last_run_at": "2026-06-15T07:00:28.495547+09:00",
+      "next_run_at": "2026-06-16T07:00:00+09:00",
       "schedule": "0 7 * * *",
       "script": "health_connect_morning_report.py",
       "no_agent": true,
@@ -224,19 +224,56 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-14T07:09:22.737304+09:00",
-      "next_run_at": "2026-06-14T07:19:22.737304+09:00",
+      "last_run_at": "2026-06-15T07:05:27.941375+09:00",
+      "next_run_at": "2026-06-15T07:15:27.941375+09:00",
       "schedule": "every 10m",
       "script": "ensure_hermes_dashboard.py",
       "no_agent": true,
       "skills": [],
       "recovery": "auto-recovery / de-duped alerts"
+    },
+    {
+      "name": "삼성전자 HTML 장마감 브리핑",
+      "job_id": "3de2266f9829",
+      "enabled": true,
+      "last_status": null,
+      "last_error": null,
+      "last_run_at": null,
+      "next_run_at": "2026-06-15T15:55:00+09:00",
+      "schedule": "55 15 * * 1-5",
+      "script": "agent",
+      "no_agent": false,
+      "skills": [
+        "personal-market-briefings",
+        "finance-analysis-pack",
+        "productivity-content-pipelines",
+        "autonomous-cli-agents"
+      ],
+      "recovery": "quote/news validation · no trade action"
+    },
+    {
+      "name": "Tesla SpaceX HTML 기상 브리핑",
+      "job_id": "3eebbd825d2b",
+      "enabled": true,
+      "last_status": null,
+      "last_error": null,
+      "last_run_at": null,
+      "next_run_at": "2026-06-16T06:30:00+09:00",
+      "schedule": "30 6 * * 2-6",
+      "script": "agent",
+      "no_agent": false,
+      "skills": [
+        "personal-market-briefings",
+        "finance-analysis-pack",
+        "productivity-content-pipelines",
+        "autonomous-cli-agents"
+      ],
+      "recovery": "quote/news validation · no trade action"
     }
   ],
-  "active_jobs": 15,
+  "active_jobs": 17,
   "failed_jobs": 0,
   "errors": [
-    "2026-06-11 01:35:34,403 WARNING [20260611_013343_d7444f] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,418/1,375 chars. Shorten the new content, or 'remove' other sta",
     "2026-06-11 19:32:48,610 WARNING [20260611_061921_a35d5b1a] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,235/2,200 chars. Shorten the new content, or 'remove' other s",
     "2026-06-11 22:49:41,155 ERROR gateway.platforms.base: [Telegram] Failed to deliver response after 2 retries: send_path_degraded",
     "2026-06-11 22:49:53,140 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag",
@@ -245,22 +282,23 @@
     "2026-06-12 06:43:59,690 WARNING [20260612_062710_a6306a80] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,404/1,375 chars. Shorten the new content, or 'remove' other s",
     "2026-06-12 07:31:16,871 WARNING [20260612_072122_c3c981] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,379/1,375 chars. Shorten the new content, or 'remove' other sta",
     "2026-06-13 01:02:33,688 WARNING [20260613_005151_63486b] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,422/1,375 chars. Shorten the new content, or 'remove' other sta",
-    "2026-06-14 01:56:03,340 WARNING [20260614_005119_10c699] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,406/1,375 chars. Shorten the new content, or 'remove' other sta"
+    "2026-06-14 01:56:03,340 WARNING [20260614_005119_10c699] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 1,406/1,375 chars. Shorten the new content, or 'remove' other sta",
+    "2026-06-14 10:49:42,787 WARNING [20260614_020752_701f9b] agent.tool_executor: Tool memory returned error (0.00s): {\"success\": false, \"error\": \"Replacement would put memory at 2,265/2,200 chars. Shorten the new content, or 'remove' other sta"
   ],
   "benchmarks": {
     "ai_ops": {
       "score": 80,
-      "active_jobs": 15,
+      "active_jobs": 17,
       "ok_active_jobs": 14,
-      "cron_success_rate_pct": 93.3,
+      "cron_success_rate_pct": 82.4,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 2413
+      "cron_runs_7d": 2557
     },
     "task_conversion": {
-      "recording_notes_7d": 34,
+      "recording_notes_7d": 32,
       "task_candidates": 31,
-      "candidate_rate_pct": 91.2,
+      "candidate_rate_pct": 96.9,
       "call_pipeline_seen": 7272,
       "meeting_pipeline_seen": 2
     },
@@ -287,10 +325,10 @@
       "last_briefing_outputs_7d": 5
     },
     "roi": {
-      "auto_items_7d": 2478,
-      "estimated_minutes_saved_7d": 7570,
-      "estimated_hours_saved_7d": 126.2,
-      "recording_runs_7d": 2004,
+      "auto_items_7d": 2620,
+      "estimated_minutes_saved_7d": 7986,
+      "estimated_hours_saved_7d": 133.1,
+      "recording_runs_7d": 2003,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -352,16 +390,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 33,
+  "call_recent_notes": 31,
   "meeting_recent_notes": 1,
   "call_state": {
-    "last_run_at": "2026-06-14T07:03:21",
+    "last_run_at": "2026-06-15T07:09:28",
     "seen_count": 7272,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-14T07:07:22",
+    "last_run_at": "2026-06-15T07:03:27",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -405,20 +443,20 @@
     "next_run_at": "2026-06-15T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   114Gi   323Gi    27%    1.0M  3.4G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   115Gi   322Gi    27%    1.1M  3.4G    0%   /System/Volumes/Data",
   "recordings_du": "12G",
   "cache": {
-    "scanned_at": "2026-06-14T07:10:25",
+    "scanned_at": "2026-06-15T07:10:31",
     "min_age_days": 7,
-    "candidates": 130,
-    "downloaded_candidates": 130,
-    "finder_evictable_candidates": 130,
-    "selected": 130,
-    "selected_bytes": 192825105,
+    "candidates": 132,
+    "downloaded_candidates": 132,
+    "finder_evictable_candidates": 132,
+    "selected": 132,
+    "selected_bytes": 193284420,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream cc14b747",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 25 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.16.0 (2026.6.5) · upstream 4026f526",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 96 commits behind — run 'hermes update'",
   "trend": {
     "history": [
       {
@@ -640,9 +678,29 @@
         "cron_runs_7d": 2413,
         "task_candidates": 31,
         "roi_hours_7d": 126.2
+      },
+      {
+        "ts": "2026-06-15T07:10:34",
+        "score": 80,
+        "cron_success_rate_pct": 82.4,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 2557,
+        "task_candidates": 31,
+        "roi_hours_7d": 133.1
       }
     ],
     "latest": {
+      "ts": "2026-06-15T07:10:34",
+      "score": 80,
+      "cron_success_rate_pct": 82.4,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 2557,
+      "task_candidates": 31,
+      "roi_hours_7d": 133.1
+    },
+    "previous": {
       "ts": "2026-06-14T07:10:27",
       "score": 80,
       "cron_success_rate_pct": 93.3,
@@ -652,22 +710,12 @@
       "task_candidates": 31,
       "roi_hours_7d": 126.2
     },
-    "previous": {
-      "ts": "2026-06-13T07:10:56",
-      "score": 80,
-      "cron_success_rate_pct": 100.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 2340,
-      "task_candidates": 31,
-      "roi_hours_7d": 121.8
-    },
     "score_delta": [
       "±0",
       "flat"
     ],
     "success_delta": [
-      "-6.7%p",
+      "-10.9%p",
       "down"
     ],
     "attention_delta": [
