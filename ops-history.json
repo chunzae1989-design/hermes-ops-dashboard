@@ -248,5 +248,15 @@
     "cron_runs_7d": 2846,
     "task_candidates": 47,
     "roi_hours_7d": 149.4
+  },
+  {
+    "ts": "2026-06-18T07:10:23",
+    "score": 80,
+    "cron_success_rate_pct": 94.1,
+    "attention_jobs": 0,
+    "recent_error_lines": 10,
+    "cron_runs_7d": 2992,
+    "task_candidates": 49,
+    "roi_hours_7d": 156.8
   }
 ]
