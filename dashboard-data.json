@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T07:10:13",
+  "generated_at": "2026-06-26T07:11:04",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,8 +7,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T06:00:58.825580+09:00",
-      "next_run_at": "2026-06-26T06:00:00+09:00",
+      "last_run_at": "2026-06-26T06:00:49.376011+09:00",
+      "next_run_at": "2026-06-27T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
@@ -23,8 +23,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T08:17:02.060168+09:00",
-      "next_run_at": "2026-06-25T08:00:00+09:00",
+      "last_run_at": "2026-06-25T08:03:20.006141+09:00",
+      "next_run_at": "2026-06-26T08:00:00+09:00",
       "schedule": "0 8 * * 1-5",
       "script": "agent",
       "no_agent": false,
@@ -40,8 +40,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T09:00:28.665337+09:00",
-      "next_run_at": "2026-06-25T09:00:00+09:00",
+      "last_run_at": "2026-06-25T09:00:23.478971+09:00",
+      "next_run_at": "2026-06-26T09:00:00+09:00",
       "schedule": "0 9 * * *",
       "script": "hermes_update_watch.py",
       "no_agent": true,
@@ -56,8 +56,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:03:05.997968+09:00",
-      "next_run_at": "2026-06-25T07:13:05.997968+09:00",
+      "last_run_at": "2026-06-26T07:05:56.248920+09:00",
+      "next_run_at": "2026-06-26T07:15:56.248920+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
@@ -72,8 +72,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T15:46:06.798706+09:00",
-      "next_run_at": "2026-06-25T15:45:00+09:00",
+      "last_run_at": "2026-06-25T15:46:15.151666+09:00",
+      "next_run_at": "2026-06-26T15:45:00+09:00",
       "schedule": "45 15 * * 1-5",
       "script": "finance_domestic_close.py",
       "no_agent": true,
@@ -89,8 +89,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:09:06.800300+09:00",
-      "next_run_at": "2026-06-25T07:19:06.800300+09:00",
+      "last_run_at": "2026-06-26T07:04:56.061543+09:00",
+      "next_run_at": "2026-06-26T07:14:56.061543+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
@@ -121,8 +121,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T07:10:20.072928+09:00",
-      "next_run_at": "2026-06-26T07:10:00+09:00",
+      "last_run_at": "2026-06-25T07:10:15.675814+09:00",
+      "next_run_at": "2026-06-27T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
@@ -135,8 +135,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:06:07.072270+09:00",
-      "next_run_at": "2026-06-25T07:36:07.072270+09:00",
+      "last_run_at": "2026-06-26T07:09:57.259323+09:00",
+      "next_run_at": "2026-06-26T07:39:57.259323+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
@@ -151,8 +151,8 @@
       "enabled": true,
       "last_status": "error",
       "last_error": "Script timed out after 120s: /Users/na/.hermes/scripts/update_30gogo_investment_dashboard_quiet.sh",
-      "last_run_at": "2026-06-24T07:22:15.130659+09:00",
-      "next_run_at": "2026-06-25T07:20:00+09:00",
+      "last_run_at": "2026-06-25T07:22:09.690624+09:00",
+      "next_run_at": "2026-06-26T07:20:00+09:00",
       "schedule": "20 7 * * 1-6",
       "script": "update_30gogo_investment_dashboard_quiet.sh",
       "no_agent": true,
@@ -168,8 +168,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T19:02:07.481753+09:00",
-      "next_run_at": "2026-06-25T19:00:00+09:00",
+      "last_run_at": "2026-06-25T19:02:10.812994+09:00",
+      "next_run_at": "2026-06-26T19:00:00+09:00",
       "schedule": "0 19 * * *",
       "script": "agent",
       "no_agent": false,
@@ -185,8 +185,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:00:06.823017+09:00",
-      "next_run_at": "2026-06-26T07:00:00+09:00",
+      "last_run_at": "2026-06-26T07:00:56.958585+09:00",
+      "next_run_at": "2026-06-27T07:00:00+09:00",
       "schedule": "0 7 * * *",
       "script": "health_connect_morning_report.py",
       "no_agent": true,
@@ -227,8 +227,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:03:05.909659+09:00",
-      "next_run_at": "2026-06-25T07:13:05.909659+09:00",
+      "last_run_at": "2026-06-26T07:08:56.538762+09:00",
+      "next_run_at": "2026-06-26T07:18:56.538762+09:00",
       "schedule": "every 10m",
       "script": "ensure_hermes_dashboard.py",
       "no_agent": true,
@@ -241,8 +241,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-24T17:04:40.116061+09:00",
-      "next_run_at": "2026-06-25T15:55:00+09:00",
+      "last_run_at": "2026-06-25T15:59:16.218645+09:00",
+      "next_run_at": "2026-06-26T15:55:00+09:00",
       "schedule": "55 15 * * 1-5",
       "script": "samsung_close_toss_snapshot.py",
       "no_agent": false,
@@ -260,8 +260,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T06:34:57.984368+09:00",
-      "next_run_at": "2026-06-26T06:30:00+09:00",
+      "last_run_at": "2026-06-26T06:37:08.625081+09:00",
+      "next_run_at": "2026-06-27T06:30:00+09:00",
       "schedule": "30 6 * * 2-6",
       "script": "tesla_spacex_toss_preflight.py",
       "no_agent": false,
@@ -279,8 +279,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-06-25T07:00:07.844210+09:00",
-      "next_run_at": "2026-06-25T08:00:00+09:00",
+      "last_run_at": "2026-06-26T07:00:58.012067+09:00",
+      "next_run_at": "2026-06-26T08:00:00+09:00",
       "schedule": "0 * * * *",
       "script": "update_30gogo_toss_snapshot.sh",
       "no_agent": true,
@@ -291,8 +291,6 @@
   "active_jobs": 18,
   "failed_jobs": 1,
   "errors": [
-    "2026-06-20 22:30:58,865 ERROR hermes_plugins.homeassistant_platform.adapter: [Homeassistant] Failed to connect: Cannot connect to host 192.168.1.26:8123 ssl:default [Host is down]",
-    "2026-06-21 00:21:10,408 ERROR [20260620_084439_f3ff955b] tools.homeassistant_tool: ha_list_entities error: ",
     "2026-06-21 00:21:11,450 ERROR [20260620_084439_f3ff955b] tools.homeassistant_tool: ha_list_entities error: Cannot connect to host 192.168.1.26:8123 ssl:default [Host is down]",
     "2026-06-21 00:22:26,399 ERROR [20260620_084439_f3ff955b] tools.homeassistant_tool: ha_list_entities error: ",
     "2026-06-24 08:16:37,201 WARNING [cron_7d884cf4f2dd_20260624_080018] agent.conversation_loop: API call failed (attempt 1/3) error_type=InternalServerError thread=ThreadPoolExecutor-43_0:6428454912 provider=openai-codex base_url=https://chatg",
@@ -300,7 +298,9 @@
     "2026-06-25 00:04:40,638 ERROR telegram.ext: Network Retry Loop (Bootstrap delete Webhook): Failed run number 0 of 0. Aborting.",
     "2026-06-25 00:04:55,046 ERROR telegram.ext: Network Retry Loop (Bootstrap delete Webhook): Failed run number 0 of 0. Aborting.",
     "2026-06-25 00:05:15,074 ERROR telegram.ext: Network Retry Loop (Bootstrap delete Webhook): Failed run number 0 of 0. Aborting.",
-    "2026-06-25 00:05:55,109 ERROR telegram.ext: Network Retry Loop (Bootstrap delete Webhook): Failed run number 0 of 0. Aborting."
+    "2026-06-25 00:05:55,109 ERROR telegram.ext: Network Retry Loop (Bootstrap delete Webhook): Failed run number 0 of 0. Aborting.",
+    "2026-06-25 10:12:12,107 ERROR telegram.ext.Updater: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched ag",
+    "    event = await self._receive_event(timeout=timeout)"
   ],
   "benchmarks": {
     "ai_ops": {
@@ -310,28 +310,28 @@
       "cron_success_rate_pct": 94.4,
       "attention_jobs": 1,
       "recent_error_lines": 10,
-      "cron_runs_7d": 3447
+      "cron_runs_7d": 3469
     },
     "task_conversion": {
-      "recording_notes_7d": 43,
-      "task_candidates": 57,
-      "candidate_rate_pct": 132.6,
-      "call_pipeline_seen": 7346,
+      "recording_notes_7d": 46,
+      "task_candidates": 62,
+      "candidate_rate_pct": 134.8,
+      "call_pipeline_seen": 7365,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
       "job_status": "ok",
-      "last_run_at": "2026-06-24T08:17:02.060168+09:00",
-      "next_run_at": "2026-06-25T08:00:00+09:00",
+      "last_run_at": "2026-06-25T08:03:20.006141+09:00",
+      "next_run_at": "2026-06-26T08:00:00+09:00",
       "last_error_present": false,
       "delivery_reliability": "정상"
     },
     "portfolio": {
-      "total_value_krw": 171568968,
+      "total_value_krw": 179925976,
       "cash_weight_pct": 0.9,
-      "known_profit_krw": 25385317,
+      "known_profit_krw": 13095491,
       "top_holding": "Tesla (TSLA)",
-      "top_weight_pct": 35.0,
+      "top_weight_pct": 36.1,
       "benchmarks": [
         "NASDAQ",
         "S&P500",
@@ -342,10 +342,10 @@
       "last_briefing_outputs_7d": 5
     },
     "roi": {
-      "auto_items_7d": 3547,
-      "estimated_minutes_saved_7d": 10770,
-      "estimated_hours_saved_7d": 179.5,
-      "recording_runs_7d": 2005,
+      "auto_items_7d": 3577,
+      "estimated_minutes_saved_7d": 10868,
+      "estimated_hours_saved_7d": 181.1,
+      "recording_runs_7d": 2004,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
   },
@@ -407,32 +407,32 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 43,
+  "call_recent_notes": 46,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-06-25T07:03:05",
-    "seen_count": 7346,
+    "last_run_at": "2026-06-26T07:05:56",
+    "seen_count": 7365,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-06-25T07:09:06",
+    "last_run_at": "2026-06-26T07:04:56",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
   },
-  "pending_call_tasks": 43,
+  "pending_call_tasks": 48,
   "pending_meeting_tasks": 14,
   "task_summaries": [
     {
       "source": "통화",
-      "count": 43,
+      "count": 48,
       "status_counts": {
-        "pending_approval": 43
+        "pending_approval": 48
       },
       "due_hint_counts": {
-        "기한 없음": 33,
-        "오늘": 4,
+        "기한 없음": 37,
+        "오늘": 5,
         "오늘, 다음 주": 1,
         "6/16 이전": 1,
         "내일, 모레": 1,
@@ -440,7 +440,7 @@
         "다음 주, 수요일": 1,
         "내일": 1
       },
-      "newest_created_at": "2026-06-23T17:32:00"
+      "newest_created_at": "2026-06-25T09:26:19"
     },
     {
       "source": "회의",
@@ -459,37 +459,27 @@
     "name": "평일 08시 피플팀 뉴스 브리핑",
     "enabled": true,
     "last_status": "ok",
-    "last_run_at": "2026-06-24T08:17:02.060168+09:00",
+    "last_run_at": "2026-06-25T08:03:20.006141+09:00",
     "last_error": "",
-    "next_run_at": "2026-06-25T08:00:00+09:00",
+    "next_run_at": "2026-06-26T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
   "disk_line": "/dev/disk3s5   460Gi   127Gi   309Gi    30%    1.2M  3.2G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-06-25T07:10:10",
+    "scanned_at": "2026-06-26T07:11:00",
     "min_age_days": 7,
-    "candidates": 193,
-    "downloaded_candidates": 193,
-    "finder_evictable_candidates": 193,
-    "selected": 193,
-    "selected_bytes": 298727875,
+    "candidates": 209,
+    "downloaded_candidates": 209,
+    "finder_evictable_candidates": 209,
+    "selected": 209,
+    "selected_bytes": 316454248,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.17.0 (2026.6.19) · upstream 807bdc17",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 510 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.17.0 (2026.6.19) · upstream d6269da7",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 649 commits behind — run 'hermes update'",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-04T18:39:09",
-        "score": 80,
-        "cron_success_rate_pct": 87.5,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 1050,
-        "task_candidates": 16,
-        "roi_hours_7d": 70.1
-      },
       {
         "ts": "2026-06-04T20:24:00",
         "score": 80,
@@ -779,9 +769,29 @@
         "cron_runs_7d": 3447,
         "task_candidates": 57,
         "roi_hours_7d": 179.5
+      },
+      {
+        "ts": "2026-06-26T07:11:04",
+        "score": 78,
+        "cron_success_rate_pct": 94.4,
+        "attention_jobs": 1,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 3469,
+        "task_candidates": 62,
+        "roi_hours_7d": 181.1
       }
     ],
     "latest": {
+      "ts": "2026-06-26T07:11:04",
+      "score": 78,
+      "cron_success_rate_pct": 94.4,
+      "attention_jobs": 1,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 3469,
+      "task_candidates": 62,
+      "roi_hours_7d": 181.1
+    },
+    "previous": {
       "ts": "2026-06-25T07:10:13",
       "score": 78,
       "cron_success_rate_pct": 94.4,
@@ -791,27 +801,17 @@
       "task_candidates": 57,
       "roi_hours_7d": 179.5
     },
-    "previous": {
-      "ts": "2026-06-24T07:10:18",
-      "score": 80,
-      "cron_success_rate_pct": 100.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 3419,
-      "task_candidates": 57,
-      "roi_hours_7d": 179.7
-    },
     "score_delta": [
-      "-2",
-      "down"
+      "±0",
+      "flat"
     ],
     "success_delta": [
-      "-5.6%p",
-      "down"
+      "±0%p",
+      "flat"
     ],
     "attention_delta": [
-      "+1",
-      "up"
+      "±0",
+      "flat"
     ],
     "error_delta": [
       "±0",
