@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-05T07:10:30",
+  "generated_at": "2026-07-06T07:10:32",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -7,8 +7,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T06:00:16.084207+09:00",
-      "next_run_at": "2026-07-06T06:00:00+09:00",
+      "last_run_at": "2026-07-06T06:00:18.196658+09:00",
+      "next_run_at": "2026-07-07T06:00:00+09:00",
       "schedule": "0 6 * * *",
       "script": "daily_hermes_skill_corner.py",
       "no_agent": true,
@@ -40,8 +40,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-04T09:00:53.361526+09:00",
-      "next_run_at": "2026-07-05T09:00:00+09:00",
+      "last_run_at": "2026-07-05T09:00:39.763090+09:00",
+      "next_run_at": "2026-07-06T09:00:00+09:00",
       "schedule": "0 9 * * *",
       "script": "hermes_update_watch.py",
       "no_agent": true,
@@ -56,8 +56,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T07:03:23.540795+09:00",
-      "next_run_at": "2026-07-05T07:13:23.540795+09:00",
+      "last_run_at": "2026-07-06T07:00:25.401893+09:00",
+      "next_run_at": "2026-07-06T07:20:26.503060+09:00",
       "schedule": "every 10m",
       "script": "process_new_call_recordings_semiauto.py",
       "no_agent": true,
@@ -89,8 +89,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T07:07:23.828172+09:00",
-      "next_run_at": "2026-07-05T07:17:23.828172+09:00",
+      "last_run_at": "2026-07-06T07:03:25.637135+09:00",
+      "next_run_at": "2026-07-06T07:13:25.637135+09:00",
       "schedule": "every 10m",
       "script": "process_new_meeting_recordings_semiauto.py",
       "no_agent": false,
@@ -121,8 +121,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-04T07:10:44.669250+09:00",
-      "next_run_at": "2026-07-06T07:10:00+09:00",
+      "last_run_at": "2026-07-05T07:10:32.352804+09:00",
+      "next_run_at": "2026-07-07T07:10:00+09:00",
       "schedule": "10 7 * * *",
       "script": "update_hermes_ops_dashboard.sh",
       "no_agent": true,
@@ -135,8 +135,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T06:58:23.211259+09:00",
-      "next_run_at": "2026-07-05T07:28:23.211259+09:00",
+      "last_run_at": "2026-07-06T07:03:26.296190+09:00",
+      "next_run_at": "2026-07-06T07:33:26.296190+09:00",
       "schedule": "every 30m",
       "script": "hermes_ops_failure_watchdog.py",
       "no_agent": true,
@@ -168,8 +168,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-04T19:02:08.324668+09:00",
-      "next_run_at": "2026-07-05T19:00:00+09:00",
+      "last_run_at": "2026-07-05T19:04:59.234154+09:00",
+      "next_run_at": "2026-07-06T19:00:00+09:00",
       "schedule": "0 19 * * *",
       "script": "agent",
       "no_agent": false,
@@ -185,8 +185,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T07:00:24.216993+09:00",
-      "next_run_at": "2026-07-06T07:00:00+09:00",
+      "last_run_at": "2026-07-06T07:00:26.578084+09:00",
+      "next_run_at": "2026-07-07T07:00:00+09:00",
       "schedule": "0 7 * * *",
       "script": "health_connect_morning_report.py",
       "no_agent": true,
@@ -227,8 +227,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T07:10:24.174291+09:00",
-      "next_run_at": "2026-07-05T07:20:24.174291+09:00",
+      "last_run_at": "2026-07-06T07:08:26.292696+09:00",
+      "next_run_at": "2026-07-06T07:18:26.292696+09:00",
       "schedule": "every 10m",
       "script": "ensure_hermes_dashboard.py",
       "no_agent": true,
@@ -277,10 +277,10 @@
       "name": "30gogo Toss snapshot sync",
       "job_id": "8d56630ae270",
       "enabled": true,
-      "last_status": "error",
-      "last_error": "Script exited with code 1\nstdout:\n30gogo Toss snapshot sync failed:\nTraceback (most recent call last):\n  File \"/Users/na/HermesProjects/finance-manager/toss_invest.py\", line 87, in token\n    data = _json_loads(urllib.request.urlopen(req, timeout=15).read())\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 216, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 525, in open\n    response = meth(req, response)\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 634, in http_response\n    response = self.parent.error(\n               ^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 563, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 496, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/Users/na/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/urllib/request.py\", line 643, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: Forbidden\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/Users/na/HermesProjects/30gogo-dashboard/toss_snapshot_sync.py\", line 458, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/Users/na/HermesProjects/30gogo-dashboard/toss_snapshot_sync.py\", line 423, in main\n    data = fetch_toss()\n           ^^^^^^^^^^^^\n  File \"/Users/na/HermesProjects/30gogo-dashboard/toss_snapshot_sync.py\", line 109, in fetch_toss\n    prices = {p.get(\"symbol\"): p for p in client.prices(symbols) if p.get(\"symbol\")}\n                                          ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/HermesProjects/finance-manager/toss_invest.py\", line 138, in prices\n    data = self.get('/api/v1/prices', {'symbols': ','.join(symbols[i:i+200])})\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/na/HermesProjects/finance-manager/toss_invest.py\", line 106, in get\n    'Authorization': f'Bearer {self.token()}',\n                               ^^^^^^^^^^^^\n  File \"/Users/na/HermesProjects/finance-manager/toss_invest.py\", line 90, in token\n    raise TossInvestError(f'token HTTP {e.code}: {detail}') from e\ntoss_invest.TossInvestError: token HTTP 403: {\"error\":\"access_denied\",\"error_description\":\"IP address not allowed\"}",
-      "last_run_at": "2026-07-05T07:00:24.467129+09:00",
-      "next_run_at": "2026-07-05T08:00:00+09:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_run_at": "2026-07-06T07:00:27.602122+09:00",
+      "next_run_at": "2026-07-06T08:00:00+09:00",
       "schedule": "0 * * * *",
       "script": "update_30gogo_toss_snapshot.sh",
       "no_agent": true,
@@ -293,8 +293,8 @@
       "enabled": true,
       "last_status": "ok",
       "last_error": null,
-      "last_run_at": "2026-07-05T07:08:23.980590+09:00",
-      "next_run_at": "2026-07-05T07:18:23.980590+09:00",
+      "last_run_at": "2026-07-06T07:04:25.819646+09:00",
+      "next_run_at": "2026-07-06T07:14:25.819646+09:00",
       "schedule": "every 10m",
       "script": "ensure_30gogo_runtime.py",
       "no_agent": true,
@@ -303,23 +303,25 @@
     }
   ],
   "active_jobs": 19,
-  "failed_jobs": 1,
-  "errors": [],
+  "failed_jobs": 0,
+  "errors": [
+    "2026-07-05 20:40:44,568 WARNING gateway.session: gateway.session: routing key 'agent:main:telegram:dm:8813876157' -> 20260704_103100_b49a3c is ended in state.db but still live in sessions.json; dropping stale entry and recovering/recreating"
+  ],
   "benchmarks": {
     "ai_ops": {
       "score": 98,
       "active_jobs": 19,
-      "ok_active_jobs": 18,
-      "cron_success_rate_pct": 94.7,
-      "attention_jobs": 1,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 367
+      "ok_active_jobs": 19,
+      "cron_success_rate_pct": 100.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 1,
+      "cron_runs_7d": 366
     },
     "task_conversion": {
-      "recording_notes_7d": 34,
+      "recording_notes_7d": 35,
       "task_candidates": 68,
-      "candidate_rate_pct": 200.0,
-      "call_pipeline_seen": 7404,
+      "candidate_rate_pct": 194.3,
+      "call_pipeline_seen": 7406,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -346,8 +348,8 @@
     },
     "roi": {
       "auto_items_7d": 469,
-      "estimated_minutes_saved_7d": 1475,
-      "estimated_hours_saved_7d": 24.6,
+      "estimated_minutes_saved_7d": 1480,
+      "estimated_hours_saved_7d": 24.7,
       "recording_runs_7d": 100,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -410,16 +412,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 34,
+  "call_recent_notes": 35,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-05T07:03:23",
-    "seen_count": 7404,
+    "last_run_at": "2026-07-06T07:10:26",
+    "seen_count": 7406,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-07-05T07:07:23",
+    "last_run_at": "2026-07-06T07:03:25",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -470,29 +472,19 @@
   "disk_line": "/dev/disk3s5   460Gi   119Gi   319Gi    28%    1.2M  3.3G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-05T07:10:28",
+    "scanned_at": "2026-07-06T07:10:31",
     "min_age_days": 7,
-    "candidates": 260,
-    "downloaded_candidates": 260,
-    "finder_evictable_candidates": 260,
-    "selected": 260,
-    "selected_bytes": 364817314,
+    "candidates": 261,
+    "downloaded_candidates": 261,
+    "finder_evictable_candidates": 261,
+    "selected": 261,
+    "selected_bytes": 365710499,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.18.0 (2026.7.1) · upstream 5445e42b",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 56 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.18.0 (2026.7.1) · upstream 605727e3",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 57 commits behind — run 'hermes update'",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-07T07:10:50",
-        "score": 80,
-        "cron_success_rate_pct": 80.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 1784,
-        "task_candidates": 18,
-        "roi_hours_7d": 107.5
-      },
       {
         "ts": "2026-06-08T07:10:58",
         "score": 80,
@@ -782,9 +774,29 @@
         "cron_runs_7d": 367,
         "task_candidates": 68,
         "roi_hours_7d": 24.6
+      },
+      {
+        "ts": "2026-07-06T07:10:32",
+        "score": 98,
+        "cron_success_rate_pct": 100.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 1,
+        "cron_runs_7d": 366,
+        "task_candidates": 68,
+        "roi_hours_7d": 24.7
       }
     ],
     "latest": {
+      "ts": "2026-07-06T07:10:32",
+      "score": 98,
+      "cron_success_rate_pct": 100.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 1,
+      "cron_runs_7d": 366,
+      "task_candidates": 68,
+      "roi_hours_7d": 24.7
+    },
+    "previous": {
       "ts": "2026-07-05T07:10:30",
       "score": 98,
       "cron_success_rate_pct": 94.7,
@@ -794,31 +806,21 @@
       "task_candidates": 68,
       "roi_hours_7d": 24.6
     },
-    "previous": {
-      "ts": "2026-07-04T07:10:42",
-      "score": 100,
-      "cron_success_rate_pct": 100.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 367,
-      "task_candidates": 66,
-      "roi_hours_7d": 24.0
-    },
     "score_delta": [
-      "-2",
-      "down"
-    ],
-    "success_delta": [
-      "-5.3%p",
-      "down"
-    ],
-    "attention_delta": [
-      "+1",
-      "up"
-    ],
-    "error_delta": [
       "±0",
       "flat"
+    ],
+    "success_delta": [
+      "+5.3%p",
+      "up"
+    ],
+    "attention_delta": [
+      "-1",
+      "down"
+    ],
+    "error_delta": [
+      "+1",
+      "up"
     ]
   }
 }
