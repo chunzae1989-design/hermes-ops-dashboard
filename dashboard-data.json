@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T07:10:37",
+  "generated_at": "2026-07-11T07:10:56",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -324,13 +324,13 @@
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 330
+      "cron_runs_7d": 319
     },
     "task_conversion": {
-      "recording_notes_7d": 45,
+      "recording_notes_7d": 43,
       "task_candidates": 90,
-      "candidate_rate_pct": 200.0,
-      "call_pipeline_seen": 7436,
+      "candidate_rate_pct": 209.3,
+      "call_pipeline_seen": 7443,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -353,12 +353,12 @@
         "KOSPI",
         "USD/KRW"
       ],
-      "last_briefing_outputs_7d": 2
+      "last_briefing_outputs_7d": 1
     },
     "roi": {
-      "auto_items_7d": 465,
-      "estimated_minutes_saved_7d": 1485,
-      "estimated_hours_saved_7d": 24.8,
+      "auto_items_7d": 452,
+      "estimated_minutes_saved_7d": 1436,
+      "estimated_hours_saved_7d": 23.9,
       "recording_runs_7d": 100,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -421,16 +421,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 45,
+  "call_recent_notes": 43,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-10T07:05:30",
-    "seen_count": 7436,
+    "last_run_at": "2026-07-11T07:07:49",
+    "seen_count": 7443,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-07-10T07:04:30",
+    "last_run_at": "2026-07-11T07:08:49",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -479,32 +479,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   122Gi   316Gi    28%    1.2M  3.3G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   123Gi   304Gi    29%    1.2M  3.2G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-10T07:10:35",
+    "scanned_at": "2026-07-11T07:10:54",
     "min_age_days": 7,
-    "candidates": 281,
-    "downloaded_candidates": 281,
-    "finder_evictable_candidates": 281,
-    "selected": 281,
-    "selected_bytes": 389074694,
+    "candidates": 290,
+    "downloaded_candidates": 290,
+    "finder_evictable_candidates": 290,
+    "selected": 290,
+    "selected_bytes": 410823280,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.18.0 (2026.7.1) · upstream e0ed5dc9",
-  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 335 commits behind — run 'hermes update'",
+  "hermes_version": "Hermes Agent v0.18.0 (2026.7.1) · upstream 8e3f9537",
+  "hermes_update": "Python: 3.11.15 / OpenAI SDK: 2.24.0 / Update available: 460 commits behind — run 'hermes update'",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-11T07:10:23",
-        "score": 80,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 2238,
-        "task_candidates": 24,
-        "roi_hours_7d": 117.6
-      },
       {
         "ts": "2026-06-12T07:10:22",
         "score": 80,
@@ -794,9 +784,29 @@
         "cron_runs_7d": 330,
         "task_candidates": 90,
         "roi_hours_7d": 24.8
+      },
+      {
+        "ts": "2026-07-11T07:10:56",
+        "score": 80,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 319,
+        "task_candidates": 90,
+        "roi_hours_7d": 23.9
       }
     ],
     "latest": {
+      "ts": "2026-07-11T07:10:56",
+      "score": 80,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 319,
+      "task_candidates": 90,
+      "roi_hours_7d": 23.9
+    },
+    "previous": {
       "ts": "2026-07-10T07:10:37",
       "score": 80,
       "cron_success_rate_pct": 0.0,
@@ -805,16 +815,6 @@
       "cron_runs_7d": 330,
       "task_candidates": 90,
       "roi_hours_7d": 24.8
-    },
-    "previous": {
-      "ts": "2026-07-09T07:10:26",
-      "score": 80,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 341,
-      "task_candidates": 90,
-      "roi_hours_7d": 25.6
     },
     "score_delta": [
       "±0",
