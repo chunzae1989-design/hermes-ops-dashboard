@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T07:10:10",
+  "generated_at": "2026-07-13T07:10:25",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -305,7 +305,6 @@
   "active_jobs": 0,
   "failed_jobs": 0,
   "errors": [
-    "2026-07-06 21:19:40,248 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-07-06 21:26:48,142 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-07-06 21:29:26,871 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-07-06 21:32:06,333 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
@@ -314,7 +313,8 @@
     "2026-07-06 21:44:26,461 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-07-06 21:46:58,745 WARNING [20260704_103100_b49a3c] agent.context_compressor: Failed to generate context summary: Codex auxiliary Responses stream exceeded 120.0s total timeout. Further summary attempts paused for 30 seconds.",
     "2026-07-06 21:47:04,814 ERROR [20260704_103100_b49a3c] agent.conversation_loop: Context length exceeded: 315,754 tokens. Cannot compress further.",
-    "2026-07-06 21:47:12,027 ERROR [20260704_103100_b49a3c] agent.conversation_loop: Context length exceeded: 315,832 tokens. Cannot compress further."
+    "2026-07-06 21:47:12,027 ERROR [20260704_103100_b49a3c] agent.conversation_loop: Context length exceeded: 315,832 tokens. Cannot compress further.",
+    "2026-07-12 23:17:47,031 ERROR hermes_cli.web_server: GET /api/model/options failed"
   ],
   "benchmarks": {
     "ai_ops": {
@@ -324,12 +324,12 @@
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
       "recent_error_lines": 10,
-      "cron_runs_7d": 301
+      "cron_runs_7d": 251
     },
     "task_conversion": {
-      "recording_notes_7d": 40,
+      "recording_notes_7d": 38,
       "task_candidates": 90,
-      "candidate_rate_pct": 225.0,
+      "candidate_rate_pct": 236.8,
       "call_pipeline_seen": 7444,
       "meeting_pipeline_seen": 2
     },
@@ -356,9 +356,9 @@
       "last_briefing_outputs_7d": 1
     },
     "roi": {
-      "auto_items_7d": 431,
-      "estimated_minutes_saved_7d": 1358,
-      "estimated_hours_saved_7d": 22.6,
+      "auto_items_7d": 379,
+      "estimated_minutes_saved_7d": 1192,
+      "estimated_hours_saved_7d": 19.9,
       "recording_runs_7d": 100,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -421,16 +421,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 40,
+  "call_recent_notes": 38,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-12T07:04:02",
+    "last_run_at": "2026-07-13T07:09:19",
     "seen_count": 7444,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-07-12T07:04:02",
+    "last_run_at": "2026-07-13T07:09:19",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -482,29 +482,19 @@
   "disk_line": "/dev/disk3s5   460Gi   123Gi   304Gi    29%    1.2M  3.2G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-12T07:10:09",
+    "scanned_at": "2026-07-13T07:10:24",
     "min_age_days": 7,
-    "candidates": 294,
-    "downloaded_candidates": 294,
-    "finder_evictable_candidates": 294,
-    "selected": 294,
-    "selected_bytes": 414622013,
+    "candidates": 296,
+    "downloaded_candidates": 296,
+    "finder_evictable_candidates": 296,
+    "selected": 296,
+    "selected_bytes": 414990425,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.18.2 (2026.7.7.2) · upstream c5529845",
+  "hermes_version": "Hermes Agent v0.18.2 (2026.7.7.2) · upstream 7b5ba205",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-13T07:10:56",
-        "score": 80,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 2340,
-        "task_candidates": 31,
-        "roi_hours_7d": 121.8
-      },
       {
         "ts": "2026-06-14T07:10:27",
         "score": 80,
@@ -794,9 +784,29 @@
         "cron_runs_7d": 301,
         "task_candidates": 90,
         "roi_hours_7d": 22.6
+      },
+      {
+        "ts": "2026-07-13T07:10:25",
+        "score": 80,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 251,
+        "task_candidates": 90,
+        "roi_hours_7d": 19.9
       }
     ],
     "latest": {
+      "ts": "2026-07-13T07:10:25",
+      "score": 80,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 251,
+      "task_candidates": 90,
+      "roi_hours_7d": 19.9
+    },
+    "previous": {
       "ts": "2026-07-12T07:10:10",
       "score": 80,
       "cron_success_rate_pct": 0.0,
@@ -805,16 +815,6 @@
       "cron_runs_7d": 301,
       "task_candidates": 90,
       "roi_hours_7d": 22.6
-    },
-    "previous": {
-      "ts": "2026-07-11T07:10:56",
-      "score": 80,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 319,
-      "task_candidates": 90,
-      "roi_hours_7d": 23.9
     },
     "score_delta": [
       "±0",
