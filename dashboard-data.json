@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T07:11:09",
+  "generated_at": "2026-07-16T07:10:28",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -318,10 +318,10 @@
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 38,
+      "recording_notes_7d": 36,
       "task_candidates": 96,
-      "candidate_rate_pct": 252.6,
-      "call_pipeline_seen": 7467,
+      "candidate_rate_pct": 266.7,
+      "call_pipeline_seen": 7469,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -347,9 +347,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 134,
-      "estimated_minutes_saved_7d": 448,
-      "estimated_hours_saved_7d": 7.5,
+      "auto_items_7d": 132,
+      "estimated_minutes_saved_7d": 432,
+      "estimated_hours_saved_7d": 7.2,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -412,16 +412,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 38,
+  "call_recent_notes": 36,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-15T07:09:59",
-    "seen_count": 7467,
+    "last_run_at": "2026-07-16T07:08:19",
+    "seen_count": 7469,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-07-15T07:02:58",
+    "last_run_at": "2026-07-16T07:09:19",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -470,32 +470,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   124Gi   302Gi    30%    1.2M  3.2G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   124Gi   303Gi    30%    1.2M  3.2G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-15T07:11:05",
+    "scanned_at": "2026-07-16T07:10:25",
     "min_age_days": 7,
-    "candidates": 319,
-    "downloaded_candidates": 319,
-    "finder_evictable_candidates": 319,
+    "candidates": 323,
+    "downloaded_candidates": 323,
+    "finder_evictable_candidates": 323,
     "selected": 300,
-    "selected_bytes": 468029971,
+    "selected_bytes": 470459656,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.18.2 (2026.7.7.2) · upstream 658c0112",
+  "hermes_version": "Hermes Agent v0.18.2 (2026.7.7.2) · upstream df5700eb",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-16T07:10:44",
-        "score": 80,
-        "cron_success_rate_pct": 94.1,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 2700,
-        "task_candidates": 42,
-        "roi_hours_7d": 141.2
-      },
       {
         "ts": "2026-06-17T07:11:00",
         "score": 80,
@@ -785,9 +775,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 96,
         "roi_hours_7d": 7.5
+      },
+      {
+        "ts": "2026-07-16T07:10:28",
+        "score": 98,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 1,
+        "cron_runs_7d": 0,
+        "task_candidates": 96,
+        "roi_hours_7d": 7.2
       }
     ],
     "latest": {
+      "ts": "2026-07-16T07:10:28",
+      "score": 98,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 1,
+      "cron_runs_7d": 0,
+      "task_candidates": 96,
+      "roi_hours_7d": 7.2
+    },
+    "previous": {
       "ts": "2026-07-15T07:11:09",
       "score": 98,
       "cron_success_rate_pct": 0.0,
@@ -795,16 +805,6 @@
       "recent_error_lines": 1,
       "cron_runs_7d": 0,
       "task_candidates": 96,
-      "roi_hours_7d": 7.5
-    },
-    "previous": {
-      "ts": "2026-07-14T07:10:48",
-      "score": 98,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 1,
-      "cron_runs_7d": 0,
-      "task_candidates": 91,
       "roi_hours_7d": 7.5
     },
     "score_delta": [
