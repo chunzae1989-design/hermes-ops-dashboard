@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T07:10:27",
+  "generated_at": "2026-07-24T07:10:41",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -304,33 +304,22 @@
   ],
   "active_jobs": 0,
   "failed_jobs": 0,
-  "errors": [
-    "2026-07-16 21:40:36,236 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:37,499 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:37,882 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:38,029 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:38,171 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:38,314 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:38,454 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:38,585 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:40:52,820 ERROR hermes_cli.web_server: GET /api/model/options failed",
-    "2026-07-16 21:50:58,680 ERROR hermes_cli.web_server: GET /api/model/options failed"
-  ],
+  "errors": [],
   "benchmarks": {
     "ai_ops": {
-      "score": 80,
+      "score": 100,
       "active_jobs": 0,
       "ok_active_jobs": 0,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
-      "recent_error_lines": 10,
+      "recent_error_lines": 0,
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 15,
+      "recording_notes_7d": 13,
       "task_candidates": 98,
-      "candidate_rate_pct": 653.3,
-      "call_pipeline_seen": 7484,
+      "candidate_rate_pct": 753.8,
+      "call_pipeline_seen": 7488,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -356,9 +345,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 113,
-      "estimated_minutes_saved_7d": 267,
-      "estimated_hours_saved_7d": 4.5,
+      "auto_items_7d": 111,
+      "estimated_minutes_saved_7d": 251,
+      "estimated_hours_saved_7d": 4.2,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -421,16 +410,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 15,
+  "call_recent_notes": 13,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-23T07:08:16",
-    "seen_count": 7484,
+    "last_run_at": "2026-07-24T07:08:31",
+    "seen_count": 7488,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-07-23T07:02:15",
+    "last_run_at": "2026-07-24T07:08:31",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -483,29 +472,19 @@
   "disk_line": "/dev/disk3s5   460Gi   127Gi   299Gi    30%    1.2M  3.1G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-23T07:10:23",
+    "scanned_at": "2026-07-24T07:10:38",
     "min_age_days": 7,
-    "candidates": 359,
-    "downloaded_candidates": 359,
-    "finder_evictable_candidates": 359,
+    "candidates": 365,
+    "downloaded_candidates": 365,
+    "finder_evictable_candidates": 365,
     "selected": 300,
-    "selected_bytes": 530381819,
+    "selected_bytes": 532982693,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 8967e73e",
+  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 8e013099",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-22T07:10:38",
-        "score": 80,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 3403,
-        "task_candidates": 53,
-        "roi_hours_7d": 178.4
-      },
       {
         "ts": "2026-06-23T07:10:34",
         "score": 80,
@@ -795,9 +774,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 98,
         "roi_hours_7d": 4.5
+      },
+      {
+        "ts": "2026-07-24T07:10:41",
+        "score": 100,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 0,
+        "cron_runs_7d": 0,
+        "task_candidates": 98,
+        "roi_hours_7d": 4.2
       }
     ],
     "latest": {
+      "ts": "2026-07-24T07:10:41",
+      "score": 100,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 0,
+      "cron_runs_7d": 0,
+      "task_candidates": 98,
+      "roi_hours_7d": 4.2
+    },
+    "previous": {
       "ts": "2026-07-23T07:10:27",
       "score": 80,
       "cron_success_rate_pct": 0.0,
@@ -807,19 +806,9 @@
       "task_candidates": 98,
       "roi_hours_7d": 4.5
     },
-    "previous": {
-      "ts": "2026-07-22T07:11:08",
-      "score": 80,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 0,
-      "task_candidates": 98,
-      "roi_hours_7d": 4.6
-    },
     "score_delta": [
-      "±0",
-      "flat"
+      "+20",
+      "up"
     ],
     "success_delta": [
       "±0%p",
@@ -830,8 +819,8 @@
       "flat"
     ],
     "error_delta": [
-      "±0",
-      "flat"
+      "-10",
+      "down"
     ]
   }
 }
