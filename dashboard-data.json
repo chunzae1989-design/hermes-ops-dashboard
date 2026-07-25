@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T07:11:00",
+  "generated_at": "2026-07-26T07:10:12",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -319,7 +319,7 @@
       "recording_notes_7d": 40,
       "task_candidates": 107,
       "candidate_rate_pct": 267.5,
-      "call_pipeline_seen": 7515,
+      "call_pipeline_seen": 7516,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -413,13 +413,13 @@
   "call_recent_notes": 40,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-25T07:03:46",
-    "seen_count": 7515,
+    "last_run_at": "2026-07-26T07:04:02",
+    "seen_count": 7516,
     "failed_count": 0,
-    "transient_failure_count": 0
+    "transient_failure_count": 1
   },
   "meeting_state": {
-    "last_run_at": "2026-07-25T07:09:47",
+    "last_run_at": "2026-07-26T07:09:03",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -472,16 +472,16 @@
   "disk_line": "/dev/disk3s5   460Gi   128Gi   297Gi    31%    1.2M  3.1G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-25T07:10:54",
+    "scanned_at": "2026-07-26T07:10:10",
     "min_age_days": 7,
-    "candidates": 365,
-    "downloaded_candidates": 365,
-    "finder_evictable_candidates": 365,
+    "candidates": 366,
+    "downloaded_candidates": 366,
+    "finder_evictable_candidates": 366,
     "selected": 300,
-    "selected_bytes": 532982693,
+    "selected_bytes": 533913363,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 5be99b6f",
+  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 6ad632bf",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
@@ -776,7 +776,7 @@
         "roi_hours_7d": 4.2
       },
       {
-        "ts": "2026-07-25T07:11:00",
+        "ts": "2026-07-26T07:10:12",
         "score": 100,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -787,7 +787,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-07-25T07:11:00",
+      "ts": "2026-07-26T07:10:12",
       "score": 100,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
