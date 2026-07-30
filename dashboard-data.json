@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T07:10:31",
+  "generated_at": "2026-07-31T07:10:48",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -316,9 +316,9 @@
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 32,
+      "recording_notes_7d": 28,
       "task_candidates": 107,
-      "candidate_rate_pct": 334.4,
+      "candidate_rate_pct": 382.1,
       "call_pipeline_seen": 7516,
       "meeting_pipeline_seen": 2
     },
@@ -345,9 +345,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 139,
-      "estimated_minutes_saved_7d": 416,
-      "estimated_hours_saved_7d": 6.9,
+      "auto_items_7d": 135,
+      "estimated_minutes_saved_7d": 384,
+      "estimated_hours_saved_7d": 6.4,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -410,16 +410,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 32,
+  "call_recent_notes": 28,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-07-30T07:05:18",
+    "last_run_at": "2026-07-31T07:10:38",
     "seen_count": 7516,
     "failed_count": 0,
     "transient_failure_count": 1
   },
   "meeting_state": {
-    "last_run_at": "2026-07-30T07:02:17",
+    "last_run_at": "2026-07-31T07:07:37",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -469,32 +469,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   128Gi   297Gi    31%    1.2M  3.1G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   130Gi   294Gi    31%    1.3M  3.1G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-07-30T07:10:26",
+    "scanned_at": "2026-07-31T07:10:45",
     "min_age_days": 7,
-    "candidates": 374,
-    "downloaded_candidates": 374,
-    "finder_evictable_candidates": 374,
+    "candidates": 378,
+    "downloaded_candidates": 378,
+    "finder_evictable_candidates": 378,
     "selected": 300,
-    "selected_bytes": 536029818,
+    "selected_bytes": 540168374,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream ed5fd350",
+  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 1f70ba6b",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-27T07:10:54",
-        "score": 78,
-        "cron_success_rate_pct": 94.4,
-        "attention_jobs": 1,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 3492,
-        "task_candidates": 62,
-        "roi_hours_7d": 182.3
-      },
       {
         "ts": "2026-06-28T07:10:53",
         "score": 78,
@@ -784,9 +774,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 107,
         "roi_hours_7d": 6.9
+      },
+      {
+        "ts": "2026-07-31T07:10:48",
+        "score": 100,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 0,
+        "cron_runs_7d": 0,
+        "task_candidates": 107,
+        "roi_hours_7d": 6.4
       }
     ],
     "latest": {
+      "ts": "2026-07-31T07:10:48",
+      "score": 100,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 0,
+      "cron_runs_7d": 0,
+      "task_candidates": 107,
+      "roi_hours_7d": 6.4
+    },
+    "previous": {
       "ts": "2026-07-30T07:10:31",
       "score": 100,
       "cron_success_rate_pct": 0.0,
@@ -795,16 +805,6 @@
       "cron_runs_7d": 0,
       "task_candidates": 107,
       "roi_hours_7d": 6.9
-    },
-    "previous": {
-      "ts": "2026-07-29T07:10:57",
-      "score": 100,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 0,
-      "task_candidates": 107,
-      "roi_hours_7d": 7.1
     },
     "score_delta": [
       "±0",
