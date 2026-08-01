@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T07:10:23",
+  "generated_at": "2026-08-02T07:10:28",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -316,9 +316,9 @@
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 1,
+      "recording_notes_7d": 0,
       "task_candidates": 107,
-      "candidate_rate_pct": 10700.0,
+      "candidate_rate_pct": 0.0,
       "call_pipeline_seen": 7516,
       "meeting_pipeline_seen": 2
     },
@@ -345,9 +345,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 108,
-      "estimated_minutes_saved_7d": 168,
-      "estimated_hours_saved_7d": 2.8,
+      "auto_items_7d": 107,
+      "estimated_minutes_saved_7d": 160,
+      "estimated_hours_saved_7d": 2.7,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -410,16 +410,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 1,
+  "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-08-01T07:06:13",
+    "last_run_at": "2026-08-02T07:03:09",
     "seen_count": 7516,
     "failed_count": 0,
     "transient_failure_count": 1
   },
   "meeting_state": {
-    "last_run_at": "2026-08-01T07:02:12",
+    "last_run_at": "2026-08-02T07:09:10",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -472,29 +472,19 @@
   "disk_line": "/dev/disk3s5   460Gi   135Gi   288Gi    32%    1.3M  3.0G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-08-01T07:10:20",
+    "scanned_at": "2026-08-02T07:10:18",
     "min_age_days": 7,
-    "candidates": 405,
-    "downloaded_candidates": 405,
-    "finder_evictable_candidates": 405,
+    "candidates": 406,
+    "downloaded_candidates": 406,
+    "finder_evictable_candidates": 406,
     "selected": 300,
-    "selected_bytes": 564029479,
+    "selected_bytes": 564426555,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.19.0 (2026.7.20) · upstream 5d6aae02",
+  "hermes_version": "Hermes Agent v0.19.1 (2026.7.30) · upstream 18627ff0",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-06-29T07:11:07",
-        "score": 80,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 357,
-        "task_candidates": 62,
-        "roi_hours_7d": 25.7
-      },
       {
         "ts": "2026-06-30T07:10:19",
         "score": 80,
@@ -784,9 +774,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 107,
         "roi_hours_7d": 2.8
+      },
+      {
+        "ts": "2026-08-02T07:10:28",
+        "score": 100,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 0,
+        "cron_runs_7d": 0,
+        "task_candidates": 107,
+        "roi_hours_7d": 2.7
       }
     ],
     "latest": {
+      "ts": "2026-08-02T07:10:28",
+      "score": 100,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 0,
+      "cron_runs_7d": 0,
+      "task_candidates": 107,
+      "roi_hours_7d": 2.7
+    },
+    "previous": {
       "ts": "2026-08-01T07:10:23",
       "score": 100,
       "cron_success_rate_pct": 0.0,
@@ -795,16 +805,6 @@
       "cron_runs_7d": 0,
       "task_candidates": 107,
       "roi_hours_7d": 2.8
-    },
-    "previous": {
-      "ts": "2026-07-31T07:10:48",
-      "score": 100,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 0,
-      "task_candidates": 107,
-      "roi_hours_7d": 6.4
     },
     "score_delta": [
       "±0",
