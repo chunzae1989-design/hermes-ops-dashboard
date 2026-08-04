@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T07:10:27",
+  "generated_at": "2026-08-05T07:10:45",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -413,13 +413,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-08-04T07:06:16",
+    "last_run_at": "2026-08-05T07:02:35",
     "seen_count": 7516,
     "failed_count": 0,
     "transient_failure_count": 1
   },
   "meeting_state": {
-    "last_run_at": "2026-08-04T07:02:15",
+    "last_run_at": "2026-08-05T07:08:36",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -472,7 +472,7 @@
   "disk_line": "/dev/disk3s5   460Gi   134Gi   289Gi    32%    1.3M  3.0G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-08-04T07:10:24",
+    "scanned_at": "2026-08-05T07:10:43",
     "min_age_days": 7,
     "candidates": 406,
     "downloaded_candidates": 406,
@@ -481,7 +481,7 @@
     "selected_bytes": 564426555,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.19.1 (2026.7.30) · upstream e7aa06c3",
+  "hermes_version": "Hermes Agent v0.19.1 (2026.7.30) · upstream a991dfc2",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
@@ -776,7 +776,7 @@
         "roi_hours_7d": 2.8
       },
       {
-        "ts": "2026-08-04T07:10:27",
+        "ts": "2026-08-05T07:10:45",
         "score": 100,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -787,7 +787,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-08-04T07:10:27",
+      "ts": "2026-08-05T07:10:45",
       "score": 100,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
