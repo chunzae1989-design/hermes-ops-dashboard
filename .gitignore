@@ -1,0 +1,6 @@
+# Local design explorations and generated browser proofs
+design-poc/
+
+# Python bytecode
+__pycache__/
+*.pyc
