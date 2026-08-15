@@ -2,55 +2,48 @@
   "theme": {
     "extend": {
       "colors": {
-        "background": "#041c1c",
-        "primary": "#ffe6cb",
-        "secondary": "#ffbd38",
-        "accent": "#34d399",
-        "info": "#6ee7f9",
-        "danger": "#fb7185",
-        "purple": "#c4b5fd",
-        "terminal": "#020808",
-        "card": "#102928",
-        "cardStrong": "#203734",
-        "rail": "#0a2222",
-        "border": "#35514d"
+        "background": "#eef1ec",
+        "primary": "#13201c",
+        "secondary": "#b83d29",
+        "accent": "#196448",
+        "neutral": "#fffdf7",
+        "muted": "#46514c",
+        "line": "#c1c7c0",
+        "warm": "#ead2b4"
       },
       "fontFamily": {
         "display": [
-          "Arial Narrow, Apple SD Gothic Neo, Malgun Gothic, system-ui, sans-serif"
+          "Avenir Next, Pretendard Variable, Apple SD Gothic Neo, system-ui, sans-serif"
         ],
         "headline": [
-          "system-ui, -apple-system, Apple SD Gothic Neo, Malgun Gothic, Segoe UI, sans-serif"
+          "Avenir Next, Apple SD Gothic Neo, system-ui, sans-serif"
         ],
         "body": [
-          "system-ui, -apple-system, Apple SD Gothic Neo, Malgun Gothic, Segoe UI, sans-serif"
+          "Avenir Next, Apple SD Gothic Neo, system-ui, sans-serif"
         ],
         "label": [
-          "ui-monospace, SF Mono, JetBrains Mono, Menlo, Consolas, monospace"
-        ],
-        "mono": [
-          "ui-monospace, SF Mono, JetBrains Mono, Menlo, Consolas, monospace"
+          "SF Mono, ui-monospace, monospace"
         ]
       },
       "fontSize": {
         "display": [
-          "96px",
+          "9rem",
           {
-            "lineHeight": "0.82",
-            "letterSpacing": "-0.085em",
+            "lineHeight": "0.72",
+            "letterSpacing": "-0.08em",
             "fontWeight": "900"
           }
         ],
         "headline": [
-          "44px",
+          "2.5rem",
           {
-            "lineHeight": "0.95",
-            "letterSpacing": "-0.06em",
-            "fontWeight": "850"
+            "lineHeight": "1",
+            "letterSpacing": "-0.05em",
+            "fontWeight": "800"
           }
         ],
         "body": [
-          "15px",
+          "1rem",
           {
             "lineHeight": "1.55",
             "letterSpacing": "-0.01em",
@@ -58,42 +51,26 @@
           }
         ],
         "label": [
-          "11px",
+          "0.6875rem",
           {
             "lineHeight": "1.2",
-            "letterSpacing": "0.16em",
-            "fontWeight": "700"
-          }
-        ],
-        "mono": [
-          "12px",
-          {
-            "lineHeight": "1.45",
-            "letterSpacing": "-0.01em",
-            "fontWeight": "500"
+            "letterSpacing": "0.13em",
+            "fontWeight": "750"
           }
         ]
       },
       "borderRadius": {
         "none": "0px",
-        "small": "8px",
-        "medium": "14px",
-        "large": "22px",
-        "xlarge": "34px",
+        "subtle": "2px",
         "pill": "999px"
       },
       "spacing": {
         "none": "0px",
-        "unit": "4px",
         "xs": "6px",
         "sm": "10px",
         "md": "16px",
         "lg": "24px",
-        "xl": "36px",
-        "xxl": "56px",
-        "railWidth": "88px",
-        "sidebarWidth": "292px",
-        "contentMaxWidth": "1480px"
+        "xl": "38px"
       }
     }
   }

@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+from exception_first_theme import apply_exception_first
+
 HOME = Path('/Users/na')
 PROJECT = HOME / 'HermesProjects' / 'hermes-ops-dashboard'
 HERMES_HOME = HOME / '.hermes'
@@ -470,11 +472,11 @@ def collect() -> dict[str, Any]:
 
 
 def render(data: dict[str, Any]) -> str:
-    """Render a public-safe Hermes teal command-center dashboard.
+    """Render the public-safe Hermes Exception First dashboard.
 
-    The layout intentionally follows DESIGN.md rather than the earlier
-    GitHub-dark card grid: fixed icon rail, mission panel, editorial hero,
-    dense telemetry ribbon, dispatch board, terminal/log motifs.
+    Data and semantic markup stay in this generator. The selected production
+    theme is applied at the output boundary so cron refreshes preserve the
+    design without coupling collection logic to presentation tokens.
     """
     jobs = data['jobs']
     failed_jobs = [j for j in jobs if j.get('enabled') and j.get('last_status') not in (None, 'ok')]
@@ -700,7 +702,7 @@ table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} t
         <div class='brand-title'>Hermes<br>Ops</div>
       </div>
       <div class='mission-note'><b>Public-safe mirror</b><br>GitHub Pages에는 회의/통화 원문·파일명·인용문 없이 운영 지표만 표시.</div>
-      <div class='mission-note'><b>Design mode</b><br>Teal command center · rail + mission panel + cockpit modules.</div>
+      <div class='mission-note'><b>Design mode</b><br>Exception-first editorial · mission rail + action canvas.</div>
       <div class='meta-stack'>
         <div class='meta-row'><span>generated</span><b>{esc(data['generated_at'])}</b></div>
         <div class='meta-row'><span>version</span><b>{esc(data['hermes_version'].replace('Hermes Agent ', ''))}</b></div>
@@ -715,9 +717,8 @@ table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} t
     <section class='hero' id='overview'>
       <div class='hero-grid'>
         <div>
-          <div class='label'>Hermes Agent Operations</div>
-          <h1>OPS /<br>HERMES</h1>
-          <div class='hero-sub'>Mac mini 기반 AI 운영 관제판. Cron, 녹음 파이프라인, 멀티에이전트, Daily Insight, Finance 지표를 공개-safe 형태로 미러링.</div>
+          <h1>ACT /<br>NOW</h1>
+          <div class='hero-sub'>운영 이상과 다음 조치를 먼저 보여주는 편집형 관제판. Cron, 녹음 파이프라인, 멀티에이전트와 공개-safe 지표를 한 화면에서 점검합니다.</div>
           <div class='command'>public_safe=true · source=aggregated_metrics · private_content=redacted</div>
         </div>
         <div class='status-dial'>
@@ -801,7 +802,7 @@ table{{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}} t
 </div>
 </body>
 </html>"""
-    return html_doc
+    return apply_exception_first(html_doc)
 
 def main() -> int:
     PROJECT.mkdir(parents=True, exist_ok=True)
