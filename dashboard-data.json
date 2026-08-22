@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T07:10:53",
+  "generated_at": "2026-08-23T07:10:22",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -413,13 +413,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-08-22T07:01:44",
+    "last_run_at": "2026-08-23T07:09:13",
     "seen_count": 7516,
     "failed_count": 0,
     "transient_failure_count": 1
   },
   "meeting_state": {
-    "last_run_at": "2026-08-22T07:09:45",
+    "last_run_at": "2026-08-23T07:07:12",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -469,10 +469,10 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   152Gi   270Gi    37%    1.7M  2.8G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   152Gi   269Gi    37%    1.7M  2.8G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-08-22T07:10:53",
+    "scanned_at": "2026-08-23T07:10:20",
     "min_age_days": 7,
     "candidates": 406,
     "downloaded_candidates": 406,
@@ -481,8 +481,8 @@
     "selected_bytes": 564426555,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.20.2 (2026.8.16)",
-  "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Python: 3.11.15 / OpenAI SDK: 2.24.0",
+  "hermes_version": "Hermes Agent v0.20.5 (2026.8.19) · upstream 7d6db4ef",
+  "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
       {
@@ -776,7 +776,7 @@
         "roi_hours_7d": 2.8
       },
       {
-        "ts": "2026-08-22T07:10:53",
+        "ts": "2026-08-23T07:10:22",
         "score": 100,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -787,7 +787,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-08-22T07:10:53",
+      "ts": "2026-08-23T07:10:22",
       "score": 100,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
