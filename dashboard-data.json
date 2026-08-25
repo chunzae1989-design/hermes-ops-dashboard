@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T07:10:28",
+  "generated_at": "2026-08-26T07:10:14",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -304,22 +304,28 @@
   ],
   "active_jobs": 0,
   "failed_jobs": 0,
-  "errors": [],
+  "errors": [
+    "2026-08-25 13:00:02,146 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-25 15:46:07,678 ERROR cron.scheduler: Job '4ea6aab46e6d': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-25 16:07:43,781 WARNING [cron_3de2266f9829_20260825_155506] agent.tool_executor: Tool terminal returned error (90.28s): {\"output\": \"Trying to load the allocator multiple times. This is *not* supported.\\n[45241:75307022:0825/160619.8",
+    "2026-08-25 16:08:28,391 ERROR cron.scheduler: Job '3de2266f9829': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-25 19:03:36,462 ERROR cron.scheduler: Job '7da7537c58fd': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)"
+  ],
   "benchmarks": {
     "ai_ops": {
-      "score": 100,
+      "score": 90,
       "active_jobs": 0,
       "ok_active_jobs": 0,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
-      "recent_error_lines": 0,
+      "recent_error_lines": 5,
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 142,
-      "task_candidates": 140,
-      "candidate_rate_pct": 98.6,
-      "call_pipeline_seen": 7656,
+      "recording_notes_7d": 145,
+      "task_candidates": 141,
+      "candidate_rate_pct": 97.2,
+      "call_pipeline_seen": 7659,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -345,9 +351,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 282,
-      "estimated_minutes_saved_7d": 1346,
-      "estimated_hours_saved_7d": 22.4,
+      "auto_items_7d": 286,
+      "estimated_minutes_saved_7d": 1372,
+      "estimated_hours_saved_7d": 22.9,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -410,31 +416,31 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 142,
+  "call_recent_notes": 145,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-08-25T07:04:26",
-    "seen_count": 7656,
+    "last_run_at": "2026-08-26T07:06:51",
+    "seen_count": 7659,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-08-25T07:00:53",
+    "last_run_at": "2026-08-26T07:02:28",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
   },
-  "pending_call_tasks": 126,
+  "pending_call_tasks": 127,
   "pending_meeting_tasks": 14,
   "task_summaries": [
     {
       "source": "통화",
-      "count": 126,
+      "count": 127,
       "status_counts": {
-        "pending_approval": 126
+        "pending_approval": 127
       },
       "due_hint_counts": {
-        "기한 없음": 97,
+        "기한 없음": 98,
         "오늘": 16,
         "오늘, 다음 주": 1,
         "6/16 이전": 1,
@@ -448,7 +454,7 @@
         "다음 주": 1,
         "금요일": 1
       },
-      "newest_created_at": "2026-08-24T20:28:29"
+      "newest_created_at": "2026-08-25T14:47:28"
     },
     {
       "source": "회의",
@@ -472,32 +478,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   155Gi   265Gi    37%    1.8M  2.8G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   155Gi   266Gi    37%    1.8M  2.8G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-08-25T07:10:27",
+    "scanned_at": "2026-08-26T07:10:13",
     "min_age_days": 7,
-    "candidates": 516,
-    "downloaded_candidates": 516,
-    "finder_evictable_candidates": 516,
+    "candidates": 520,
+    "downloaded_candidates": 520,
+    "finder_evictable_candidates": 520,
     "selected": 300,
     "selected_bytes": 699193859,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.20.5 (2026.8.19) · upstream d2a095df",
+  "hermes_version": "Hermes Agent v0.20.5 (2026.8.19) · upstream 95668f5e",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-07-02T07:11:04",
-        "score": 80,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 366,
-        "task_candidates": 63,
-        "roi_hours_7d": 25.2
-      },
       {
         "ts": "2026-07-03T07:10:25",
         "score": 80,
@@ -787,9 +783,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 140,
         "roi_hours_7d": 22.4
+      },
+      {
+        "ts": "2026-08-26T07:10:14",
+        "score": 90,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 5,
+        "cron_runs_7d": 0,
+        "task_candidates": 141,
+        "roi_hours_7d": 22.9
       }
     ],
     "latest": {
+      "ts": "2026-08-26T07:10:14",
+      "score": 90,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 5,
+      "cron_runs_7d": 0,
+      "task_candidates": 141,
+      "roi_hours_7d": 22.9
+    },
+    "previous": {
       "ts": "2026-08-25T07:10:28",
       "score": 100,
       "cron_success_rate_pct": 0.0,
@@ -799,19 +815,9 @@
       "task_candidates": 140,
       "roi_hours_7d": 22.4
     },
-    "previous": {
-      "ts": "2026-08-24T07:10:11",
-      "score": 100,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 0,
-      "task_candidates": 124,
-      "roi_hours_7d": 12.0
-    },
     "score_delta": [
-      "±0",
-      "flat"
+      "-10",
+      "down"
     ],
     "success_delta": [
       "±0%p",
@@ -822,8 +828,8 @@
       "flat"
     ],
     "error_delta": [
-      "±0",
-      "flat"
+      "+5",
+      "up"
     ]
   }
 }
