@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T07:10:14",
+  "generated_at": "2026-08-28T07:10:19",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -305,29 +305,32 @@
   "active_jobs": 0,
   "failed_jobs": 0,
   "errors": [
-    "2026-08-25 13:00:02,146 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-25 15:46:07,678 ERROR cron.scheduler: Job '4ea6aab46e6d': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-25 16:07:43,781 WARNING [cron_3de2266f9829_20260825_155506] agent.tool_executor: Tool terminal returned error (90.28s): {\"output\": \"Trying to load the allocator multiple times. This is *not* supported.\\n[45241:75307022:0825/160619.8",
     "2026-08-25 16:08:28,391 ERROR cron.scheduler: Job '3de2266f9829': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-25 19:03:36,462 ERROR cron.scheduler: Job '7da7537c58fd': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-27 06:40:19,597 ERROR cron.scheduler: Job '3eebbd825d2b': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
-    "2026-08-27 07:00:03,329 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)"
+    "2026-08-27 07:00:03,329 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-27 07:22:46,773 ERROR cron.scheduler: Job 'b2f981964ea3': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-27 08:00:05,131 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-27 09:00:06,585 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
+    "2026-08-27 09:00:07,964 ERROR cron.scheduler: Job 'bdcfdbb4676d': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)"
   ],
   "benchmarks": {
     "ai_ops": {
-      "score": 86,
+      "score": 80,
       "active_jobs": 0,
       "ok_active_jobs": 0,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
-      "recent_error_lines": 7,
+      "recent_error_lines": 10,
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 148,
+      "recording_notes_7d": 155,
       "task_candidates": 143,
-      "candidate_rate_pct": 96.6,
-      "call_pipeline_seen": 7662,
+      "candidate_rate_pct": 92.3,
+      "call_pipeline_seen": 7669,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -353,9 +356,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 291,
-      "estimated_minutes_saved_7d": 1398,
-      "estimated_hours_saved_7d": 23.3,
+      "auto_items_7d": 298,
+      "estimated_minutes_saved_7d": 1454,
+      "estimated_hours_saved_7d": 24.2,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -418,16 +421,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 148,
+  "call_recent_notes": 155,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-08-27T07:08:21",
-    "seen_count": 7662,
+    "last_run_at": "2026-08-28T07:08:48",
+    "seen_count": 7669,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-08-27T07:04:02",
+    "last_run_at": "2026-08-28T07:05:08",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -480,32 +483,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   155Gi   266Gi    37%    1.8M  2.8G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   155Gi   262Gi    38%    1.8M  2.7G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-08-27T07:10:13",
+    "scanned_at": "2026-08-28T07:10:18",
     "min_age_days": 7,
-    "candidates": 522,
-    "downloaded_candidates": 522,
-    "finder_evictable_candidates": 522,
+    "candidates": 529,
+    "downloaded_candidates": 529,
+    "finder_evictable_candidates": 529,
     "selected": 300,
-    "selected_bytes": 699647304,
+    "selected_bytes": 704358023,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.20.5 (2026.8.19) · upstream b3e477f3",
+  "hermes_version": "Hermes Agent v0.20.5 (2026.8.19) · upstream 10b38830",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-07-04T07:10:42",
-        "score": 100,
-        "cron_success_rate_pct": 100.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 0,
-        "cron_runs_7d": 367,
-        "task_candidates": 66,
-        "roi_hours_7d": 24.0
-      },
       {
         "ts": "2026-07-05T07:10:30",
         "score": 98,
@@ -795,9 +788,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 143,
         "roi_hours_7d": 23.3
+      },
+      {
+        "ts": "2026-08-28T07:10:19",
+        "score": 80,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 10,
+        "cron_runs_7d": 0,
+        "task_candidates": 143,
+        "roi_hours_7d": 24.2
       }
     ],
     "latest": {
+      "ts": "2026-08-28T07:10:19",
+      "score": 80,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 10,
+      "cron_runs_7d": 0,
+      "task_candidates": 143,
+      "roi_hours_7d": 24.2
+    },
+    "previous": {
       "ts": "2026-08-27T07:10:14",
       "score": 86,
       "cron_success_rate_pct": 0.0,
@@ -807,18 +820,8 @@
       "task_candidates": 143,
       "roi_hours_7d": 23.3
     },
-    "previous": {
-      "ts": "2026-08-26T07:10:14",
-      "score": 90,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 5,
-      "cron_runs_7d": 0,
-      "task_candidates": 141,
-      "roi_hours_7d": 22.9
-    },
     "score_delta": [
-      "-4",
+      "-6",
       "down"
     ],
     "success_delta": [
@@ -830,7 +833,7 @@
       "flat"
     ],
     "error_delta": [
-      "+2",
+      "+3",
       "up"
     ]
   }
