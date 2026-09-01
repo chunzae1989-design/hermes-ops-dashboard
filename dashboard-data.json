@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T07:10:14",
+  "generated_at": "2026-09-02T07:10:50",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -305,7 +305,6 @@
   "active_jobs": 0,
   "failed_jobs": 0,
   "errors": [
-    "2026-08-25 19:03:36,462 ERROR cron.scheduler: Job '7da7537c58fd': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-27 06:40:19,597 ERROR cron.scheduler: Job '3eebbd825d2b': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-27 07:00:03,329 ERROR cron.scheduler: Job '8d56630ae270': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
     "2026-08-27 07:22:46,773 ERROR cron.scheduler: Job 'b2f981964ea3': delivery error: python-telegram-bot not installed. Run: pip install python-telegram-bot (target telegram:8813876157)",
@@ -318,19 +317,19 @@
   ],
   "benchmarks": {
     "ai_ops": {
-      "score": 80,
+      "score": 82,
       "active_jobs": 0,
       "ok_active_jobs": 0,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
-      "recent_error_lines": 10,
+      "recent_error_lines": 9,
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 42,
-      "task_candidates": 152,
-      "candidate_rate_pct": 361.9,
-      "call_pipeline_seen": 7698,
+      "recording_notes_7d": 46,
+      "task_candidates": 153,
+      "candidate_rate_pct": 332.6,
+      "call_pipeline_seen": 7705,
       "meeting_pipeline_seen": 2
     },
     "daily_insight": {
@@ -356,9 +355,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 194,
-      "estimated_minutes_saved_7d": 564,
-      "estimated_hours_saved_7d": 9.4,
+      "auto_items_7d": 199,
+      "estimated_minutes_saved_7d": 598,
+      "estimated_hours_saved_7d": 10.0,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -421,31 +420,31 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 42,
+  "call_recent_notes": 46,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-01T07:04:57",
-    "seen_count": 7698,
+    "last_run_at": "2026-09-02T07:08:35",
+    "seen_count": 7705,
     "failed_count": 0,
-    "transient_failure_count": 0
+    "transient_failure_count": 4
   },
   "meeting_state": {
-    "last_run_at": "2026-09-01T07:03:01",
+    "last_run_at": "2026-09-02T07:06:28",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
   },
-  "pending_call_tasks": 138,
+  "pending_call_tasks": 139,
   "pending_meeting_tasks": 14,
   "task_summaries": [
     {
       "source": "통화",
-      "count": 138,
+      "count": 139,
       "status_counts": {
-        "pending_approval": 138
+        "pending_approval": 139
       },
       "due_hint_counts": {
-        "기한 없음": 107,
+        "기한 없음": 108,
         "오늘": 17,
         "오늘, 다음 주": 1,
         "6/16 이전": 1,
@@ -460,7 +459,7 @@
         "금요일": 1,
         "퇴근 전후": 1
       },
-      "newest_created_at": "2026-08-31T17:35:09"
+      "newest_created_at": "2026-09-01T16:24:30"
     },
     {
       "source": "회의",
@@ -484,32 +483,22 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   157Gi   257Gi    38%    1.8M  2.7G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   158Gi   255Gi    39%    1.8M  2.7G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-01T07:10:12",
+    "scanned_at": "2026-09-02T07:10:39",
     "min_age_days": 7,
-    "candidates": 546,
-    "downloaded_candidates": 546,
-    "finder_evictable_candidates": 546,
+    "candidates": 549,
+    "downloaded_candidates": 549,
+    "finder_evictable_candidates": 549,
     "selected": 300,
-    "selected_bytes": 738108285,
+    "selected_bytes": 746135690,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.20.6 (2026.8.27) · upstream d95682cd",
+  "hermes_version": "Hermes Agent v0.20.6 (2026.8.27) · upstream 3ca096de",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-07-09T07:10:26",
-        "score": 80,
-        "cron_success_rate_pct": 0.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 10,
-        "cron_runs_7d": 341,
-        "task_candidates": 90,
-        "roi_hours_7d": 25.6
-      },
       {
         "ts": "2026-07-10T07:10:37",
         "score": 80,
@@ -799,9 +788,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 152,
         "roi_hours_7d": 9.4
+      },
+      {
+        "ts": "2026-09-02T07:10:50",
+        "score": 82,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 9,
+        "cron_runs_7d": 0,
+        "task_candidates": 153,
+        "roi_hours_7d": 10.0
       }
     ],
     "latest": {
+      "ts": "2026-09-02T07:10:50",
+      "score": 82,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 9,
+      "cron_runs_7d": 0,
+      "task_candidates": 153,
+      "roi_hours_7d": 10.0
+    },
+    "previous": {
       "ts": "2026-09-01T07:10:14",
       "score": 80,
       "cron_success_rate_pct": 0.0,
@@ -811,19 +820,9 @@
       "task_candidates": 152,
       "roi_hours_7d": 9.4
     },
-    "previous": {
-      "ts": "2026-08-31T07:10:15",
-      "score": 80,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 10,
-      "cron_runs_7d": 0,
-      "task_candidates": 146,
-      "roi_hours_7d": 17.9
-    },
     "score_delta": [
-      "±0",
-      "flat"
+      "+2",
+      "up"
     ],
     "success_delta": [
       "±0%p",
@@ -834,8 +833,8 @@
       "flat"
     ],
     "error_delta": [
-      "±0",
-      "flat"
+      "-1",
+      "down"
     ]
   }
 }
