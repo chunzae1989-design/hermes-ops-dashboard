@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T07:10:48",
+  "generated_at": "2026-09-07T07:10:47",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -413,13 +413,13 @@
   "call_recent_notes": 17,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-06T07:00:20",
+    "last_run_at": "2026-09-07T07:04:21",
     "seen_count": 7705,
     "failed_count": 0,
-    "transient_failure_count": 26
+    "transient_failure_count": 28
   },
   "meeting_state": {
-    "last_run_at": "2026-09-06T07:05:34",
+    "last_run_at": "2026-09-07T07:01:34",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -473,10 +473,10 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   159Gi   251Gi    39%    1.8M  2.6G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   159Gi   253Gi    39%    1.8M  2.7G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-06T07:10:46",
+    "scanned_at": "2026-09-07T07:10:46",
     "min_age_days": 7,
     "candidates": 578,
     "downloaded_candidates": 578,
@@ -485,7 +485,7 @@
     "selected_bytes": 768951754,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.21.0 (2026.8.31) · upstream ee5b5ec2",
+  "hermes_version": "Hermes Agent v0.21.0 (2026.8.31) · upstream 693641aa",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
@@ -780,7 +780,7 @@
         "roi_hours_7d": 6.8
       },
       {
-        "ts": "2026-09-06T07:10:48",
+        "ts": "2026-09-07T07:10:47",
         "score": 100,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -791,7 +791,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-09-06T07:10:48",
+      "ts": "2026-09-07T07:10:47",
       "score": 100,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
