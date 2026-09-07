@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T07:10:47",
+  "generated_at": "2026-09-08T07:10:38",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -316,9 +316,9 @@
       "cron_runs_7d": 0
     },
     "task_conversion": {
-      "recording_notes_7d": 17,
+      "recording_notes_7d": 7,
       "task_candidates": 153,
-      "candidate_rate_pct": 900.0,
+      "candidate_rate_pct": 2185.7,
       "call_pipeline_seen": 7705,
       "meeting_pipeline_seen": 2
     },
@@ -345,9 +345,9 @@
       "last_briefing_outputs_7d": 0
     },
     "roi": {
-      "auto_items_7d": 170,
-      "estimated_minutes_saved_7d": 366,
-      "estimated_hours_saved_7d": 6.1,
+      "auto_items_7d": 160,
+      "estimated_minutes_saved_7d": 286,
+      "estimated_hours_saved_7d": 4.8,
       "recording_runs_7d": 0,
       "model": "통화노트 8분·회의록 20분·후보 1.5분·cron 3분 절감 가정"
     }
@@ -410,16 +410,16 @@
     "highest_token_job_status": "ok",
     "operating_rule": "리서치는 아기, 디자인은 디지, 검증·side effect·최종 전달은 헤르미온느"
   },
-  "call_recent_notes": 17,
+  "call_recent_notes": 7,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-07T07:04:21",
+    "last_run_at": "2026-09-08T07:08:13",
     "seen_count": 7705,
     "failed_count": 0,
-    "transient_failure_count": 28
+    "transient_failure_count": 37
   },
   "meeting_state": {
-    "last_run_at": "2026-09-07T07:01:34",
+    "last_run_at": "2026-09-08T07:07:40",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -473,10 +473,10 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   159Gi   253Gi    39%    1.8M  2.7G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   160Gi   255Gi    39%    1.8M  2.7G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-07T07:10:46",
+    "scanned_at": "2026-09-08T07:10:37",
     "min_age_days": 7,
     "candidates": 578,
     "downloaded_candidates": 578,
@@ -485,20 +485,10 @@
     "selected_bytes": 768951754,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.21.0 (2026.8.31) · upstream 693641aa",
+  "hermes_version": "Hermes Agent v0.21.0 (2026.8.31) · upstream 6178e9f4",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-07-14T07:10:48",
-        "score": 98,
-        "cron_success_rate_pct": 0.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 1,
-        "cron_runs_7d": 0,
-        "task_candidates": 91,
-        "roi_hours_7d": 7.5
-      },
       {
         "ts": "2026-07-15T07:11:09",
         "score": 98,
@@ -788,9 +778,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 153,
         "roi_hours_7d": 6.1
+      },
+      {
+        "ts": "2026-09-08T07:10:38",
+        "score": 100,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 0,
+        "cron_runs_7d": 0,
+        "task_candidates": 153,
+        "roi_hours_7d": 4.8
       }
     ],
     "latest": {
+      "ts": "2026-09-08T07:10:38",
+      "score": 100,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 0,
+      "cron_runs_7d": 0,
+      "task_candidates": 153,
+      "roi_hours_7d": 4.8
+    },
+    "previous": {
       "ts": "2026-09-07T07:10:47",
       "score": 100,
       "cron_success_rate_pct": 0.0,
@@ -800,19 +810,9 @@
       "task_candidates": 153,
       "roi_hours_7d": 6.1
     },
-    "previous": {
-      "ts": "2026-09-05T07:10:54",
-      "score": 96,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 2,
-      "cron_runs_7d": 0,
-      "task_candidates": 153,
-      "roi_hours_7d": 6.8
-    },
     "score_delta": [
-      "+4",
-      "up"
+      "±0",
+      "flat"
     ],
     "success_delta": [
       "±0%p",
@@ -823,8 +823,8 @@
       "flat"
     ],
     "error_delta": [
-      "-2",
-      "down"
+      "±0",
+      "flat"
     ]
   }
 }
