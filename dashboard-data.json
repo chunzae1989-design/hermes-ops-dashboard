@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T07:10:42",
+  "generated_at": "2026-09-15T07:10:54",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -413,13 +413,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-14T07:00:16",
+    "last_run_at": "2026-09-15T07:04:30",
     "seen_count": 7705,
     "failed_count": 0,
-    "transient_failure_count": 58
+    "transient_failure_count": 63
   },
   "meeting_state": {
-    "last_run_at": "2026-09-14T07:02:29",
+    "last_run_at": "2026-09-15T07:07:43",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -476,7 +476,7 @@
   "disk_line": "/dev/disk3s5   460Gi   179Gi   227Gi    45%    1.9M  2.4G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-14T07:10:41",
+    "scanned_at": "2026-09-15T07:10:54",
     "min_age_days": 7,
     "candidates": 578,
     "downloaded_candidates": 578,
@@ -780,7 +780,7 @@
         "roi_hours_7d": 4.8
       },
       {
-        "ts": "2026-09-14T07:10:42",
+        "ts": "2026-09-15T07:10:54",
         "score": 100,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -791,7 +791,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-09-14T07:10:42",
+      "ts": "2026-09-15T07:10:54",
       "score": 100,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
