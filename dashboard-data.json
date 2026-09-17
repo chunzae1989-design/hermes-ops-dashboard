@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T07:10:43",
+  "generated_at": "2026-09-18T07:10:20",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -304,15 +304,17 @@
   ],
   "active_jobs": 0,
   "failed_jobs": 0,
-  "errors": [],
+  "errors": [
+    "2026-09-17 09:07:45,476 ERROR cron.scheduler: Cron tick yielded: this process is running stale code (boot=b6b53c69a6 disk=d6d6565d90) and a fresher gateway owns the runtime lock — jobs will fire from that process. Restart this one to reclai"
+  ],
   "benchmarks": {
     "ai_ops": {
-      "score": 100,
+      "score": 98,
       "active_jobs": 0,
       "ok_active_jobs": 0,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
-      "recent_error_lines": 0,
+      "recent_error_lines": 1,
       "cron_runs_7d": 0
     },
     "task_conversion": {
@@ -413,13 +415,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-17T07:01:17",
+    "last_run_at": "2026-09-18T07:09:56",
     "seen_count": 7705,
     "failed_count": 0,
-    "transient_failure_count": 84
+    "transient_failure_count": 96
   },
   "meeting_state": {
-    "last_run_at": "2026-09-17T07:07:30",
+    "last_run_at": "2026-09-18T07:02:07",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -473,10 +475,10 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   181Gi   223Gi    45%    1.9M  2.3G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   187Gi   215Gi    47%    1.9M  2.3G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-17T07:10:41",
+    "scanned_at": "2026-09-18T07:10:20",
     "min_age_days": 7,
     "candidates": 578,
     "downloaded_candidates": 578,
@@ -485,20 +487,10 @@
     "selected_bytes": 768951754,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.21.2 (2026.9.11) · upstream b6b53c69",
+  "hermes_version": "Hermes Agent v0.21.3 (2026.9.14) · upstream c712f06d",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
-      {
-        "ts": "2026-07-16T07:10:28",
-        "score": 98,
-        "cron_success_rate_pct": 0.0,
-        "attention_jobs": 0,
-        "recent_error_lines": 1,
-        "cron_runs_7d": 0,
-        "task_candidates": 96,
-        "roi_hours_7d": 7.2
-      },
       {
         "ts": "2026-07-17T07:10:41",
         "score": 80,
@@ -788,9 +780,29 @@
         "cron_runs_7d": 0,
         "task_candidates": 153,
         "roi_hours_7d": 3.8
+      },
+      {
+        "ts": "2026-09-18T07:10:20",
+        "score": 98,
+        "cron_success_rate_pct": 0.0,
+        "attention_jobs": 0,
+        "recent_error_lines": 1,
+        "cron_runs_7d": 0,
+        "task_candidates": 153,
+        "roi_hours_7d": 3.8
       }
     ],
     "latest": {
+      "ts": "2026-09-18T07:10:20",
+      "score": 98,
+      "cron_success_rate_pct": 0.0,
+      "attention_jobs": 0,
+      "recent_error_lines": 1,
+      "cron_runs_7d": 0,
+      "task_candidates": 153,
+      "roi_hours_7d": 3.8
+    },
+    "previous": {
       "ts": "2026-09-17T07:10:43",
       "score": 100,
       "cron_success_rate_pct": 0.0,
@@ -800,19 +812,9 @@
       "task_candidates": 153,
       "roi_hours_7d": 3.8
     },
-    "previous": {
-      "ts": "2026-09-08T07:10:38",
-      "score": 100,
-      "cron_success_rate_pct": 0.0,
-      "attention_jobs": 0,
-      "recent_error_lines": 0,
-      "cron_runs_7d": 0,
-      "task_candidates": 153,
-      "roi_hours_7d": 4.8
-    },
     "score_delta": [
-      "±0",
-      "flat"
+      "-2",
+      "down"
     ],
     "success_delta": [
       "±0%p",
@@ -823,8 +825,8 @@
       "flat"
     ],
     "error_delta": [
-      "±0",
-      "flat"
+      "+1",
+      "up"
     ]
   }
 }
