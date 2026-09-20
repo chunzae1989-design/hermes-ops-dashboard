@@ -1,15 +1,5 @@
 [
   {
-    "ts": "2026-07-17T07:10:41",
-    "score": 80,
-    "cron_success_rate_pct": 0.0,
-    "attention_jobs": 0,
-    "recent_error_lines": 10,
-    "cron_runs_7d": 0,
-    "task_candidates": 98,
-    "roi_hours_7d": 7.7
-  },
-  {
     "ts": "2026-07-20T07:10:27",
     "score": 80,
     "cron_success_rate_pct": 0.0,
@@ -298,5 +288,15 @@
     "cron_runs_7d": 0,
     "task_candidates": 153,
     "roi_hours_7d": 3.8
+  },
+  {
+    "ts": "2026-09-21T07:10:34",
+    "score": 98,
+    "cron_success_rate_pct": 0.0,
+    "attention_jobs": 0,
+    "recent_error_lines": 1,
+    "cron_runs_7d": 0,
+    "task_candidates": 181,
+    "roi_hours_7d": 21.7
   }
 ]
