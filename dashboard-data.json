@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-24T07:10:49",
+  "generated_at": "2026-09-25T07:10:15",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -305,16 +305,16 @@
   "active_jobs": 0,
   "failed_jobs": 0,
   "errors": [
-    "2026-09-23 22:33:22,878 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-23 22:33:22,887 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
-    "2026-09-23 22:33:22,891 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-23 22:33:22,894 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
-    "2026-09-23 22:33:22,898 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-23 22:33:23,152 ERROR hermes_cli.web_server: Failed to list cron jobs for profile default",
-    "2026-09-23 22:33:23,154 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
-    "2026-09-23 22:33:23,156 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
-    "2026-09-23 22:33:23,159 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-23 22:33:23,267 ERROR tui_gateway.ws: ws dispatch crash peer=127.0.0.1:64122 id=39 method=session.control.read"
+    "2026-09-24 21:48:13,961 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
+    "2026-09-24 21:48:14,287 ERROR tui_gateway.ws: ws dispatch crash peer=127.0.0.1:53345 id=39 method=session.control.read",
+    "2026-09-24 21:48:24,100 ERROR hermes_cli.web_server: Failed to list cron jobs for profile default",
+    "2026-09-24 21:48:24,102 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
+    "2026-09-24 21:48:24,104 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
+    "2026-09-24 21:48:24,106 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
+    "2026-09-24 21:49:24,471 ERROR hermes_cli.web_server: Failed to list cron jobs for profile default",
+    "2026-09-24 21:49:24,472 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
+    "2026-09-24 21:49:24,474 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
+    "2026-09-24 21:49:24,476 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514"
   ],
   "benchmarks": {
     "ai_ops": {
@@ -424,13 +424,13 @@
   "call_recent_notes": 129,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-24T07:04:37",
+    "last_run_at": "2026-09-25T07:05:06",
     "seen_count": 7834,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-09-24T07:02:36",
+    "last_run_at": "2026-09-25T07:03:05",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -486,19 +486,19 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   192Gi   244Gi    45%    1.9M  2.6G    0%   /System/Volumes/Data",
+  "disk_line": "/dev/disk3s5   460Gi   195Gi   235Gi    46%    2.0M  2.5G    0%   /System/Volumes/Data",
   "recordings_du": "13G",
   "cache": {
-    "scanned_at": "2026-09-24T07:10:47",
+    "scanned_at": "2026-09-25T07:10:15",
     "min_age_days": 7,
-    "candidates": 578,
-    "downloaded_candidates": 578,
-    "finder_evictable_candidates": 578,
+    "candidates": 580,
+    "downloaded_candidates": 580,
+    "finder_evictable_candidates": 580,
     "selected": 300,
-    "selected_bytes": 768951754,
+    "selected_bytes": 773691504,
     "available": true
   },
-  "hermes_version": "Hermes Agent v0.21.4 (2026.9.21) · upstream ef2307dd",
+  "hermes_version": "Hermes Agent v0.21.5 (2026.9.24) · upstream 5f50e5fb",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
@@ -793,7 +793,7 @@
         "roi_hours_7d": 21.7
       },
       {
-        "ts": "2026-09-24T07:10:49",
+        "ts": "2026-09-25T07:10:15",
         "score": 80,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -804,7 +804,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-09-24T07:10:49",
+      "ts": "2026-09-25T07:10:15",
       "score": 80,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
