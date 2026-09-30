@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T07:10:19",
+  "generated_at": "2026-10-01T07:13:40",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -305,16 +305,16 @@
   "active_jobs": 0,
   "failed_jobs": 0,
   "errors": [
-    "2026-09-24 21:48:13,961 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-24 21:48:14,287 ERROR tui_gateway.ws: ws dispatch crash peer=127.0.0.1:53345 id=39 method=session.control.read",
-    "2026-09-24 21:48:24,100 ERROR hermes_cli.web_server: Failed to list cron jobs for profile default",
-    "2026-09-24 21:48:24,102 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
-    "2026-09-24 21:48:24,104 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
-    "2026-09-24 21:48:24,106 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514",
-    "2026-09-24 21:49:24,471 ERROR hermes_cli.web_server: Failed to list cron jobs for profile default",
-    "2026-09-24 21:49:24,472 ERROR hermes_cli.web_server: Failed to list cron jobs for profile mac-local",
-    "2026-09-24 21:49:24,474 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc218-ub2c8",
-    "2026-09-24 21:49:24,476 ERROR hermes_cli.web_server: Failed to list cron jobs for profile uc720-ud53c-ub514"
+    "2026-09-30 22:56:36,872 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:18,637 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:18,642 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:25,761 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:27,982 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:28,588 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:29,144 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:29,715 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:30,306 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this ",
+    "2026-09-30 22:57:31,732 WARNING hermes_cli.web_server: GET /api/model/options refused: This process is running code from 5f50e5fbaa but the checkout on disk is now f42f579cf8. The model picker would risk a stale-module crash — restart this "
   ],
   "benchmarks": {
     "ai_ops": {
@@ -424,13 +424,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-09-30T07:10:08",
+    "last_run_at": "2026-10-01T07:10:39",
     "seen_count": 7834,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-09-30T07:07:08",
+    "last_run_at": "2026-10-01T07:08:39",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -486,19 +486,13 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   199Gi   221Gi    48%    2.0M  2.3G    0%   /System/Volumes/Data",
-  "recordings_du": "13G",
+  "disk_line": "/dev/disk3s5   460Gi   200Gi   221Gi    48%    2.0M  2.3G    0%   /System/Volumes/Data",
+  "recordings_du": "ERR: TimeoutExpired: Command '['du', '-sh', '/Users/na/Library/CloudStorage/SynologyDrive-RecordingsInbox']' timed out after 90 seconds",
   "cache": {
-    "scanned_at": "2026-09-30T07:10:19",
-    "min_age_days": 7,
-    "candidates": 580,
-    "downloaded_candidates": 580,
-    "finder_evictable_candidates": 580,
-    "selected": 300,
-    "selected_bytes": 773691504,
-    "available": true
+    "available": false,
+    "raw": "ERR: TimeoutExpired: Command '['/Users/na/.hermes/scripts/recording_local_cache_cleanup.py', '--limit', '300', '--json']' timed out after 180 seconds"
   },
-  "hermes_version": "Hermes Agent v0.21.5 (2026.9.24) · upstream 5f50e5fb",
+  "hermes_version": "Hermes Agent v0.21.5+4905.gf42f579 (2026.9.24) · upstream f42f579c",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
   "trend": {
     "history": [
@@ -793,7 +787,7 @@
         "roi_hours_7d": 21.7
       },
       {
-        "ts": "2026-09-30T07:10:19",
+        "ts": "2026-10-01T07:13:40",
         "score": 80,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -804,7 +798,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-09-30T07:10:19",
+      "ts": "2026-10-01T07:13:40",
       "score": 80,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
