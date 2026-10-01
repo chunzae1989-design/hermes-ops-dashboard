@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T07:13:40",
+  "generated_at": "2026-10-02T07:10:52",
   "jobs": [
     {
       "name": "매일 아침 Hermes 스킬 코너",
@@ -424,13 +424,13 @@
   "call_recent_notes": 0,
   "meeting_recent_notes": 0,
   "call_state": {
-    "last_run_at": "2026-10-01T07:10:39",
+    "last_run_at": "2026-10-02T07:00:40",
     "seen_count": 7834,
     "failed_count": 0,
     "transient_failure_count": 0
   },
   "meeting_state": {
-    "last_run_at": "2026-10-01T07:08:39",
+    "last_run_at": "2026-10-02T07:09:39",
     "seen_count": 2,
     "failed_count": 0,
     "transient_failure_count": 0
@@ -486,11 +486,17 @@
     "next_run_at": "2026-07-07T08:00:00+09:00",
     "job_id": "7d884cf4f2dd"
   },
-  "disk_line": "/dev/disk3s5   460Gi   200Gi   221Gi    48%    2.0M  2.3G    0%   /System/Volumes/Data",
-  "recordings_du": "ERR: TimeoutExpired: Command '['du', '-sh', '/Users/na/Library/CloudStorage/SynologyDrive-RecordingsInbox']' timed out after 90 seconds",
+  "disk_line": "/dev/disk3s5   460Gi   202Gi   218Gi    49%    2.1M  2.3G    0%   /System/Volumes/Data",
+  "recordings_du": "13G",
   "cache": {
-    "available": false,
-    "raw": "ERR: TimeoutExpired: Command '['/Users/na/.hermes/scripts/recording_local_cache_cleanup.py', '--limit', '300', '--json']' timed out after 180 seconds"
+    "scanned_at": "2026-10-02T07:10:50",
+    "min_age_days": 7,
+    "candidates": 580,
+    "downloaded_candidates": 580,
+    "finder_evictable_candidates": 580,
+    "selected": 300,
+    "selected_bytes": 773691504,
+    "available": true
   },
   "hermes_version": "Hermes Agent v0.21.5+4905.gf42f579 (2026.9.24) · upstream f42f579c",
   "hermes_update": "Install directory: /Users/na/.hermes/hermes-agent / Install method: git / Python: 3.11.15",
@@ -787,7 +793,7 @@
         "roi_hours_7d": 21.7
       },
       {
-        "ts": "2026-10-01T07:13:40",
+        "ts": "2026-10-02T07:10:52",
         "score": 80,
         "cron_success_rate_pct": 0.0,
         "attention_jobs": 0,
@@ -798,7 +804,7 @@
       }
     ],
     "latest": {
-      "ts": "2026-10-01T07:13:40",
+      "ts": "2026-10-02T07:10:52",
       "score": 80,
       "cron_success_rate_pct": 0.0,
       "attention_jobs": 0,
